@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Teko:wght@300..700&display=swap');
+
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.landing-page {
+  text-align: center;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #f8f9fa;
+}
+
+.title {
+  font-size: 3rem;
+  color: #333;
+  font-family: 'Teko', sans-serif; /* Apply Teko font */
+  font-weight: 300; /* Set font weight to 300 */
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #666;
+}
+
+.get-started-btn {
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+  color: #fff;
+  background-color: #313132;
+  border: none;
+  border-radius: 0.5rem; /* Make corners slightly rounded */
+  cursor: pointer;
+  transition: box-shadow 0.3s ease; /* Smooth transition for shadow */
+}
+
+.get-started-btn:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+}
+
+.login-btn {
+  padding: 0.5rem 1rem;
+  font-size: 1.1rem;
+  color: #333;
+  background-color: transparent;
+  border: 2px solid #ccc;
+  border-radius: 20px; /* Make corners rounded */
+  cursor: pointer;
+  font-family: sans-serif; /* Apply Teko font */
+  font-weight: 400; /* Set font weight to 300 */
+}
+
+.main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+}
+
+.text-container {
+  max-width: 50%;
+  text-align: left;
+}
+
+.main-title {
+  font-size: 3rem;
+  color: #333;
+  line-height: 1.2;
+  font-family: 'Merriweather', serif; /* Apply Merriweather font */
+}
+
+.highlight {
+  color: #446FF2; /* Apply color to "algorithms basics" */
+}
+
+.main-subtitle {
+  font-size: 1.25rem;
+  color: #666;
+  margin: 1rem 0;
+}
+
+.main-get-started-btn {
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #446FF2;
+  border: none;
+  border-radius: 0.5rem; /* Make corners slightly rounded */
+  cursor: pointer;
+  transition: box-shadow 0.3s ease; /* Smooth transition for shadow */
+}
+
+.main-get-started-btn:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+}
+
+.gif-container {
+  max-width: 30%;
+}
+
+.gif-container video {
+  width: 100%;
+  border-radius: 0.5rem;
+}
