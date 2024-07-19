@@ -1,20 +1,31 @@
-.body {
-  font-family: sans-serif;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 .md-container {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  text-align: center; /* Center align text */
+  display: flex; /* Use flexbox */
+  flex-direction: column; /* Arrange items vertically */
+  align-items: center; /* Center items horizontally */
+  margin: 10vh auto; /* 10vh margin from top and bottom, auto left and right */
+  max-width: 80%; /* Maximum width of container */
 }
 
 .middle-title {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #333;
-  margin-bottom: 1rem;
+  font-size: 4vh; /* Font size relative to viewport height */
+  font-weight: 700; /* Bold font */
+  color: #333; /* Dark gray text color */
+  margin-bottom: 3vh; /* Space below the title */
+  text-align: center; /* Center align text */
+}
+
+@media screen and (max-width: 768px) {
+  .middle-title {
+    font-size: 6vh; /* Increase font size on smaller screens */
+  }
+
+  .md-container {
+    margin: 5vh auto; /* Reduce margin on smaller screens */
+  }
+
+  .md-container img {
+    width: 80%; /* Reduce image width on smaller screens */
+  }
+  
 }
