@@ -67,10 +67,15 @@ body {
   font-family: sans-serif; /* Apply Teko font */
   font-weight: 400; /* Set font weight to 300 */
   transition: box-shadow 0.3s ease; /* Smooth transition for shadow */
+  font-weight: 700;
   /* position corer top right */
   position: absolute;
   top: 20px;
   right: 200px;
+}
+
+.login-btn:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
 }
 
 .main {
