@@ -1,31 +1,16 @@
 .md-container {
-  text-align: center; /* Center align text */
-  display: flex; /* Use flexbox */
-  flex-direction: column; /* Arrange items vertically */
-  align-items: center; /* Center items horizontally */
-  margin: 10vh auto; /* 10vh margin from top and bottom, auto left and right */
-  max-width: 80%; /* Maximum width of container */
+  display: flex; /* Use flexbox for layout */
+  justify-content: center; /* Center align horizontally */
+  align-items: center; /* Center align vertically */
+  margin-top: 2rem; /* Add top margin */
+  margin-bottom: 2rem; /* Add bottom margin */
+  margin: 40vh; /* Center container vertically */
 }
 
 .middle-title {
-  font-size: 4vh; /* Font size relative to viewport height */
-  font-weight: 700; /* Bold font */
-  color: #333; /* Dark gray text color */
-  margin-bottom: 3vh; /* Space below the title */
-  text-align: center; /* Center align text */
-}
-
-@media screen and (max-width: 768px) {
-  .middle-title {
-    font-size: 6vh; /* Increase font size on smaller screens */
-  }
-
-  .md-container {
-    margin: 5vh auto; /* Reduce margin on smaller screens */
-  }
-
-  .md-container img {
-    width: 80%; /* Reduce image width on smaller screens */
-  }
-  
+  font-size: 3rem; /* Set font size */
+  color: #333; /* Set text color */
+  font-family: "Teko", sans-serif; /* Apply Teko font */
+  font-weight: 300; /* Set font weight */
+  margin: 0; /* Remove default margin */
 }
