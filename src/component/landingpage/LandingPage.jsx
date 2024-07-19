@@ -27,7 +27,7 @@ const LandingPage = () => {
           <button className="main-get-started-btn">Get started</button>
         </div>
         <div className="gif-container">
-          <video src={videoComponent} autoPlay loop muted />
+          <video src={videoComponent} autoPlay loop muted /> 
         </div>
       </main>
     </div>

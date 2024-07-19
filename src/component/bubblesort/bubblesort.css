@@ -25,6 +25,7 @@
   align-items: center; /* Center align horizontally */
   margin-left: auto; /* Move to the right */
   max-width: 50%; /* Limit width to avoid excessive stretching */
+  
 }
 
 .bubble-video-container {
