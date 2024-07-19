@@ -5,6 +5,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background-color: #FFFFFF;
 }
 
 .landing-page {
@@ -149,4 +150,9 @@ body {
 .gif-container video {
   width: 100%;
   border-radius: 0.5rem;
+}
+
+.landing-page {
+  /* Add overflow-x: hidden to prevent horizontal scroll */
+  overflow-x: hidden;
 }
