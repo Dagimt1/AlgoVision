@@ -11,10 +11,10 @@ const BubbleSort = () => {
         <video className="bubble-vid" src={BubbleVideo} autoPlay loop muted />
       </div>
       <p className="bubble-description">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum
-          dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit
-          amet, consectetur adipisicing elit.
-        </p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum
+        dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit
+        amet, consectetur adipisicing elit.
+      </p>
     </div>
   );
 };

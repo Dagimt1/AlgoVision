@@ -2,15 +2,12 @@
   display: flex; /* Use flexbox for layout */
   justify-content: center; /* Center align horizontally */
   align-items: center; /* Center align vertically */
-  margin-top: 2rem; /* Add top margin */
-  margin-bottom: 2rem; /* Add bottom margin */
-  margin: 40vh; /* Center container vertically */
+  margin: 30vh; /* Center container vertically */
 }
 
 .middle-title {
   font-size: 3rem; /* Set font size */
   color: #333; /* Set text color */
   font-family: "Teko", sans-serif; /* Apply Teko font */
-  font-weight: 300; /* Set font weight */
-  margin: 0; /* Remove default margin */
+  font-weight: 300; /* Set font weight to 300 */
 }
