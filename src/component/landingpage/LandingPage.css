@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Teko:wght@300..700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Teko:wght@300..700&display=swap");
 
 body {
   font-family: sans-serif;
@@ -22,7 +22,7 @@ body {
 .title {
   font-size: 3rem;
   color: #333;
-  font-family: 'Teko', sans-serif; /* Apply Teko font */
+  font-family: "Teko", sans-serif; /* Apply Teko font */
   font-weight: 300; /* Set font weight to 300 */
 }
 
@@ -75,11 +75,11 @@ body {
   font-size: 3rem;
   color: #333;
   line-height: 1.2;
-  font-family: 'Merriweather', serif; /* Apply Merriweather font */
+  font-family: "Merriweather", serif; /* Apply Merriweather font */
 }
 
 .highlight {
-  color: #446FF2; /* Apply color to "algorithms basics" */
+  color: #446ff2; /* Apply color to "algorithms basics" */
 }
 
 .main-subtitle {
@@ -93,7 +93,7 @@ body {
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
   color: #fff;
-  background-color: #446FF2;
+  background-color: #446ff2;
   border: none;
   border-radius: 0.5rem; /* Make corners slightly rounded */
   cursor: pointer;

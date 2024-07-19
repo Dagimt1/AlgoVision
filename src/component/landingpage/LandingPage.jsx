@@ -1,5 +1,5 @@
-import React from 'react';
-import './LandingPage.css';
+import React from "react";
+import "./LandingPage.css";
 
 const LandingPage = () => {
   return (
@@ -13,15 +13,23 @@ const LandingPage = () => {
       <main className="main">
         <div className="text-container">
           <h1 className="main-title">
-            The best way to learn <span className="highlight">algorithms basics</span>
+            The best way to learn{" "}
+            <span className="highlight">algorithms basics</span>
           </h1>
           <p className="main-subtitle">
-            Build computer science skills in minutes a day with bite-sized, interactive problem solving.
+            Build computer science skills in minutes a day with bite-sized,
+            interactive problem solving.
           </p>
           <button className="main-get-started-btn">Get started</button>
         </div>
         <div className="gif-container">
-          <video src="https://cdn.dribbble.com/userupload/11103279/file/original-eb5701f1fbe36ed839c4a531c747d45b.mp4" autoPlay loop muted />
+          <video
+            src={process.env.PUBLIC_URL + '/0yEX6dfG1L8t8Nv9a2UX9k1DfI9lTOMX_9c5a0990aaa1b93e60a271db06dfbac9f2ad25e10bef32cd5cd54e19d46eabf5.mp4'}
+            autoPlay
+            loop
+            muted
+            className="gif"
+          />
         </div>
       </main>
     </div>
