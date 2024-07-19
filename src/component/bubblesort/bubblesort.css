@@ -1,0 +1,40 @@
+.bubble-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  position: relative; /* Change to relative for positioning within */
+}
+
+.bubble-title {
+  font-size: 3rem;
+  color: #333;
+  font-family: "Teko", sans-serif; /* Apply Teko font */
+  font-weight: 300; /* Set font weight to 300 */
+  position: absolute;
+  left: 0; /* Adjust position as needed */
+  white-space: nowrap; /* Prevent title from wrapping */
+  overflow: hidden; /* Hide overflow if title is too long */
+  text-overflow: ellipsis; /* Show ellipsis (...) for overflow */
+}
+
+.bubble-description {
+  font-size: 1.2rem;
+  color: #666;
+  margin-top: 1rem; /* Add margin for separation */
+  white-space: nowrap; /* Prevent description from wrapping */
+  overflow: hidden; /* Hide overflow if description is too long */
+  text-overflow: ellipsis; /* Show ellipsis (...) for overflow */
+}
+
+.bubble-video-container {
+  max-width: 30%; /* Adjust width as needed */
+  position: relative; /* Change to relative for positioning within */
+  margin-left: 200px; /* Adjust margin or position */
+}
+
+.bubble-vid {
+  width: 100%;
+  height: auto; /* Maintain aspect ratio */
+}
