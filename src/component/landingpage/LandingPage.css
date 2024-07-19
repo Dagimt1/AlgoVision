@@ -16,8 +16,12 @@ body {
 
 .header {
   width: 100%; /* Ensure header spans full width */
-  padding: 1rem 2rem;
+  padding: 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: #f8f9fa;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow to header */
 }
 
 .title {
@@ -58,10 +62,15 @@ body {
   color: #333;
   background-color: transparent;
   border: 2px solid #ccc;
-  border-radius: 20px; /* Make corners rounded */
+  border-radius: 3rem; /* Make corners rounded */
   cursor: pointer;
   font-family: sans-serif; /* Apply Teko font */
   font-weight: 400; /* Set font weight to 300 */
+  transition: box-shadow 0.3s ease; /* Smooth transition for shadow */
+  /* position corer top right */
+  position: absolute;
+  top: 20px;
+  right: 200px;
 }
 
 .main {
@@ -114,7 +123,7 @@ body {
   color: #fff;
   background-color: #446ff2;
   border: none;
-  border-radius: 0.5rem; /* Make corners slightly rounded */
+  border-radius: 3rem; /* Make corners slightly rounded */
   cursor: pointer;
   transition: box-shadow 0.3s ease; /* Smooth transition for shadow */
   left: 200px;
@@ -129,7 +138,7 @@ body {
 .gif-container {
   max-width: 30%;
   position: relative;
-  right: 210px;
+  right: 100px;
 }
 
 .gif-container video {
