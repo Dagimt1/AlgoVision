@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import './css/login.css';
 
 const Login = () => {
+  const navigate = useNavigate();
+
   return (
     <div className='loginContainer'>
       <div className='loginHeader'>
@@ -13,12 +15,12 @@ const Login = () => {
       <div className='loginBody'>
         <form className='loginForm'>
           <div className='inputGroup'>
-            <input className='textField' placeholder='Email' />
+            <input className='textField' placeholder='Email' required />
             <small className='helpText error'>Enter your username</small>
           </div>
 
           <div className='inputGroup'>
-            <input className='textField' placeholder='Password' />
+            <input className='textField' placeholder='Password' required />
             <small className='helpText error'>Enter your password</small>
           </div>
 
@@ -26,8 +28,22 @@ const Login = () => {
         </form>
 
         <div className='actionGroupContainer'>
-          <div className='loginAction'>Reset Password</div>
-          <div className='loginAction'>Sign Up</div>
+          <div
+            className='loginAction'
+            onClick={() => {
+              navigate('/resetpassword');
+            }}
+          >
+            Reset Password
+          </div>
+          <div
+            className='loginAction'
+            onClick={() => {
+              navigate('/signup');
+            }}
+          >
+            Sign Up
+          </div>
         </div>
       </div>
 
