@@ -6,6 +6,8 @@ import jwt from 'jsonwebtoken';
 
 const client = new pg.Client(process.env.DATABASE_URL || 'postgres://localhost/Capstone');
 
+const jwtSignature = 'superSecret';
+
 dotenv.config();
 
 const createTables = async () => {
@@ -55,10 +57,7 @@ const getAllUsers = async () => {
     throw err;
   }
 };
-
 const logIn = async (email, password) => {
-  const jwtSignature = 'superSecret';
-
   const SQL = `
     SELECT * FROM Users WHERE Email = $1
   `;
@@ -93,11 +92,13 @@ const logIn = async (email, password) => {
     throw err;
   }
 };
-
-const changePassword = async (email, newPassword) => {
+const changePassword = async (email, newPassword, resetToken) => {
   const SQL = `SELECT * FROM Users WHERE email = $1`;
   const isRegistered = await client.query(SQL, [email]);
-  if (isRegistered.rows.length !== 0) {
+
+  const isValidToken = jwt.verify(resetToken, jwtSignature);
+
+  if (isRegistered.rows.length !== 0 && isValidToken) {
     try {
       const hashedNewPassword = await bcrypt.hash(newPassword, 10);
       const SQL = `
@@ -113,7 +114,37 @@ const changePassword = async (email, newPassword) => {
       throw err;
     }
   } else {
-    return { msg: 'User not found!' };
+    return { msg: 'Failed to reset password, please try again or request a new link!' };
   }
 };
-export { client, createTables, register, logIn, getAllUsers, changePassword };
+
+const sendResetPasswordLink = async (email) => {
+  const SQL = `SELECT * FROM Users WHERE email = $1`;
+  const isRegistered = await client.query(SQL, [email]);
+  if (isRegistered.rows.length !== 0) {
+    const resetToken = jwt.sign(
+      {
+        email: email,
+      },
+      jwtSignature,
+      { expiresIn: '10m' }
+    );
+    return {
+      success: true,
+      resetToken: resetToken,
+      msg: 'user found',
+    };
+  } else {
+    return { msg: 'user not found' };
+  }
+};
+
+export {
+  client,
+  createTables,
+  register,
+  logIn,
+  getAllUsers,
+  changePassword,
+  sendResetPasswordLink,
+};

@@ -11,7 +11,7 @@ app.use(cors());
 dotenv.config();
 app.use('/api', apiRouter);
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 6688;
 
 const startServer = async () => {
   await createTables();
