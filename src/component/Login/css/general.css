@@ -19,6 +19,7 @@
   width: 80%;
   color: #9d9d9d;
 }
+
 .helpText.error {
   color: red;
 }
@@ -45,7 +46,7 @@
 }
 
 .loginAction {
-  width: 30%;
+  width: 40%;
   min-width: 100px;
   text-align: center;
   text-decoration: underline;

@@ -49,7 +49,7 @@ const Login = () => {
       </div>
 
       <div className='loginFooter'>
-        <small className='helpText'>Please follow our policies and user agreement</small>
+        <small className='helpText'>Please follow website policies and user agreement</small>
       </div>
     </div>
   );

@@ -31,7 +31,7 @@ const ResetPassword = () => {
           <div className='resetContactContainer'>
             <small className='helpText'>
               If you have any questions while resetting your password, feel free to contact us at
-              support@algorithmvisualization.org
+              support@algovisual.org
             </small>
           </div>
         </div>
