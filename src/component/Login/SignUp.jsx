@@ -41,7 +41,15 @@ const SignUp = () => {
           email: email,
           password: password,
         })
-        .then((res) => setRegisterSuccess(true))
+        .then((res) => {
+          console.log('response: ', res);
+          if (!res.data.success) {
+            setRegisterSuccess(false);
+            setEmailErr('User already existed, please check email');
+          } else {
+            setRegisterSuccess(true);
+          }
+        })
         .catch((err) => {
           setRegisterSuccess(false);
           console.log('err:', err);

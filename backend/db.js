@@ -32,18 +32,41 @@ const createTables = async () => {
 };
 
 const register = async (email, password) => {
-  const hashedPassword = await bcrypt.hash(password, 10);
-  const SQL = `
+  const isEmailValidSQL = `SELECT * FROM Users WHERE email = $1;`;
+
+  let validNewUser = false;
+
+  try {
+    const response = await client.query(isEmailValidSQL, [email]);
+    if (response.rows.length > 0) {
+      return {
+        success: false,
+        err: 'user already existed',
+      };
+    } else {
+      validNewUser = true;
+    }
+  } catch (err) {
+    throw err;
+  }
+
+  if (validNewUser) {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const SQL = `
     INSERT INTO Users(email, password)
     VALUES($1,$2)
     RETURNING *;
     `;
-  try {
-    const response = await client.query(SQL, [email, hashedPassword]);
-    return response.rows;
-  } catch (err) {
-    console.log(chalk.red('failed to register!'));
-    throw err;
+    try {
+      const response = await client.query(SQL, [email, hashedPassword]);
+      return {
+        success: true,
+        rows: response.rows,
+      };
+    } catch (err) {
+      console.log(chalk.red('failed to register!'));
+      throw err;
+    }
   }
 };
 const getAllUsers = async () => {
