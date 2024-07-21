@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './css/login.css';
+import './css/general.css';
 
 const Login = () => {
   const navigate = useNavigate();
