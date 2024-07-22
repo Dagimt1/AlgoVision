@@ -77,11 +77,11 @@ userRouter.post('/sendResetLink', async (req, res) => {
         transporter.sendMail(mailOptions, (error, info) => {
           if (error) {
             console.log('Error occurred: ', error);
-            return res.status(500).send({ msg: 'Failed to send reset link' });
+            return res.status(500).send({ success: false, msg: 'Failed to send reset link' });
           }
           console.log('Email sent: ' + info.response);
           console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-          res.status(201).send({ msg: 'Reset link sent successfully' });
+          res.status(201).send({ success: true, msg: 'Reset link sent successfully' });
         });
       });
     }

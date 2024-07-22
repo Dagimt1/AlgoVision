@@ -134,14 +134,17 @@ const changePassword = async (email, newPassword, resetToken) => {
       `;
       const result = await client.query(SQL, [hashedNewPassword, email]);
       return {
+        success: true,
         msg: 'reset password successfully!',
       };
     } catch (err) {
-      s;
       throw err;
     }
   } else {
-    return { msg: 'Failed to reset password, please try again or request a new link!' };
+    return {
+      success: false,
+      msg: 'Failed to reset password, please try again or request a new link!',
+    };
   }
 };
 
@@ -162,7 +165,10 @@ const sendResetPasswordLink = async (email) => {
       msg: 'user found',
     };
   } else {
-    return { msg: 'user not found' };
+    return {
+      success: false,
+      msg: 'user not found',
+    };
   }
 };
 
