@@ -89,7 +89,10 @@ const logIn = async (email, password) => {
     const result = await client.query(SQL, [email]);
     const user = result.rows[0];
     if (!user) {
-      return { msg: 'User not found sign up now!' };
+      return {
+        success: false,
+        err: 'User not found sign up now!',
+      };
     }
 
     const isAuthenticated = await bcrypt.compare(password, user.password);
@@ -105,6 +108,7 @@ const logIn = async (email, password) => {
       );
 
       return {
+        success: true,
         token: token,
         msg: 'successfully logged in',
       };
