@@ -1,18 +1,22 @@
 import React from "react";
 import "./LandingPage.css";
+import { useNavigate } from 'react-router-dom';
 
 const LandingPage = () => {
   const videoComponent =
     process.env.PUBLIC_URL +
     "/0yEX6dfG1L8t8Nv9a2UX9k1DfI9lTOMX_9c5a0990aaa1b93e60a271db06dfbac9f2ad25e10bef32cd5cd54e19d46eabf5.mp4";
 
+  const navigate = useNavigate();
   return (
-    <div className="landing-page">
-      <header className="header">
-        <div className="container">
-          <h1 className="title">Algorithm Visualizer</h1>
+    <div className='landing-page'>
+      <header className='header'>
+        <div className='container'>
+          <h1 className='title'>Algorithm Visualizer</h1>
         </div>
-        <button className="login-btn">Log in</button>
+        <button className='login-btn' onClick={() => navigate('/login')}>
+          Log in
+        </button>
       </header>
       <main className="main">
         <div className="text-container">
