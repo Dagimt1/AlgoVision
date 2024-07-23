@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './css/signup.css';
-
 const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -11,7 +10,6 @@ const SignUp = () => {
   const [registerSuccess, setRegisterSuccess] = useState(false);
   const navigate = useNavigate();
   const ApiBaseURL = 'http://localhost:6688/api/user';
-
   useEffect(() => {
     //clear up error message and register success when input changes
     setEmailErr('');
@@ -26,7 +24,6 @@ const SignUp = () => {
       setEmailErr('Invalid Email Input');
       return;
     }
-
     if (!isValidPassword()) {
       setPasswordErr(
         'Password must be at least 8 characters inlcuding uppercase, lowercase, and numbers'
