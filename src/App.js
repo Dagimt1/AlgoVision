@@ -1,17 +1,20 @@
 import React from "react";
-import SortContainer from "./component/sortContainer/SortContainer";
-import LandingPage from "./component/landingpage/LandingPage";
-import MiddleTitle from "./component/middletitle/MiddleTitle";
-
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import LandingPage from "./component/LandingPage";
+import Sorting from "./component/Sorting/Sorting";
 
 function App() {
   return (
     
     <div className="App">
-      <LandingPage />
-      <MiddleTitle />
-      <SortContainer />
-
+      <Router>
+        <div>
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/sorting" element={<Sorting />} />
+          </Routes>
+        </div>
+      </Router>
     </div>
   );
 }
