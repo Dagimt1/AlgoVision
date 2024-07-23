@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './css/login.css';
 import './css/general.css';
-
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -11,7 +10,6 @@ const Login = () => {
   const [passwordErr, setPasswordErr] = useState('');
   const [loginSuccess, setLoginSuccess] = useState(false);
   const navigate = useNavigate();
-
   const ApiBaseURL = 'http://localhost:6688/api/user';
 
   useEffect(() => {
@@ -20,7 +18,6 @@ const Login = () => {
     setPasswordErr('');
     setLoginSuccess(false);
   }, [email, password]);
-
   useEffect(() => {
     //redirect to main page for logged in users
     if (loginSuccess) {
