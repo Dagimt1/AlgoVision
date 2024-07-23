@@ -9,7 +9,6 @@ const SignUp = () => {
   const [emailErr, setEmailErr] = useState('');
   const [passwordErr, setPasswordErr] = useState('');
   const [registerSuccess, setRegisterSuccess] = useState(false);
-
   const navigate = useNavigate();
   const ApiBaseURL = 'http://localhost:6688/api/user';
 
