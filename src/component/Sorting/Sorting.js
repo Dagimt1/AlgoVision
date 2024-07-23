@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import '../../styles/Sorting.css';
 import { motion } from "framer-motion";
 import selectionSort from "./algorithms/SelectionSort";
@@ -21,12 +21,13 @@ const Sorting = () => {
     const [speed, setSpeed] = useState(100);
     const [isAlgorithmDropdownOpen, setIsAlgorithmDropdownOpen] = useState(false);
     const [isControlsDropdownOpen, setIsControlsDropdownOpen] = useState(false);
+    const [inputArray, setInputArray] = useState("");
 
     const createArray = (e = Math.floor(window.innerWidth / 50) / 2) => {
         let newArr = [];
         for (let i = 0; i < e; i++) {
             newArr.push({
-                value: Math.floor(Math.random() * ((window.innerHeight / 4) - 30 + 1)) + 30,
+                value: Math.floor(Math.random() * (150)),
                 id: "id-" + i
             });
         }
@@ -53,6 +54,22 @@ const Sorting = () => {
 
     const randomize = () => {
         createArray(length);
+    };
+
+    const handleInputChange = (e) => {
+        setInputArray(e.target.value);
+    };
+
+    const handleArraySubmit = (e) => {
+        e.preventDefault();
+        const newArr = inputArray.split(",").map((num, index) => ({
+            value: parseInt(num.trim()),
+            id: "id-" + index
+        }));
+        setArr(newArr);
+        setLength(newArr.length);
+        setSorted([]);
+        setCompare({});
     };
 
     const sortFunc = (e) => {
@@ -137,11 +154,20 @@ const Sorting = () => {
                             Select an algorithm first!
                         </div>
                     </ul>
-                    <form className="form-inline">
-                        <button className="btn sort-btn" type="submit" onClick={sortFunc}>Sort</button>
+                    <form className="form-inline" onSubmit={sortFunc}>
+                        <button className="btn sort-btn" type="submit">Sort</button>
                     </form>
                 </div>
             </nav>
+            <div className="input-array-form">
+                <form onSubmit={handleArraySubmit}>
+                    <label>
+                        Enter array elements (comma separated):
+                        <input type="text" value={inputArray} onChange={handleInputChange} />
+                    </label>
+                    <button type="submit">Set Array</button>
+                </form>
+            </div>
             <div className="bars">
                 {arr.map((element, index) =>
                     <motion.div
