@@ -4,6 +4,7 @@ import LandingPage from './component/LandingPage.jsx';
 import Login from './component/Login/Login.jsx';
 import SignUp from './component/Login/SignUp.jsx';
 import ResetPassword from './component/Login/ResetPassword.jsx';
+import Sorting from "./component/Sorting/Sorting";
 
 function App() {
   return (
@@ -21,9 +22,12 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/resetpassword' element={<ResetPassword />} />
+        <Route path="/sorting" element={<Sorting />} />
       </Routes>
     </Router>
-  );
+
+        )
+
 }
 
 export default App;
