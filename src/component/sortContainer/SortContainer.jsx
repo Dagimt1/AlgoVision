@@ -28,7 +28,7 @@ const SortContainer = () => {
     <div className="page-container">
       <div className="content-container">
         <div className="button-group">
-          <BubbleSortButton onClick={() => setActiveComponent('BubbleSort')} isActive={activeComponent === 'BubbleSort'} />
+          <BubbleSortButton onClick={() => setActiveComponent('BubbleSort')} isActive={activeComponent === 'BubbleSort'} />  
           <InsertSortButton onClick={() => setActiveComponent('InsertSort')} isActive={activeComponent === 'InsertSort'} />
           <SelectionSortButton onClick={() => setActiveComponent('SelectionSort')} isActive={activeComponent === 'SelectionSort'} />
           <QuickSortButton onClick={() => setActiveComponent('QuickSort')} isActive={activeComponent === 'QuickSort'} />

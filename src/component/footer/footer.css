@@ -1,0 +1,65 @@
+.footerContainer {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: #f8f9fa;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: "Teko", sans-serif;
+  font-weight: 300;
+  margin-top: 50px;
+  
+}
+
+.footerSectionContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.titleFooter{
+  font-size: 1.5rem;
+  color: #333;
+  font-family: "Teko", sans-serif;
+  font-weight: 300;
+  position: relative;
+  right: 74%;
+}
+
+.section1,
+.section2 {
+  display: flex;
+}
+
+.section1 a,
+.section2 a {
+  margin-right: 15px; /* Adjust as needed */
+  color: #555; /* Adjust link color */
+  text-decoration: none;
+}
+
+.section1 a:hover,
+.section2 a:hover {
+  text-decoration: none; /* Underline links on hover */
+}
+
+.social-icons {
+  display: flex;
+}
+
+.social-icons a {
+  margin-right: 15px; /* Adjust as needed */
+  color: #555; /* Adjust icon color */
+  text-decoration: none;
+}
+
+.social-icons a:hover {
+  text-decoration: underline; /* Underline icons on hover */
+}
+
+small {
+  color: #555; /* Adjust text color */
+  /* move to center page */
+  position: relative;
+  right: auto;
+}
