@@ -1,5 +1,6 @@
 import React from "react";
 import "./insertSort.css"; // Import CSS file
+import { Link } from "react-router-dom";
 
 export const InsertSortButton = ({ onClick, isActive }) => (
   <button onClick={onClick} className={`insert-btn ${isActive ? 'active' : ''}`}>
@@ -19,6 +20,8 @@ const InsertSort = () => {
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum
         dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit
         amet, consectetur adipisicing elit.
+        <Link to="/sorting" className="bubble-link"> Learn more</Link>
+
       </p>
     </section>
   );

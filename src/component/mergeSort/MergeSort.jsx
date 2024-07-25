@@ -1,5 +1,6 @@
 import React from "react";
 import "./mergeSort.css"; // Import CSS file
+import { Link } from "react-router-dom";
 
 export const MergeSortButton = ({ onClick, isActive }) => (
   <button onClick={onClick} className={`merge-btn ${isActive ? 'active' : ''}`}>
@@ -19,6 +20,7 @@ const MergeSort = () => {
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum
         dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit
         amet, consectetur adipisicing elit.
+        <Link to="/sorting" className="bubble-link"> Learn more</Link>
       </p>
     </section>
   );

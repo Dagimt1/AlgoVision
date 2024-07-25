@@ -26,26 +26,52 @@ const Login = () => {
   }, [loginSuccess]);
 
   const handleLogin = (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    axios
-      .post(`${ApiBaseURL}/login`, {
-        email: email,
-        password: password,
-      })
-      .then((res) => {
-        if (res.data.success) {
-          setLoginSuccess(true);
-        } else {
-          setLoginSuccess(false);
-          setPasswordErr('Invalid email or password');
-        }
-      })
-      .catch((err) => {
+  // Clear previous error messages
+  setEmailErr('');
+  setPasswordErr('');
+
+  // Validate inputs
+  if (!email) {
+    setEmailErr('Email is required');
+    return;
+  }
+  if (!password) {
+    setPasswordErr('Password is required');
+    return;
+  }
+
+  // Proceed with login API call if inputs are valid
+  if (!email) {
+    setEmailErr('Email is required');
+    return;
+  }
+  if (!password) {
+    setPasswordErr('Password is required');
+    return;
+  }
+
+  // Proceed with login API call if inputs are valid
+  axios
+    .post(`${ApiBaseURL}/login`, {
+      email: email,
+      password: password,
+    })
+    .then((res) => {
+      if (res.data.success) {
+        setLoginSuccess(true);
+      } else {
         setLoginSuccess(false);
-        console.log('err:', err);
-      });
-  };
+        setPasswordErr('Invalid email or password');
+      }
+    })
+    .catch((err) => {
+      setLoginSuccess(false);
+      console.log('err:', err);
+    });
+};
+
 
   return (
     <div className='loginContainer'>

@@ -32,7 +32,7 @@ body {
   margin: 0; /* Remove default margin */
   position: absolute;
   top: 10px;
-  left: 200px;
+  left: 50px;
 }
 
 .subtitle {
@@ -71,7 +71,7 @@ body {
   /* position corer top right */
   position: absolute;
   top: 20px;
-  right: 200px;
+  right: 50px;
 }
 
 .login-btn:hover {
@@ -136,7 +136,23 @@ body {
   top: 260px;
 }
 
-.main-get-started-btn:hover {
+.main-get-started-btn2 {
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+  color: #fff;
+  background-color: #446ff2;
+  border: none;
+  border-radius: 3rem; /* Make corners slightly rounded */
+  cursor: pointer;
+  transition: box-shadow 0.3s ease; /* Smooth transition for shadow */
+  position: absolute;
+  top: 260px;
+  left: 400px;
+}
+
+.main-get-started-btn:hover,
+.main-get-started-btn2:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
 }
 
@@ -155,3 +171,4 @@ body {
   /* Add overflow-x: hidden to prevent horizontal scroll */
   overflow-x: hidden;
 }
+
