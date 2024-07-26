@@ -9,7 +9,7 @@ export const QuickSortButton = ({ onClick, isActive }) => (
 );
 
 const QuickSort = () => {
-  const QuickVideo = process.env.PUBLIC_URL + "/quicksort.mp4";
+  const QuickVideo = process.env.PUBLIC_URL + "./mp4/quicksort.mp4";
 
   return (
     <section className="section-container">

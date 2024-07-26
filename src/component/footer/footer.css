@@ -5,22 +5,20 @@
   align-items: center;
   background-color: #f8f9fa;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  font-family: "Teko", sans-serif;
   font-weight: 300;
   margin-top: 50px;
-  
+  font-family: "Teko", sans-serif; /* Apply Teko font */
 }
 
-.footerSectionContainer{
+.footerSectionContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.titleFooter{
+.titleFooter {
   font-size: 1.5rem;
   color: #333;
-  font-family: "Teko", sans-serif;
   font-weight: 300;
   position: relative;
   right: 74%;
@@ -54,7 +52,7 @@
 }
 
 .social-icons a:hover {
-  text-decoration: underline; /* Underline icons on hover */
+  text-decoration: none; /* Underline icons on hover */
 }
 
 small {
@@ -62,4 +60,56 @@ small {
   /* move to center page */
   position: relative;
   right: auto;
+}
+
+/* Responsive styles for tablets and smaller screens */
+@media (max-width: 768px) {
+  .footerContainer {
+    flex-direction: column; /* Stack footer sections vertically */
+    align-items: center; /* Center align items */
+    justify-content: center; /* Center content horizontally */
+    margin-top: 20px; /* Adjust top margin */
+  }
+
+  .titleFooter {
+    font-size: 1.2rem; /* Adjust font size */
+    right: 0; /* Ensure title is correctly positioned */
+  }
+
+  .section1,
+  .section2 {
+    flex-direction: column; /* Stack links vertically */
+    align-items: center; /* Center align links */
+  }
+
+  .section1 a,
+  .section2 a {
+    margin-right: 0; /* Remove right margin */
+    margin-bottom: 10px; /* Add bottom margin for spacing */
+  }
+
+  .social-icons {
+    margin-top: 10px; /* Add top margin for spacing */
+  }
+}
+
+/* Responsive styles for mobile screens */
+@media (max-width: 480px) {
+  .footerContainer {
+    padding: 10px; /* Add padding for mobile screens */
+  }
+
+  .titleFooter {
+    font-size: 1rem; /* Adjust font size */
+  }
+
+  .section1 a,
+  .section2 a {
+    margin-bottom: 8px; /* Reduce bottom margin */
+  }
+
+  small {
+    font-size: 0.9rem; /* Adjust font size */
+    margin-top: 5px; /* Adjust top margin */
+  }
 }

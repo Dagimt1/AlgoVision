@@ -8,6 +8,7 @@ import SortContainer from "./component/sortContainer/SortContainer.jsx";
 import MiddleTitle from "./component/middletitle/MiddleTitle.jsx";
 import Sorting from "./component/Sorting/Sorting.jsx";
 import AboutUs from "./component/footer/AboutUs.jsx";
+import Testimonials from "./component/footer/Testimonials.jsx";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/middletitle" element={<MiddleTitle />} />
         <Route path="/sorting" element={<Sorting />} />
         <Route path="/aboutus" element={<AboutUs />} />
+        <Route path="/testimonials" element={<Testimonials />} />
       </Routes>
     </Router>
   );

@@ -8,7 +8,7 @@ import Footer from "../footer/Footer";
 const LandingPage = () => {
   const videoComponent =
     process.env.PUBLIC_URL +
-    "/0yEX6dfG1L8t8Nv9a2UX9k1DfI9lTOMX_9c5a0990aaa1b93e60a271db06dfbac9f2ad25e10bef32cd5cd54e19d46eabf5.mp4";
+    "./mp4/0yEX6dfG1L8t8Nv9a2UX9k1DfI9lTOMX_9c5a0990aaa1b93e60a271db06dfbac9f2ad25e10bef32cd5cd54e19d46eabf5.mp4";
 
   const navigate = useNavigate();
   

@@ -9,7 +9,7 @@ export const InsertSortButton = ({ onClick, isActive }) => (
 );
 
 const InsertSort = () => {
-  const InsertVideo = process.env.PUBLIC_URL + "/insertsort.mp4";
+  const InsertVideo = process.env.PUBLIC_URL + "./mp4/insertsort.mp4";
 
   return (
     <section className="section-container">

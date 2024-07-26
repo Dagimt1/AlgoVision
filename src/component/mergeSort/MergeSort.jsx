@@ -9,7 +9,7 @@ export const MergeSortButton = ({ onClick, isActive }) => (
 );
 
 const MergeSort = () => {
-  const MergeVideo = process.env.PUBLIC_URL + "/mergesort.mp4";
+  const MergeVideo = process.env.PUBLIC_URL + "./mp4/mergesort.mp4";
 
   return (
     <section className="section-container">

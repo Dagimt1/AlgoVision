@@ -9,7 +9,7 @@ export const SelectionSortButton = ({ onClick, isActive }) => (
 );
 
 const SelectionSort = () => {
-  const SelectionVideo = process.env.PUBLIC_URL + "/selectionsort.mp4";
+  const SelectionVideo = process.env.PUBLIC_URL + "./mp4/selectionsort.mp4";
 
   return (
     <section className="section-container">
