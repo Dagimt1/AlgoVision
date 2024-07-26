@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Teko:wght@300..700&display=swap");
 
 body {
-  font-family: sans-serif;
+  font-family: 'Teko', sans-serif; /* Apply Teko font */
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -74,7 +74,25 @@ body {
   right: 50px;
 }
 
-.login-btn:hover {
+.login-btn2{
+  padding: 0.5rem 1rem;
+  font-size: 1.1rem;
+  color: #333;
+  background-color: transparent;
+  border: 2px solid #ccc;
+  border-radius: 3rem; /* Make corners rounded */
+  cursor: pointer;
+  font-family: sans-serif; /* Apply Teko font */
+  font-weight: 400; /* Set font weight to 300 */
+  transition: box-shadow 0.3s ease; /* Smooth transition for shadow */
+  font-weight: 700;
+  /* position corer top right */
+  position: absolute;
+  top: 20px;
+  right: 150px;
+}
+
+.login-btn:hover{
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
 }
 
@@ -172,3 +190,41 @@ body {
   overflow-x: hidden;
 }
 
+/* Media Queries */
+@media screen and (min-width: 768px) {
+  .main {
+    flex-direction: row; /* Change to row layout on larger screens */
+    justify-content: space-between; /* Distribute items horizontally */
+  }
+
+  .text-container {
+    max-width: 50%; /* Limit width for text container on larger screens */
+    text-align: left;
+    margin-bottom: 0; /* Reset margin for closer alignment */
+  }
+
+  .main-title {
+    font-size: 3rem; /* Reset font size for larger screens */
+  }
+
+  .main-subtitle {
+    font-size: 1.2rem; /* Reset font size for larger screens */
+  }
+
+  .main-get-started-btn,
+  .main-get-started-btn2 {
+    width: auto; /* Reset width for buttons */
+    position: absolute;
+    top: 260px;
+    left: 200px;
+  }
+
+  .main-get-started-btn2 {
+    left: 400px; /* Adjust position of second button */
+  }
+
+  .gif-container {
+    max-width: 30%; /* Limit width for gif container on larger screens */
+    margin-top: 0; /* Reset margin for closer alignment */
+  }
+}

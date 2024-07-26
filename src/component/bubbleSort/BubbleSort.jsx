@@ -9,7 +9,7 @@ export const BubbleSortButton = ({ onClick, isActive }) => (
 );
 
 const BubbleSort = () => {
-  const BubbleVideo = process.env.PUBLIC_URL + "/bubblesort.mp4";
+  const BubbleVideo = process.env.PUBLIC_URL + "./mp4/bubblesort.mp4";
 
   return (
     <section className="section-container">

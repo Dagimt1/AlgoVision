@@ -1,6 +1,5 @@
 import React from "react";
 import "./footer.css"; // Assuming you create a separate CSS file
-import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -10,13 +9,13 @@ const Footer = () => {
         {/* Links Section 1 */}
         <div className="section1">
           <a href="/aboutus">About Us</a>
-          <a href="/principles">Principles</a>
-          <a href="/careers">Careers</a>
-          <a href="/educators">Educators</a>
+          <a href="/testimonials">Testimonials</a>
+          <a href="/courses">Courses</a>
+          <a href="/product">Product</a>
           <a href="/press">Press</a>
         </div>
         <div className="social-icons">
-          <Link to="/AboutUs">Facebook</Link>
+          <a href="https://www.facebook.com">Facebook</a>
           <a href="https://www.linkedin.com">LinkedIn</a>
           <a href="https://www.instagram.com">Instagram</a>
           <a href="https://www.youtube.com">YouTube</a>

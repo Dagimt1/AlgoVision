@@ -119,7 +119,7 @@ const ResetPassword = () => {
     <div>
       <header className='header'>
         <div className='container'>
-          <h1 className='title'>Algorithm Visualizer</h1>
+          <h1 className='title' onClick={() => navigate('/')}>Algorithm Visualizer</h1>
         </div>
         <button className='login-btn' onClick={() => navigate('/login')}>
           Log in

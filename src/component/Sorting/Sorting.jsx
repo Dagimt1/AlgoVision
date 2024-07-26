@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import "../../styles/Sorting.css";
 import { motion } from "framer-motion";
 import selectionSort from "./algorithms/SelectionSort";
 import mergeSort from "./algorithms/MergeSort";
 import quickSort from "./algorithms/QuickSort";
 import { NavLink } from "react-router-dom";
+import "./Sorting.css";
 
 const springAnim = {
   type: "spring",
