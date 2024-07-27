@@ -85,7 +85,7 @@ const ResetPassword = () => {
 
     if (isValidEmail() && isValidPassword()) {
       axios
-        .put(`${ApiBaseURL}/password`, {
+        .put(`${ApiBaseURL}/resetPassword`, {
           email: email,
           newPassword: password,
           resetToken: token,
@@ -119,7 +119,9 @@ const ResetPassword = () => {
     <div>
       <header className='header'>
         <div className='container'>
-          <h1 className='title' onClick={() => navigate('/')}>Algorithm Visualizer</h1>
+          <h1 className='title' onClick={() => navigate('/')}>
+            Algorithm Visualizer
+          </h1>
         </div>
         <button className='login-btn' onClick={() => navigate('/login')}>
           Log in

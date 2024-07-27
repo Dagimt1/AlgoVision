@@ -104,12 +104,12 @@ const logIn = async (email, password) => {
           username: user.name,
         },
         jwtSignature,
-        { expiresIn: '1d' }
+        { expiresIn: '30m' }
       );
 
       return {
         success: true,
-        token: token,
+        authToken: token,
         msg: 'successfully logged in',
       };
     } else {
@@ -119,7 +119,7 @@ const logIn = async (email, password) => {
     throw err;
   }
 };
-const changePassword = async (email, newPassword, resetToken) => {
+const resetPassword = async (email, newPassword, resetToken) => {
   const SQL = `SELECT * FROM Users WHERE email = $1`;
   const isRegistered = await client.query(SQL, [email]);
 
@@ -172,12 +172,4 @@ const sendResetPasswordLink = async (email) => {
   }
 };
 
-export {
-  client,
-  createTables,
-  register,
-  logIn,
-  getAllUsers,
-  changePassword,
-  sendResetPasswordLink,
-};
+export { client, createTables, register, logIn, getAllUsers, resetPassword, sendResetPasswordLink };
