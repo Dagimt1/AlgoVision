@@ -181,4 +181,53 @@ const sendResetPasswordLink = async (email) => {
   }
 };
 
-export { client, createTables, register, logIn, getAllUsers, resetPassword, sendResetPasswordLink };
+const updatePersonalInfo = async (userid, newInfoObj, authToken) => {
+  const isValidToken = jwt.verify(authToken, jwtSignature);
+
+  if (isValidToken) {
+    try {
+      const SQL = `
+      UPDATE Users 
+      SET FirstName = $2, LastName = $3, Address = $4, AddressLine2 = $5,
+          City = $6, State = $7, Zipcode = $8, CurrentSchool = $9
+      WHERE id = $1
+      RETURNING *
+      `;
+      const result = await client.query(SQL, [
+        userid,
+        newInfoObj.firstName,
+        newInfoObj.lastName,
+        newInfoObj.address,
+        newInfoObj.addressLine2,
+        newInfoObj.city,
+        newInfoObj.state,
+        newInfoObj.zipCode,
+        newInfoObj.school,
+      ]);
+      return {
+        success: true,
+        updatedUserData: result.rows[0],
+        msg: 'Successfully updated personal info!',
+      };
+    } catch (err) {
+      console.error('SQL update error: ', err);
+      throw err;
+    }
+  } else {
+    return {
+      success: false,
+      msg: 'Auth Token expired',
+    };
+  }
+};
+
+export {
+  client,
+  createTables,
+  register,
+  logIn,
+  getAllUsers,
+  resetPassword,
+  sendResetPasswordLink,
+  updatePersonalInfo,
+};

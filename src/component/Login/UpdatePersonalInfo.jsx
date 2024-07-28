@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
-import { Box, TextField, Select, MenuItem, FormControl, InputLabel, Menu } from '@mui/material';
+import { Box, TextField, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
+import axios from 'axios';
 import './css/updateInfo.css';
 
 const UpdatePersonalInfo = () => {
@@ -12,13 +13,14 @@ const UpdatePersonalInfo = () => {
   const [state, setState] = useState('');
   const [zipCode, setZipCode] = useState('');
   const [school, setSchool] = useState('');
+  const [showSuccessAlert, setShowSuccessAlert] = useState(false);
 
-  const { userData, setUserData } = useContext(UserContext);
+  const { userData, setUserData, authToken } = useContext(UserContext);
   const ApiBaseURL = 'http://localhost:6688/api/user';
 
   useEffect(() => {
     console.log('userData: ', userData);
-    // fill out fields with current user data
+    // prefill fields with current user data
     if (Object.keys(userData).length > 0) {
       setFirstName(userData.firstname);
       setLastName(userData.lastname);
@@ -30,6 +32,34 @@ const UpdatePersonalInfo = () => {
       setSchool(userData.currentschool);
     }
   }, [userData]);
+
+  const handleUpdatePersonalInfo = (e) => {
+    e.preventDefault();
+
+    const newInfoObj = {
+      firstName: firstName,
+      lastName: lastName,
+      address: address,
+      addressLine2: addressLine2,
+      city: city,
+      state: state,
+      zipCode: zipCode,
+      school: school,
+    };
+
+    axios
+      .put(`${ApiBaseURL}/updatePersonalInfo`, {
+        userid: userData.id,
+        newInfoObj: newInfoObj,
+        authToken: authToken,
+      })
+      .then((res) => {
+        if (res.data.success) {
+          setUserData(res.data.updatedUserData);
+        }
+      })
+      .catch((err) => console.log('err: ', err));
+  };
 
   return (
     <Box
@@ -104,7 +134,7 @@ const UpdatePersonalInfo = () => {
         />
       </div>
 
-      <div className='submitContainer'>
+      <div className='submitContainer' onClick={(e) => handleUpdatePersonalInfo(e)}>
         <button className='loginButton halfWidth'>Update Personsal Info</button>
       </div>
     </Box>

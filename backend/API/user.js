@@ -1,6 +1,13 @@
 import express from 'express';
 import nodemailer from 'nodemailer';
-import { register, logIn, getAllUsers, resetPassword, sendResetPasswordLink } from '../db.js';
+import {
+  register,
+  logIn,
+  getAllUsers,
+  resetPassword,
+  sendResetPasswordLink,
+  updatePersonalInfo,
+} from '../db.js';
 
 const userRouter = express.Router();
 
@@ -117,8 +124,11 @@ userRouter.put('/changePassword', async (req, res) => {
 
 userRouter.put('/updatePersonalInfo', async (req, res) => {
   try {
-    //Todo: update with real function
-    const result = await changePassword(req.body.newInfoObj, req.body.authToken);
+    const result = await updatePersonalInfo(
+      req.body.userid,
+      req.body.newInfoObj,
+      req.body.authToken
+    );
     res.status(201).send(result);
   } catch (err) {
     res.status(500).send(err);
