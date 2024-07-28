@@ -134,14 +134,5 @@ userRouter.put('/updateAvatar', async (req, res) => {
     res.status(500).send(err);
   }
 });
-userRouter.post('/logOut', async (req, res) => {
-  try {
-    //Todo: update with real function
-    const result = await changePassword(req.body.newInfoObj, req.body.authToken);
-    res.status(201).send(result);
-  } catch (err) {
-    res.status(500).send(err);
-  }
-});
 
 export { userRouter };

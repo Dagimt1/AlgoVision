@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LandingPage from './component/landingpage/LandingPage.jsx';
 import Login from './component/Login/Login.jsx';
 import SignUp from './component/Login/SignUp.jsx';
+import Account from './component/Login/Account.jsx';
 import ResetPassword from './component/Login/ResetPassword.jsx';
 import SortContainer from './component/sortContainer/SortContainer.jsx';
 import MiddleTitle from './component/middletitle/MiddleTitle.jsx';
@@ -16,6 +17,7 @@ function App() {
         <Route path='/' element={<LandingPage />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUp />} />
+        <Route path='/account' element={<Account />} />
         <Route path='/resetpassword' element={<ResetPassword />} />
         <Route path='/sortcontainer' element={<SortContainer />} />
         <Route path='/middletitle' element={<MiddleTitle />} />
