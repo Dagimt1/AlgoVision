@@ -1,14 +1,12 @@
 import React, { createContext } from 'react';
-import usePersistentState from './usePersistentState';
+import usePersistentState from '../Hooks/usePersistentState';
 
-const UserContext = createContext();
+export const UserContext = createContext();
 
-const UserProvider = ({ children }) => {
+export const UserProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = usePersistentState('isLoggedIn', false);
 
   return (
     <UserContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>{children}</UserContext.Provider>
   );
 };
-
-export { UserProvider, UserContext };

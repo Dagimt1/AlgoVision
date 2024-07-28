@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { UserProvider } from './context/UserContext.js';
+import { UserProvider } from './context/UserContext.jsx';
 import './index.css';
 import App from './App.js';
 import reportWebVitals from './reportWebVitals.js';

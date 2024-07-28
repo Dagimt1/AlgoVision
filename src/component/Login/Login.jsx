@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { UserContext } from '../../context/UserContext';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './css/login.css';
@@ -8,7 +9,8 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [emailErr, setEmailErr] = useState('');
   const [passwordErr, setPasswordErr] = useState('');
-  const [loginSuccess, setLoginSuccess] = useState(false);
+
+  const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
   const navigate = useNavigate();
   const ApiBaseURL = 'http://localhost:6688/api/user';
 
@@ -16,62 +18,61 @@ const Login = () => {
     //clear up error message and login success when input changes
     setEmailErr('');
     setPasswordErr('');
-    setLoginSuccess(false);
+    setIsLoggedIn(false);
   }, [email, password]);
   useEffect(() => {
     //redirect to main page for logged in users
-    if (loginSuccess) {
+    if (isLoggedIn) {
       navigate('/');
     }
-  }, [loginSuccess]);
+  }, [isLoggedIn]);
 
   const handleLogin = (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  // Clear previous error messages
-  setEmailErr('');
-  setPasswordErr('');
+    // Clear previous error messages
+    setEmailErr('');
+    setPasswordErr('');
 
-  // Validate inputs
-  if (!email) {
-    setEmailErr('Email is required');
-    return;
-  }
-  if (!password) {
-    setPasswordErr('Password is required');
-    return;
-  }
+    // Validate inputs
+    if (!email) {
+      setEmailErr('Email is required');
+      return;
+    }
+    if (!password) {
+      setPasswordErr('Password is required');
+      return;
+    }
 
-  // Proceed with login API call if inputs are valid
-  if (!email) {
-    setEmailErr('Email is required');
-    return;
-  }
-  if (!password) {
-    setPasswordErr('Password is required');
-    return;
-  }
+    // Proceed with login API call if inputs are valid
+    if (!email) {
+      setEmailErr('Email is required');
+      return;
+    }
+    if (!password) {
+      setPasswordErr('Password is required');
+      return;
+    }
 
-  // Proceed with login API call if inputs are valid
-  axios
-    .post(`${ApiBaseURL}/login`, {
-      email: email,
-      password: password,
-    })
-    .then((res) => {
-      if (res.data.success) {
-        setLoginSuccess(true);
-      } else {
-        setLoginSuccess(false);
-        setPasswordErr('Invalid email or password');
-      }
-    })
-    .catch((err) => {
-      setLoginSuccess(false);
-      console.log('err:', err);
-    });
-};
-
+    // Proceed with login API call if inputs are valid
+    axios
+      .post(`${ApiBaseURL}/login`, {
+        email: email,
+        password: password,
+      })
+      .then((res) => {
+        if (res.data.success) {
+          setIsLoggedIn(true);
+        } else {
+          setIsLoggedIn(false);
+          setPasswordErr('Invalid email or password');
+        }
+      })
+      .catch((err) => {
+        setIsLoggedIn(false);
+        console.log('err:', err);
+      });
+  };
 
   return (
     <div className='loginContainer'>
