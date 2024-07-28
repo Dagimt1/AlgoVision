@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
-import { Box, TextField } from '@mui/material';
+import { Box, TextField, Select, MenuItem, FormControl, InputLabel, Menu } from '@mui/material';
 import './css/updateInfo.css';
 
 const UpdatePersonalInfo = () => {
@@ -54,6 +54,7 @@ const UpdatePersonalInfo = () => {
           onChange={(e) => setLastName(e.target.value)}
         />
       </div>
+
       <div className='inputRow'>
         <TextField
           label='Address'
@@ -66,13 +67,33 @@ const UpdatePersonalInfo = () => {
           onChange={(e) => setAddressLine2(e.target.value)}
         />
       </div>
+
       <div className='inputRow'>
         <TextField label='City' value={city || ''} onChange={(e) => setCity(e.target.value)} />
-        <TextField label='State' value={state || ''} onChange={(e) => setState(e.target.value)} />
+
+        <FormControl variant='outlined' sx={{ m: 3, width: '40%' }}>
+          <InputLabel id='state-select-label'>State</InputLabel>
+          <Select
+            labelId='state-select-label'
+            id='state-select'
+            label='State'
+            sx={{ backgroundColor: '#ffffff' }}
+            value={state || ''}
+            onChange={(e) => setState(e.target.value)}
+          >
+            <MenuItem value=''></MenuItem>
+            {stateList.map((state) => (
+              <MenuItem key={state} value={state}>
+                {state}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
       </div>
+
       <div className='inputRow'>
         <TextField
-          label='Zip code'
+          label='Zipcode'
           value={zipCode || ''}
           onChange={(e) => setZipCode(e.target.value)}
         />
@@ -89,5 +110,59 @@ const UpdatePersonalInfo = () => {
     </Box>
   );
 };
+
+const stateList = [
+  ' ',
+  'AL',
+  'AK',
+  'AZ',
+  'AR',
+  'CA',
+  'CO',
+  'CT',
+  'DE',
+  'FL',
+  'GA',
+  'HI',
+  'ID',
+  'IL',
+  'IN',
+  'IA',
+  'KS',
+  'KY',
+  'LA',
+  'ME',
+  'MD',
+  'MA',
+  'MI',
+  'MN',
+  'MS',
+  'MO',
+  'MT',
+  'NE',
+  'NV',
+  'NH',
+  'NJ',
+  'NM',
+  'NY',
+  'NC',
+  'ND',
+  'OH',
+  'OK',
+  'OR',
+  'PA',
+  'RI',
+  'SC',
+  'SD',
+  'TN',
+  'TX',
+  'UT',
+  'VT',
+  'VA',
+  'WA',
+  'WV',
+  'WI',
+  'WY',
+];
 
 export default UpdatePersonalInfo;

@@ -27,8 +27,8 @@ const createTables = async () => {
               Address VARCHAR(255) DEFAULT '',
               AddressLine2 VARCHAR(50) DEFAULT '',
               City VARCHAR(50) DEFAULT '',
-              State CHAR(2) DEFAULT '',
-              Zipcode DEC(5),
+              State VARCHAR(2) DEFAULT '',
+              Zipcode VARCHAR(5) DEFAULT '',
               CurrentSchool VARCHAR(100) DEFAULT ''
           )
           `;
