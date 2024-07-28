@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
+import NavBar from '../navBar/NavBar';
 import './css/resetpassword.css';
 
 const ResetPassword = () => {
@@ -117,16 +118,7 @@ const ResetPassword = () => {
 
   return (
     <div>
-      <header className='header'>
-        <div className='container'>
-          <h1 className='title' onClick={() => navigate('/')}>
-            Algorithm Visualizer
-          </h1>
-        </div>
-        <button className='login-btn' onClick={() => navigate('/login')}>
-          Log in
-        </button>
-      </header>
+      <NavBar />
 
       <div className='resetContainer'>
         {!resetSuccess ? (
