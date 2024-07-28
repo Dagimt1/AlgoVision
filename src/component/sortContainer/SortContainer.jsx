@@ -1,13 +1,26 @@
-import React, { useState } from "react";
-import BubbleSort, { BubbleSortButton } from "../bubbleSort/BubbleSort";
-import InsertSort, { InsertSortButton } from "../insertSort/InsertSort";
-import SelectionSort, { SelectionSortButton } from "../selectionSort/SelectionSort";
-import QuickSort, { QuickSortButton } from "../quickSort/QuickSort";
-import MergeSort, { MergeSortButton } from "../mergeSort/MergeSort";
+import React, { useState, useEffect } from "react";
+import BubbleSort from "../bubbleSort/BubbleSort";
+import InsertSort from "../insertSort/InsertSort";
+import SelectionSort from "../selectionSort/SelectionSort";
+import QuickSort from "../quickSort/QuickSort";
+import MergeSort from "../mergeSort/MergeSort";
 import "./sortContainer.css";
 
 const SortContainer = () => {
-  const [activeComponent, setActiveComponent] = useState('BubbleSort');
+  const components = ['BubbleSort', 'InsertSort', 'SelectionSort', 'QuickSort', 'MergeSort'];
+  const [activeComponent, setActiveComponent] = useState(components[0]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveComponent(prevComponent => {
+        const currentIndex = components.indexOf(prevComponent);
+        const nextIndex = (currentIndex + 1) % components.length;
+        return components[nextIndex];
+      });
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   const renderComponent = () => {
     switch (activeComponent) {
@@ -28,11 +41,15 @@ const SortContainer = () => {
     <div className="page-container">
       <div className="content-container">
         <div className="button-group">
-          <BubbleSortButton onClick={() => setActiveComponent('BubbleSort')} isActive={activeComponent === 'BubbleSort'} />  
-          <InsertSortButton onClick={() => setActiveComponent('InsertSort')} isActive={activeComponent === 'InsertSort'} />
-          <SelectionSortButton onClick={() => setActiveComponent('SelectionSort')} isActive={activeComponent === 'SelectionSort'} />
-          <QuickSortButton onClick={() => setActiveComponent('QuickSort')} isActive={activeComponent === 'QuickSort'} />
-          <MergeSortButton onClick={() => setActiveComponent('MergeSort')} isActive={activeComponent === 'MergeSort'} />
+          {components.map(component => (
+            <button 
+              key={component} 
+              className={activeComponent === component ? 'active' : 'inactive'} 
+              onClick={() => setActiveComponent(component)}
+            >
+              {component.replace(/([A-Z])/g, ' $1').trim()}
+            </button>
+          ))}
         </div>
         <div className="video-display">
           {renderComponent()}

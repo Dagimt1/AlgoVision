@@ -11,3 +11,16 @@
   font-family: "Teko", sans-serif; /* Apply Teko font */
   font-weight: 300; /* Set font weight to 300 */
 }
+
+@media(max-width:520px) {
+  .md-container {
+    position: static;
+    margin: 1rem 0;
+    width: 90%;
+    display: flex;
+  }
+
+  .middle-title {
+    font-size: 2.3rem;
+  }
+}

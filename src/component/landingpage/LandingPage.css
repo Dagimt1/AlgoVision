@@ -1,7 +1,8 @@
+
 @import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Teko:wght@300..700&display=swap");
 
 body {
-  font-family: 'Teko', sans-serif; /* Apply Teko font */
+  font-family: sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -74,25 +75,7 @@ body {
   right: 50px;
 }
 
-.login-btn2{
-  padding: 0.5rem 1rem;
-  font-size: 1.1rem;
-  color: #333;
-  background-color: transparent;
-  border: 2px solid #ccc;
-  border-radius: 3rem; /* Make corners rounded */
-  cursor: pointer;
-  font-family: sans-serif; /* Apply Teko font */
-  font-weight: 400; /* Set font weight to 300 */
-  transition: box-shadow 0.3s ease; /* Smooth transition for shadow */
-  font-weight: 700;
-  /* position corer top right */
-  position: absolute;
-  top: 20px;
-  right: 150px;
-}
-
-.login-btn:hover{
+.login-btn:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
 }
 
@@ -129,14 +112,7 @@ body {
   left: 200px;
   position: absolute;
   top: 190px;
-}
-
-.main-subtitle2 {
-  font-size: 1.2rem;
-  color: #666;
-  left: 200px;
-  position: absolute;
-  top: 220px;
+  line-height: 1.5;
 }
 
 .main-get-started-btn {
@@ -190,41 +166,407 @@ body {
   overflow-x: hidden;
 }
 
-/* Media Queries */
-@media screen and (min-width: 768px) {
+
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Teko:wght@300..700&display=swap");
+
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.landing-page {
+  text-align: center; /* Center align all content inside landing-page */
+  display: flex; /* Use flexbox for layout */
+  flex-direction: column; /* Align items vertically */
+  align-items: center; /* Center align horizontally */
+}
+
+.header {
+  width: 100%; /* Ensure header spans full width */
+  padding: 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f8f9fa;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow to header */
+}
+
+.title {
+  font-size: 3rem;
+  color: #333;
+  font-family: "Teko", sans-serif; /* Apply Teko font */
+  font-weight: 300; /* Set font weight to 300 */
+  margin: 0; /* Remove default margin */
+  position: absolute;
+  top: 10px;
+  left: 50px;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #666;
+}
+
+.get-started-btn {
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+  color: #fff;
+  background-color: #313132;
+  border: none;
+  border-radius: 0.5rem; /* Make corners slightly rounded */
+  cursor: pointer;
+  transition: box-shadow 0.3s ease; /* Smooth transition for shadow */
+}
+
+.get-started-btn:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+}
+
+.login-btn {
+  padding: 0.5rem 1rem;
+  font-size: 1.1rem;
+  color: #333;
+  background-color: transparent;
+  border: 2px solid #ccc;
+  border-radius: 3rem; /* Make corners rounded */
+  cursor: pointer;
+  font-family: sans-serif; /* Apply Teko font */
+  font-weight: 400; /* Set font weight to 300 */
+  transition: box-shadow 0.3s ease; /* Smooth transition for shadow */
+  font-weight: 700;
+  /* position corner top right */
+  position: absolute;
+  top: 20px;
+  right: 50px;
+}
+
+.login-btn:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+}
+
+.main {
+  width: 100%; /* Ensure main spans full width */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+}
+
+.text-container {
+  max-width: 50%;
+  text-align: left;
+}
+
+.main-title {
+  font-size: 3rem;
+  color: #333;
+  font-family: "Teko", sans-serif; /* Apply Teko font */
+  font-weight: 300; /* Set font weight to 300 */
+  top: 100px;
+  left: 200px;
+  position: absolute;
+}
+
+.highlight {
+  color: #446ff2; /* Apply color to "algorithms basics" */
+}
+
+.main-subtitle {
+  font-size: 1.2rem;
+  color: #666;
+  left: 200px;
+  position: absolute;
+  top: 190px;
+  line-height: 1.5;
+}
+
+.main-get-started-btn {
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+  color: #fff;
+  background-color: #446ff2;
+  border: none;
+  border-radius: 3rem; /* Make corners slightly rounded */
+  cursor: pointer;
+  transition: box-shadow 0.3s ease; /* Smooth transition for shadow */
+  left: 200px;
+  position: absolute;
+  top: 260px;
+}
+
+.main-get-started-btn2 {
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+  color: #fff;
+  background-color: #446ff2;
+  border: none;
+  border-radius: 3rem; /* Make corners slightly rounded */
+  cursor: pointer;
+  transition: box-shadow 0.3s ease; /* Smooth transition for shadow */
+  position: absolute;
+  top: 260px;
+  left: 400px;
+}
+
+.main-get-started-btn:hover,
+.main-get-started-btn2:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+}
+
+.gif-container {
+  max-width: 30%;
+  position: relative;
+  right: 100px;
+}
+
+.gif-container video {
+  width: 100%;
+  border-radius: 0.5rem;
+}
+
+.landing-page {
+  /* Add overflow-x: hidden to prevent horizontal scroll */
+  overflow-x: hidden;
+}
+
+@media (max-width: 600px) {
+  .landing-page {
+    width: 100%;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
   .main {
-    flex-direction: row; /* Change to row layout on larger screens */
-    justify-content: space-between; /* Distribute items horizontally */
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    width: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
+  }
+
+  .title {
+    font-size: 30px;
+    line-height: 2;
+  }
+
+  .login-btn {
+    font-size: 14px;
   }
 
   .text-container {
-    max-width: 50%; /* Limit width for text container on larger screens */
+    max-width: fit-content;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 30px 0;
+  }
+
+  .main-title, .main-subtitle, .main-get-started-btn, .main-get-started-btn2, .gif-container {
+    position: static;
+    margin: 1rem 0;
+    width: 100%;
     text-align: left;
-    margin-bottom: 0; /* Reset margin for closer alignment */
   }
 
   .main-title {
-    font-size: 3rem; /* Reset font size for larger screens */
+    width: 90%;
+    line-height: 1;
+    text-align: left;
   }
 
   .main-subtitle {
-    font-size: 1.2rem; /* Reset font size for larger screens */
+    width: 90%;
+    font-size: 18px;
+    text-align: left;
+    margin: 0;
+    padding: 10px 30px;
   }
 
-  .main-get-started-btn,
-  .main-get-started-btn2 {
-    width: auto; /* Reset width for buttons */
-    position: absolute;
-    top: 260px;
-    left: 200px;
-  }
-
-  .main-get-started-btn2 {
-    left: 400px; /* Adjust position of second button */
+  .main-get-started-btn, .main-get-started-btn2 {
+    width: auto;
   }
 
   .gif-container {
-    max-width: 30%; /* Limit width for gif container on larger screens */
-    margin-top: 0; /* Reset margin for closer alignment */
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .main-get-started-btn, .main-get-started-btn2 {
+    width: 100%;
+    text-align: center;
+    margin: 20px 0 0;
+  }
+}
+
+
+/* media query */
+
+@media (min-width: 600px) and (max-width: 1024px) {
+  .main {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    width: 100%;
+    padding: 2rem 1rem;
+    box-sizing: border-box;
+  }
+
+  .title {
+    font-size: 2.5rem;
+    top: 20px;
+    left: 20px;
+  }
+
+  .text-container {
+    max-width: 80%;
+    text-align: center;
+  }
+
+  .main-title {
+    font-size: 2.5rem;
+    top: 50px;
+    left: 50px;
+    position: static;
+  }
+
+  .main-subtitle {
+    font-size: 1rem;
+    top: 120px;
+    left: 50px;
+    position: static;
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  .main-get-started-btn {
+    top: 200px;
+    left: 50px;
+    position: static;
+    margin: 1rem 1rem;
+  }
+
+  .main-get-started-btn2 {
+    top: 200px;
+    left: 50px;
+    position: static;
+    margin: 1rem 1rem;
+  }
+
+  .gif-container {
+    max-width: 80%;
+    margin: 0 auto;
+    position: static;
+  }
+}
+
+@media (min-width: 1025px) {
+  .main {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem;
+  }
+
+  .title {
+    font-size: 3rem;
+    top: 20px;
+    left: 100px;
+  }
+
+  .text-container {
+    max-width: 40%;
+  }
+
+  .main-title {
+    font-size: 3.5rem;
+    top: 120px;
+    left: 80px;
+  }
+
+  .main-subtitle {
+    font-size: 1.4rem;
+    top: 200px;
+    left: 80px;
+  }
+
+  .main-get-started-btn {
+    top: 280px;
+    left: 100px;
+    margin: 50px 0;
+  }
+
+  .main-get-started-btn2 {
+    top: 280px;
+    left: 300px;
+    margin: 50px 0  ;
+  }
+
+  .gif-container {
+    max-width: 35%;
+    right: 0;
+    top: 0;
+  }
+}
+
+@media (min-width: 1400px) {
+  .main {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .title {
+    font-size: 3rem;
+    position: static;
+    margin: 0 5rem;
+  }
+
+  .text-container {
+    max-width: 50%;
+  }
+
+  .main-title {
+    font-size: 3.5rem;
+    position: static;
+
+  }
+
+  .main-subtitle {
+    font-size: 1.5rem;
+    position: static;
+    width: 100%;
+  }
+
+  .main-get-started-btn {
+    margin-top: 2rem;
+    position: static;
+    margin: 0 1rem;
+  }
+
+  .main-get-started-btn2 {
+    margin-top: 2rem;
+    position: static;
+    margin: 0 1rem;
+  }
+
+  .gif-container {
+    max-width: 35%;
+  }
+
+  .header {
+    padding: .5rem 0
   }
 }
