@@ -125,14 +125,4 @@ userRouter.put('/updatePersonalInfo', async (req, res) => {
   }
 });
 
-userRouter.put('/updateAvatar', async (req, res) => {
-  try {
-    //Todo: update with real function
-    const result = await changePassword(req.body.newAvatar, req.body.authToken);
-    res.status(201).send(result);
-  } catch (err) {
-    res.status(500).send(err);
-  }
-});
-
 export { userRouter };

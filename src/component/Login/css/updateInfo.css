@@ -1,0 +1,12 @@
+.inputRow {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.submitContainer {
+  width: 80%;
+  margin: 5% auto;
+  display: flex;
+  justify-content: center;
+}

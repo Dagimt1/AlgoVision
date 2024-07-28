@@ -26,7 +26,7 @@ const SignUp = () => {
     }
     if (!isValidPassword()) {
       setPasswordErr(
-        'Password must be at least 8 characters inlcuding uppercase, lowercase, and numbers'
+        'Password must be at least 8 characters inlcuding uppercase, lowercase, number and special character'
       );
       return;
     }

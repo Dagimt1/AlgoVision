@@ -23,6 +23,7 @@ const NavBar = () => {
   const handleClickingLogOut = () => {
     setIsLoggedIn(false);
     setAuthToken('');
+    navigate('/');
   };
 
   const handleClose = () => {

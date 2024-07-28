@@ -21,7 +21,15 @@ const createTables = async () => {
               id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
               email VARCHAR(255) NOT NULL,
               password VARCHAR(255) NOT NULL,
-              isAdmin Boolean DEFAULT FALSE
+              isAdmin Boolean DEFAULT FALSE,
+              FirstName VARCHAR(50) DEFAULT '',
+              LastName VARCHAR(50) DEFAULT '',
+              Address VARCHAR(255) DEFAULT '',
+              AddressLine2 VARCHAR(50) DEFAULT '',
+              City VARCHAR(50) DEFAULT '',
+              State CHAR(2) DEFAULT '',
+              Zipcode DEC(5),
+              CurrentSchool VARCHAR(100) DEFAULT ''
           )
           `;
     await client.query(SQL);
@@ -110,6 +118,7 @@ const logIn = async (email, password) => {
       return {
         success: true,
         authToken: token,
+        userData: result.rows[0],
         msg: 'successfully logged in',
       };
     } else {

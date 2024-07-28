@@ -10,7 +10,7 @@ const Login = () => {
   const [emailErr, setEmailErr] = useState('');
   const [passwordErr, setPasswordErr] = useState('');
 
-  const { isLoggedIn, setIsLoggedIn, setAuthToken } = useContext(UserContext);
+  const { isLoggedIn, setIsLoggedIn, setAuthToken, setUserData } = useContext(UserContext);
   const navigate = useNavigate();
   const ApiBaseURL = 'http://localhost:6688/api/user';
 
@@ -64,6 +64,7 @@ const Login = () => {
         if (res.data.success) {
           setIsLoggedIn(true);
           setAuthToken(res.data.authToken);
+          setUserData(res.data.userData);
         } else {
           setIsLoggedIn(false);
           setPasswordErr('Invalid email or password');
