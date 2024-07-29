@@ -6,6 +6,7 @@ import {
   getAllUsers,
   resetPassword,
   sendResetPasswordLink,
+  changePassword,
   updatePersonalInfo,
 } from '../db.js';
 
@@ -110,9 +111,9 @@ userRouter.put('/resetPassword', async (req, res) => {
 
 userRouter.put('/changePassword', async (req, res) => {
   try {
-    //Todo: update with real function
     const result = await changePassword(
-      req.body.oldPassword,
+      req.body.userid,
+      req.body.currentPassword,
       req.body.newPassword,
       req.body.authToken
     );

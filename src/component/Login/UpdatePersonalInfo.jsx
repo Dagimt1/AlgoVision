@@ -20,7 +20,7 @@ const UpdatePersonalInfo = () => {
   const [alertMsg, setAlertMsg] = useState('');
   const [onConfirm, setOnConfirm] = useState(() => () => {});
 
-  const { userData, setUserData, authToken } = useContext(UserContext);
+  const { userData, setUserData, authToken, setAuthToken } = useContext(UserContext);
   const navigate = useNavigate();
   const ApiBaseURL = 'http://localhost:6688/api/user';
 
@@ -72,6 +72,7 @@ const UpdatePersonalInfo = () => {
         setOpenAlertModal(true);
         setAlertTitle('Update Failed');
         setAlertMsg('Login expired, please try again');
+        setAuthToken('');
         setOnConfirm(() => () => {
           navigate('/login');
         });

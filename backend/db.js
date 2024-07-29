@@ -181,6 +181,58 @@ const sendResetPasswordLink = async (email) => {
   }
 };
 
+const changePassword = async (userid, currentPassword, newPassword, authToken) => {
+  const isValidToken = jwt.verify(authToken, jwtSignature);
+
+  if (isValidToken) {
+    try {
+      // Retrieve the stored hashed password
+      const getCurrentPasswordSQL = `SELECT password FROM Users WHERE id = $1`;
+      const currPasswordResult = await client.query(getCurrentPasswordSQL, [userid]);
+
+      if (currPasswordResult.rows.length === 0) {
+        return {
+          success: false,
+          msg: 'User not found',
+        };
+      }
+
+      const storedHashedPassword = currPasswordResult.rows[0].password;
+
+      // Compare the provided current password with the stored hashed password
+      const isMatch = await bcrypt.compare(currentPassword, storedHashedPassword);
+
+      if (!isMatch) {
+        return {
+          success: false,
+          msg: 'Incorrect current password',
+        };
+      }
+
+      const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+
+      const SQL = `
+      UPDATE Users 
+      SET password = $2
+      WHERE id = $1;
+      `;
+      const result = await client.query(SQL, [userid, hashedNewPassword]);
+      return {
+        success: true,
+        msg: 'Successfully updated password!',
+      };
+    } catch (err) {
+      console.error('SQL update error: ', err);
+      throw err;
+    }
+  } else {
+    return {
+      success: false,
+      msg: 'Auth Token expired',
+    };
+  }
+};
+
 const updatePersonalInfo = async (userid, newInfoObj, authToken) => {
   const isValidToken = jwt.verify(authToken, jwtSignature);
 
@@ -229,5 +281,6 @@ export {
   getAllUsers,
   resetPassword,
   sendResetPasswordLink,
+  changePassword,
   updatePersonalInfo,
 };
