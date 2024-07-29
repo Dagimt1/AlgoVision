@@ -3,6 +3,7 @@ import { UserContext } from '../../context/UserContext';
 import { Box, TextField } from '@mui/material';
 import axios from 'axios';
 import AlertModal from '../modals/AlertModal';
+import PasswordField from './PasswordField';
 import './css/updateInfo.css';
 
 const UpdatePassword = () => {
@@ -80,34 +81,32 @@ const UpdatePassword = () => {
       <Box
         component='form'
         sx={{
-          '& .MuiTextField-root': { m: 3, width: '40%', backgroundColor: '#ffffff' },
+          '& .MuiTextField-root': { margin: '5% 5% 5% 0', backgroundColor: '#ffffff' },
         }}
         noValidate
       >
         <h2>Update Password</h2>
-        <div className='inputRow'>
-          <TextField
-            required
+
+        <div className='inputRow password'>
+          <PasswordField
             label='Current Password'
-            error={errMsg_current.length > 0}
-            helperText={errMsg_current}
             value={currentPassword || ''}
             onChange={(e) => setCurrentPassword(e.target.value)}
+            error={errMsg_current}
           />
         </div>
-        <div className='inputRow'>
-          <TextField
-            required
+
+        <div className='inputRow password'>
+          <PasswordField
             label='New Password'
-            error={errMsg_new.length > 0}
-            helperText={errMsg_new}
             value={newPassword || ''}
             onChange={(e) => setNewPassword(e.target.value)}
+            error={errMsg_new}
           />
         </div>
-        <div className='inputRow'>
-          <TextField
-            required
+
+        <div className='inputRow password'>
+          <PasswordField
             label='Confirm New Password'
             value={confirmNewPassword || ''}
             onChange={(e) => setConfirmNewPassword(e.target.value)}

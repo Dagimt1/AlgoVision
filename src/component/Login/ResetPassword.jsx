@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
+import { TextField } from '@mui/material';
+import PasswordField from './PasswordField';
 import NavBar from '../navBar/NavBar';
 import './css/resetpassword.css';
 
@@ -144,25 +146,23 @@ const ResetPassword = () => {
             ) : (
               <form className='resetForm' onSubmit={(e) => handleSaveNewPassword(e)}>
                 <div className='inputGroup'>
-                  <input
-                    className='textField'
-                    placeholder='Email address'
+                  <TextField
+                    className='loginPasswordField'
+                    label='Email'
                     value={email || ''}
                     onChange={(e) => setEmail(e.target.value)}
+                    error={emailErr}
                   />
-                  {emailErr.length > 0 && <small className='helpText error'>{emailErr}</small>}
                 </div>
 
-                <div className='inputGroup'>
-                  <input
-                    className='textField'
-                    placeholder='New Password'
+                <div className='inputGroup marginBottom'>
+                  <PasswordField
+                    className='loginPasswordField'
+                    label='Password'
                     value={password || ''}
                     onChange={(e) => setPassword(e.target.value)}
+                    error={passwordErr}
                   />
-                  {passwordErr.length > 0 && (
-                    <small className='helpText error'>{passwordErr}</small>
-                  )}
                 </div>
 
                 <button className='loginButton' type='submit'>

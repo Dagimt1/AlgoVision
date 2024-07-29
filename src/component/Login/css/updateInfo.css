@@ -3,6 +3,10 @@
   display: flex;
   justify-content: space-evenly;
 }
+.inputRow.password {
+  width: 40%;
+  margin: auto;
+}
 
 .submitContainer {
   width: 80%;

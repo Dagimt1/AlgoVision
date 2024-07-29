@@ -2,8 +2,11 @@ import { useState, useEffect, useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import PasswordField from './PasswordField';
 import './css/login.css';
 import './css/general.css';
+import { TextField } from '@mui/material';
+
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -86,23 +89,23 @@ const Login = () => {
       <div className='loginBody'>
         <form className='loginForm' onSubmit={(e) => handleLogin(e)}>
           <div className='inputGroup'>
-            <input
-              className='textField'
-              placeholder='Email'
+            <TextField
+              className='loginPasswordField'
+              label='Email'
               value={email || ''}
               onChange={(e) => setEmail(e.target.value)}
+              error={emailErr}
             />
-            {emailErr.length > 0 && <small className='helpText error'>{emailErr}</small>}
           </div>
 
-          <div className='inputGroup'>
-            <input
-              className='textField'
-              placeholder='Password'
+          <div className='inputGroup marginBottom'>
+            <PasswordField
+              className='loginPasswordField'
+              label='Password'
               value={password || ''}
               onChange={(e) => setPassword(e.target.value)}
+              error={passwordErr}
             />
-            {passwordErr.length > 0 && <small className='helpText error'>{passwordErr}</small>}
           </div>
 
           <button className='loginButton' type='submit'>
