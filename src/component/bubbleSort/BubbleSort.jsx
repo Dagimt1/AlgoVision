@@ -1,6 +1,6 @@
 import React from "react";
 import "./bubbleSort.css"; // Import CSS file
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const BubbleSortButton = ({ onClick, isActive }) => (
   <button
@@ -13,10 +13,10 @@ export const BubbleSortButton = ({ onClick, isActive }) => (
 
 const BubbleSort = () => {
   const BubbleVideo = process.env.PUBLIC_URL + "./mp4/bubblesort.mp4";
-  // const navigate = useNavigate();
-  // const navigateToLearnMore = () => {
-  //   navigate("/learnmore");
-  // };
+  const navigate = useNavigate();
+  const navigateToLearnMore = () => {
+    navigate("/learnmore");
+  };
 
   return (
     <section className="section-container">
@@ -29,12 +29,13 @@ const BubbleSort = () => {
         complexity of \(O(n)\), though it still requires at least two passes
         through the array. In contrast, insertion sort can often complete the
         sorting in approximately one pass through the data.{" "}
-        <a className="learn-more-href" href="/learnmore">
+        <br />
+        {/* <a className="learn-more-href" href="/learnmore">
           Learn more
-        </a>
-        {/* <button className="learn-more-btn" onClick={navigateToLearnMore}>
+        </a> */}
+        <button className="learn-more-btn" onClick={navigateToLearnMore}>
           Learn more
-        </button> */}
+        </button>
       </p>
     </section>
   );
