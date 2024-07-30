@@ -21,7 +21,15 @@ const createTables = async () => {
               id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
               email VARCHAR(255) NOT NULL,
               password VARCHAR(255) NOT NULL,
-              isAdmin Boolean DEFAULT FALSE
+              isAdmin Boolean DEFAULT FALSE,
+              FirstName VARCHAR(50) DEFAULT '',
+              LastName VARCHAR(50) DEFAULT '',
+              Address VARCHAR(255) DEFAULT '',
+              AddressLine2 VARCHAR(50) DEFAULT '',
+              City VARCHAR(50) DEFAULT '',
+              State VARCHAR(2) DEFAULT '',
+              Zipcode VARCHAR(5) DEFAULT '',
+              CurrentSchool VARCHAR(100) DEFAULT ''
           )
           `;
     await client.query(SQL);
@@ -104,12 +112,13 @@ const logIn = async (email, password) => {
           username: user.name,
         },
         jwtSignature,
-        { expiresIn: '1d' }
+        { expiresIn: '30m' }
       );
 
       return {
         success: true,
-        token: token,
+        authToken: token,
+        userData: result.rows[0],
         msg: 'successfully logged in',
       };
     } else {
@@ -119,7 +128,7 @@ const logIn = async (email, password) => {
     throw err;
   }
 };
-const changePassword = async (email, newPassword, resetToken) => {
+const resetPassword = async (email, newPassword, resetToken) => {
   const SQL = `SELECT * FROM Users WHERE email = $1`;
   const isRegistered = await client.query(SQL, [email]);
 
@@ -172,12 +181,106 @@ const sendResetPasswordLink = async (email) => {
   }
 };
 
+const changePassword = async (userid, currentPassword, newPassword, authToken) => {
+  const isValidToken = jwt.verify(authToken, jwtSignature);
+
+  if (isValidToken) {
+    try {
+      // Retrieve the stored hashed password
+      const getCurrentPasswordSQL = `SELECT password FROM Users WHERE id = $1`;
+      const currPasswordResult = await client.query(getCurrentPasswordSQL, [userid]);
+
+      if (currPasswordResult.rows.length === 0) {
+        return {
+          success: false,
+          msg: 'User not found',
+        };
+      }
+
+      const storedHashedPassword = currPasswordResult.rows[0].password;
+
+      // Compare the provided current password with the stored hashed password
+      const isMatch = await bcrypt.compare(currentPassword, storedHashedPassword);
+
+      if (!isMatch) {
+        return {
+          success: false,
+          msg: 'Incorrect current password',
+        };
+      }
+
+      const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+
+      const SQL = `
+      UPDATE Users 
+      SET password = $2
+      WHERE id = $1;
+      `;
+      const result = await client.query(SQL, [userid, hashedNewPassword]);
+      return {
+        success: true,
+        msg: 'Successfully updated password!',
+      };
+    } catch (err) {
+      console.error('SQL update error: ', err);
+      throw err;
+    }
+  } else {
+    return {
+      success: false,
+      msg: 'Auth Token expired',
+    };
+  }
+};
+
+const updatePersonalInfo = async (userid, newInfoObj, authToken) => {
+  const isValidToken = jwt.verify(authToken, jwtSignature);
+
+  if (isValidToken) {
+    try {
+      const SQL = `
+      UPDATE Users 
+      SET FirstName = $2, LastName = $3, Address = $4, AddressLine2 = $5,
+          City = $6, State = $7, Zipcode = $8, CurrentSchool = $9
+      WHERE id = $1
+      RETURNING *
+      `;
+      const result = await client.query(SQL, [
+        userid,
+        newInfoObj.firstName,
+        newInfoObj.lastName,
+        newInfoObj.address,
+        newInfoObj.addressLine2,
+        newInfoObj.city,
+        newInfoObj.state,
+        newInfoObj.zipCode,
+        newInfoObj.school,
+      ]);
+      return {
+        success: true,
+        updatedUserData: result.rows[0],
+        msg: 'Successfully updated personal info!',
+      };
+    } catch (err) {
+      console.error('SQL update error: ', err);
+      throw err;
+    }
+  } else {
+    return {
+      success: false,
+      msg: 'Auth Token expired',
+    };
+  }
+};
+
 export {
   client,
   createTables,
   register,
   logIn,
   getAllUsers,
-  changePassword,
+  resetPassword,
   sendResetPasswordLink,
+  changePassword,
+  updatePersonalInfo,
 };
