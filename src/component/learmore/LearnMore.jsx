@@ -63,13 +63,15 @@ const LearnMore = () => {
           elements as necessary to maintain sorted order. It is particularly
           efficient for small or nearly sorted datasets, but it has a time
           complexity of \(O(n^2)\) in the average and worst cases, making it
-          less suitable for large, unsorted arrays. Despite its \(O(n^2)\)
-          worst-case time complexity, insertion sort is often preferred for
-          nearly sorted data due to its adaptive nature or for small problem
-          sizes because of its low overhead. Additionally, insertion sort is
-          stable, which makes it a common choice as the base case in recursive
-          divide-and-conquer sorting algorithms, such as merge sort or quick
-          sort.
+          less suitable for large, unsorted arrays.
+        </p>
+        <p>
+          Despite its \(O(n^2)\) worst-case time complexity, insertion sort is
+          often preferred for nearly sorted data due to its adaptive nature or
+          for small problem sizes because of its low overhead. Additionally,
+          insertion sort is stable, which makes it a common choice as the base
+          case in recursive divide-and-conquer sorting algorithms, such as merge
+          sort or quick sort.
         </p>
         <ul>
           Properties
@@ -82,7 +84,7 @@ const LearnMore = () => {
         <img
           className="learnMoreSortImages"
           src="./images/InsertionSort.png"
-          alt="Bubble Sort"
+          alt="Insert Sort"
         />
       </details>
       <details className="summarySort">
@@ -102,15 +104,37 @@ const LearnMore = () => {
       <details className="summarySort">
         <summary>Merge Sort</summary>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum,
-          harum. Ipsum quaerat dolor quam ab aliquam ipsam deserunt, possimus
-          eos voluptatem facilis explicabo dolorum fugit iusto. Quo non fugiat
-          sunt?
+          Merge sort is very predictable. It makes between 0.5lg(n) and lg(n)
+          comparisons per element, and between lg(n) and 1.5lg(n) swaps per
+          element. The minima are achieved for already sorted data; the maxima
+          are achieved, on average, for random data. If using Θ(n) extra space
+          is of no concern, then merge sort is an excellent choice: It is simple
+          to implement, and it is the only stable O(n·lg(n)) sorting algorithm.
+          Note that when sorting linked lists, merge sort requires only Θ(lg(n))
+          extra space (for recursion).
         </p>
+        <p>
+          Merge sort is the algorithm of choice for a variety of situations:
+          when stability is required, when sorting linked lists, and when random
+          access is much more expensive than sequential access (for example,
+          external sorting on tape). There do exist linear time in-place merge
+          algorithms for the last step of the algorithm, but they are both
+          expensive and complex. The complexity is justified for applications
+          such as external sorting when Θ(n) extra space is not available.
+        </p>
+        <ul>
+          Properties
+          <li>Stable</li>
+          <li>Θ(n) extra space for arrays (as shown)</li>
+          <li>Θ(lg(n)) extra space for linked lists</li>
+          <li>Θ(n·lg(n)) time</li>
+          <li>Not adaptive</li>
+          <li>Does not require random access to data</li>
+        </ul>
         <img
           className="learnMoreSortImages"
-          src="./images/BubbleSort.png"
-          alt="Bubble Sort"
+          src="./images/MergeSort.png"
+          alt="Merge Sort"
         />
       </details>
       <details className="summarySort">
@@ -123,18 +147,20 @@ const LearnMore = () => {
           poor locality and can exhibit O(n²) time complexity when there are few
           unique keys. A more efficient and robust 2-way partitioning method is
           described in "Quicksort is Optimal" by Robert Sedgewick and Jon
-          Bentley. This method ensures balanced recursion even with many values
-          equal to the pivot, providing probabilistic guarantees of O(n·lg(n))
-          time complexity and O(lg(n)) space complexity for all inputs. When
-          both sub-sorts are performed recursively, quicksort requires O(n)
-          extra space for the recursion stack in the worst case if recursion is
-          not balanced. This is highly unlikely but can be mitigated by
-          recursively sorting the smaller sub-array first. The sort of the
-          larger sub-array can then be done using iteration instead of
-          recursion. With this optimization, the algorithm uses O(lg(n)) extra
-          space in the worst case.
+          Bentley.
         </p>
-
+        <p>
+          This method ensures balanced recursion even with many values equal to
+          the pivot, providing probabilistic guarantees of O(n·lg(n)) time
+          complexity and O(lg(n)) space complexity for all inputs. When both
+          sub-sorts are performed recursively, quicksort requires O(n) extra
+          space for the recursion stack in the worst case if recursion is not
+          balanced. This is highly unlikely but can be mitigated by recursively
+          sorting the smaller sub-array first. The sort of the larger sub-array
+          can then be done using iteration instead of recursion. With this
+          optimization, the algorithm uses O(lg(n)) extra space in the worst
+          case.
+        </p>
         <ul>
           Properties
           <li>Stable</li>
@@ -147,7 +173,7 @@ const LearnMore = () => {
         <img
           className="learnMoreSortImages"
           src="./images/QuickSort.png"
-          alt="Bubble Sort"
+          alt="Quick Sort"
         />
       </details>
     </div>
