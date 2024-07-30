@@ -43,15 +43,13 @@ const LearnMore = () => {
           in the array. The algorithm continues to pass through the array until
           no more swaps are needed, indicating that the array is sorted.
         </p>
-        <p>
-          <ul>
-            Properties
-            <li>Stable</li>
-            <li>O(1) extra space</li>
-            <li>O(n2) comparisons and swaps</li>
-            <li>Adaptive: O(n) when nearly sorted</li>
-          </ul>
-        </p>
+        <ul>
+          Properties
+          <li>Stable</li>
+          <li>O(1) extra space</li>
+          <li>O(n2) comparisons and swaps</li>
+          <li>Adaptive: O(n) when nearly sorted</li>
+        </ul>
         <img
           className="learnMoreSortImages"
           src="./images/BubbleSort.png"
@@ -73,19 +71,16 @@ const LearnMore = () => {
           divide-and-conquer sorting algorithms, such as merge sort or quick
           sort.
         </p>
-
-        <p>
-          <ul>
-            Properties
-            <li>Stable</li>
-            <li>O(1) extra space</li>
-            <li>O(n2) comparisons and swaps</li>
-            <li>Adaptive: O(n) when nearly sorted</li>
-            <li>Very low overhead</li>
-          </ul>
-        </p>
+        <ul>
+          Properties
+          <li>Stable</li>
+          <li>O(1) extra space</li>
+          <li>O(n2) comparisons and swaps</li>
+          <li>Adaptive: O(n) when nearly sorted</li>
+          <li>Very low overhead</li>
+        </ul>
         <img
-          className="learnMoreBubbleSortImage"
+          className="learnMoreSortImages"
           src="./images/InsertionSort.png"
           alt="Bubble Sort"
         />
@@ -99,7 +94,7 @@ const LearnMore = () => {
           explicabo deserunt totam corrupti. Recusandae, eius?
         </p>
         <img
-          className="learnMoreBubbleSortImage"
+          className="learnMoreSortImages"
           src="./images/BubbleSort.png"
           alt="Bubble Sort"
         />
@@ -113,7 +108,7 @@ const LearnMore = () => {
           sunt?
         </p>
         <img
-          className="learnMoreBubbleSortImage"
+          className="learnMoreSortImages"
           src="./images/BubbleSort.png"
           alt="Bubble Sort"
         />
@@ -121,14 +116,37 @@ const LearnMore = () => {
       <details className="summarySort">
         <summary>Quick Sort</summary>
         <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi, quidem
-          iure ex repellat fugiat fugit repudiandae blanditiis nostrum optio
-          labore! Perspiciatis, sunt sequi? Expedita eveniet id officiis tempore
-          eum omnis.
+          When carefully implemented, quicksort is a robust algorithm with low
+          overhead. It is an excellent general-purpose sort when stability is
+          not required, especially when using the 3-way partitioning version.
+          The 2-way partitioning approach, while clear, is less efficient due to
+          poor locality and can exhibit O(n²) time complexity when there are few
+          unique keys. A more efficient and robust 2-way partitioning method is
+          described in "Quicksort is Optimal" by Robert Sedgewick and Jon
+          Bentley. This method ensures balanced recursion even with many values
+          equal to the pivot, providing probabilistic guarantees of O(n·lg(n))
+          time complexity and O(lg(n)) space complexity for all inputs. When
+          both sub-sorts are performed recursively, quicksort requires O(n)
+          extra space for the recursion stack in the worst case if recursion is
+          not balanced. This is highly unlikely but can be mitigated by
+          recursively sorting the smaller sub-array first. The sort of the
+          larger sub-array can then be done using iteration instead of
+          recursion. With this optimization, the algorithm uses O(lg(n)) extra
+          space in the worst case.
         </p>
+
+        <ul>
+          Properties
+          <li>Stable</li>
+          <li>O(1) extra space</li>
+          <li>O(n2) comparisons and swaps</li>
+          <li>Adaptive: O(n) when nearly sorted</li>
+          <li>Very low overhead</li>
+        </ul>
+
         <img
-          className="learnMoreBubbleSortImage"
-          src="./images/BubbleSort.png"
+          className="learnMoreSortImages"
+          src="./images/QuickSort.png"
           alt="Bubble Sort"
         />
       </details>

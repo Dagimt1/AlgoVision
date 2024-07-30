@@ -66,9 +66,13 @@
   color: #fff;
   background-color: #446ff2;
   border: none;
-  border-radius: 3rem; /* Make corners slightly rounded */
+  border-radius: 5px; 
   cursor: pointer;
-  transition: box-shadow 0.3s ease; /* Smooth transition for shadow */
+  transition: box-shadow 0.3s ease;
+}
+
+.learn-more-btn:hover {
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 }
 
 .learn-more-href {
