@@ -115,7 +115,7 @@ const Sorting = () => {
 
   return (
     <div>
-      <nav className="navbar">
+    <nav className="navbar">
         <div className="navbar-brand">Sorting Visualizer</div>
         <div className="navbar-collapse">
           <ul className="navbar-nav">
@@ -137,7 +137,7 @@ const Sorting = () => {
                 role="button"
                 aria-haspopup="true"
                 aria-expanded={isAlgorithmDropdownOpen}
-              >
+                >
                 {method}
               </a>
               <div
@@ -145,26 +145,26 @@ const Sorting = () => {
                   isAlgorithmDropdownOpen ? "show" : ""
                 }`}
                 aria-labelledby="navbarDropdown"
-              >
+                >
                 <a
                   className="dropdown-item"
                   href="#"
                   onClick={() => selectAlgorithm("Selection Sort")}
-                >
+                  >
                   Selection Sort
                 </a>
                 <a
                   className="dropdown-item"
                   href="#"
                   onClick={() => selectAlgorithm("Merge Sort")}
-                >
+                  >
                   Merge Sort
                 </a>
                 <a
                   className="dropdown-item"
                   href="#"
                   onClick={() => selectAlgorithm("Quick Sort")}
-                >
+                  >
                   Quick Sort
                 </a>
               </div>
@@ -177,7 +177,7 @@ const Sorting = () => {
                 role="button"
                 aria-haspopup="true"
                 aria-expanded={isControlsDropdownOpen}
-              >
+                >
                 Controls
               </a>
               <div
@@ -185,7 +185,7 @@ const Sorting = () => {
                   isControlsDropdownOpen ? "show" : ""
                 } controls-dropdown`}
                 aria-labelledby="navbarDropdown"
-              >
+                >
                 <div className="dropdown-item">
                   <input
                     onChange={changeArray}
@@ -193,7 +193,7 @@ const Sorting = () => {
                     min="2"
                     max={Math.floor(window.screen.width / 50)}
                     defaultValue={Math.floor(window.screen.width / 50 / 2)}
-                  />
+                    />
                   <span>Increase Array Size</span>
                 </div>
                 <div className="dropdown-item">
@@ -203,7 +203,7 @@ const Sorting = () => {
                     min="100"
                     max={1000}
                     defaultValue={500}
-                  />
+                    />
                   <span>Increase Speed</span>
                 </div>
               </div>
@@ -213,7 +213,7 @@ const Sorting = () => {
               className="alert"
               style={{ marginLeft: "10px", display: "none" }}
               role="alert"
-            >
+              >
               Select an algorithm first!
             </div>
           </ul>
@@ -224,6 +224,7 @@ const Sorting = () => {
           </form>
         </div>
       </nav>
+        <div className="main-div">
       <div className="input-array-form">
         <form onSubmit={handleArraySubmit}>
           <label>
@@ -232,7 +233,7 @@ const Sorting = () => {
               type="text"
               value={inputArray}
               onChange={handleInputChange}
-            />
+              />
           </label>
           <button type="submit">Set Array</button>
         </form>
@@ -252,6 +253,7 @@ const Sorting = () => {
         ))}
       </div>
     </div>
+  </div>
   );
 };
 

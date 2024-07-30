@@ -21,11 +21,9 @@ const LandingPage = () => {
           <h1 className='main-title'>
             The best way to learn <span className='highlight'>algorithms basics</span>
           </h1>
-          <p className='main-subtitle'>
-            Build computer science skills in minutes a day with bite-sized,
-          </p>
-          <p className='main-subtitle2'> interactive lessons you'll love.</p>
-          <button className='main-get-started-btn' onClick={() => navigate('/sorting')}>
+          <p className="main-subtitle">
+            Build computer science skills in minutes a day with bite-sized, <br/> interactive lessons you'll love.</p>
+          <button className="main-get-started-btn" onClick={() => navigate("/sorting")}>
             Sorting visualizer
           </button>
           <button className='main-get-started-btn2' onClick={() => navigate('/pathfinding')}>

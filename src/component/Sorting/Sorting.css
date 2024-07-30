@@ -33,7 +33,7 @@
 
 .navbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   padding: 10px 20px;
   background-color: #f8f9fa;
@@ -222,4 +222,56 @@
 
 .input-array-form button:hover {
   background-color: #5f7bcd;
+}
+
+@media (max-width: 1200px) {
+  .navbar-brand {
+    font-size: 1.3rem;
+  }
+
+  /* .nav-item {
+    margin-right: 0;
+    margin-bottom: 10px;
+  } */
+}
+
+@media (max-width: 768px) {
+  .input-array-form form {
+    flex-direction: column;
+  }
+
+  .input-array-form input[type="text"] {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .input-array-form button {
+    width: 100%;
+  }
+
+  .bars {
+    margin-top: 60px; 
+    height: 50vh;
+  }
+}
+
+@media (max-width: 520px) {
+  .navbar {
+    flex-direction: column;
+  }
+
+  .navbar-nav {
+    flex-direction: column;
+  }
+
+  .bars {
+    margin-top: 30px;
+    height: 40vh;
+  }
+
+  .bar {
+    width: 20px;
+    margin-left: 3px;
+  }
 }
