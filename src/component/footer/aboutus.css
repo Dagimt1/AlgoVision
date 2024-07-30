@@ -15,12 +15,14 @@
 .aboutUstitle {
   font-size: 3rem;
   color: #333;
+  font-family: "Teko", sans-serif;
 }
 
 .aboutUsh1 {
   font-size: 3rem;
   color: #333;
   margin-bottom: 20px;
+  font-family: "Teko", sans-serif;
 }
 
 .aboutUsPcontainer {
@@ -34,6 +36,7 @@
   font-size: 1.1rem;
   line-height: 1.6;
   color: #666;
+  font-family: sans-serif;
 }
 
 .aboutUsGif {
@@ -52,6 +55,7 @@
   font-size: 2rem;
   color: #333;
   margin-top: 20px;
+  font-family: "Teko", sans-serif;
 }
 
 .aboutUsTeam {
@@ -59,6 +63,7 @@
   flex-wrap: wrap;
   justify-content: space-between;
   margin-top: 20px;
+  font-family: sans-serif;
 }
 
 .aboutUsTeamMember1 {
@@ -98,32 +103,20 @@
 }
 
 @media screen and (max-width: 768px) {
-  .aboutUsTeam {
+  .aboutUsPcontainer {
     flex-direction: column;
   }
 
-  .aboutUsTeamMember1,
-  .aboutUsTeamMember2,
-  .aboutUsTeamMember3,
-  .aboutUsTeamMember4,
-  .aboutUsTeamMember5 {
-    flex: 1 1 100%;
+  .aboutUsP {
+    margin-bottom: 20px;
   }
 
-  .aboutUsTeamMember5 {
-    margin-right: 0;
+  .aboutUsGif {
+    margin-bottom: 20px;
   }
 
-  .aboutUsTeamMember1GIF {
-    width: 100%;
-  }
-
-  .aboutUsTeamMember1GIF,
-  .aboutUsTeamMember2GIF,
-  .aboutUsTeamMember3GIF,
-  .aboutUsTeamMember4GIF,
-  .aboutUsTeamMember5GIF {
-    margin: 0 auto;
+  .aboutUsTeam {
+    flex-direction: column;
   }
 
   .aboutUsTeamMember1,

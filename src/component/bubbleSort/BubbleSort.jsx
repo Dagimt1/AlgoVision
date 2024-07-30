@@ -1,15 +1,22 @@
 import React from "react";
 import "./bubbleSort.css"; // Import CSS file
-import { Link } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 export const BubbleSortButton = ({ onClick, isActive }) => (
-  <button onClick={onClick} className={`bubble-btn ${isActive ? 'active' : ''}`}>
+  <button
+    onClick={onClick}
+    className={`bubble-btn ${isActive ? "active" : ""}`}
+  >
     Bubble Sort
   </button>
 );
 
 const BubbleSort = () => {
   const BubbleVideo = process.env.PUBLIC_URL + "./mp4/bubblesort.mp4";
+  // const navigate = useNavigate();
+  // const navigateToLearnMore = () => {
+  //   navigate("/learnmore");
+  // };
 
   return (
     <section className="section-container">
@@ -17,10 +24,17 @@ const BubbleSort = () => {
         <video className="bubble-vid" src={BubbleVideo} autoPlay loop muted />
       </div>
       <p className="bubble-description">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum
-        dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit
-        amet, consectetur adipisicing elit.
-        <Link to="/sorting" className="bubble-link"> Learn more</Link>
+        Bubble Sort shares many properties with insertion sort but generally has
+        higher overhead. For nearly sorted data, bubble sort can achieve a time
+        complexity of \(O(n)\), though it still requires at least two passes
+        through the array. In contrast, insertion sort can often complete the
+        sorting in approximately one pass through the data.{" "}
+        <a className="learn-more-href" href="/learnmore">
+          Learn more
+        </a>
+        {/* <button className="learn-more-btn" onClick={navigateToLearnMore}>
+          Learn more
+        </button> */}
       </p>
     </section>
   );
