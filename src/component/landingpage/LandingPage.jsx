@@ -28,7 +28,7 @@ const LandingPage = () => {
           <button className='main-get-started-btn' onClick={() => navigate('/sorting')}>
             Sorting visualizer
           </button>
-          <button className='main-get-started-btn2' onClick={() => navigate('/sorting')}>
+          <button className='main-get-started-btn2' onClick={() => navigate('/pathfinding')}>
             Pathfinder visualizer
           </button>
         </div>
