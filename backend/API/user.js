@@ -1,6 +1,14 @@
 import express from 'express';
 import nodemailer from 'nodemailer';
-import { register, logIn, getAllUsers, changePassword, sendResetPasswordLink } from '../db.js';
+import {
+  register,
+  logIn,
+  getAllUsers,
+  resetPassword,
+  sendResetPasswordLink,
+  changePassword,
+  updatePersonalInfo,
+} from '../db.js';
 
 const userRouter = express.Router();
 
@@ -13,6 +21,7 @@ userRouter.post('/register', async (req, res) => {
   }
 });
 
+//Todo: need to be removed!!
 userRouter.get('/', async (req, res) => {
   try {
     const allUsers = await getAllUsers();
@@ -91,9 +100,36 @@ userRouter.post('/sendResetLink', async (req, res) => {
   }
 });
 
-userRouter.put('/password', async (req, res) => {
+userRouter.put('/resetPassword', async (req, res) => {
   try {
-    const result = await changePassword(req.body.email, req.body.newPassword, req.body.resetToken);
+    const result = await resetPassword(req.body.email, req.body.newPassword, req.body.resetToken);
+    res.status(201).send(result);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+userRouter.put('/changePassword', async (req, res) => {
+  try {
+    const result = await changePassword(
+      req.body.userid,
+      req.body.currentPassword,
+      req.body.newPassword,
+      req.body.authToken
+    );
+    res.status(201).send(result);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+userRouter.put('/updatePersonalInfo', async (req, res) => {
+  try {
+    const result = await updatePersonalInfo(
+      req.body.userid,
+      req.body.newInfoObj,
+      req.body.authToken
+    );
     res.status(201).send(result);
   } catch (err) {
     res.status(500).send(err);

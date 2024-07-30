@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Teko:wght@300..700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Teko:wght@300..700&display=swap');
 
 body {
   font-family: 'Teko', sans-serif; /* Apply Teko font */
@@ -15,8 +15,9 @@ body {
 }
 
 .header {
-  width: 100%; /* Ensure header spans full width */
-  padding: 2.5rem;
+  width: 100%;
+  height: 8vh;
+  /* padding: 2.5rem; */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -27,7 +28,7 @@ body {
 .title {
   font-size: 3rem;
   color: #333;
-  font-family: "Teko", sans-serif; /* Apply Teko font */
+  font-family: 'Teko', sans-serif; /* Apply Teko font */
   font-weight: 300; /* Set font weight to 300 */
   margin: 0; /* Remove default margin */
   position: absolute;
@@ -74,7 +75,7 @@ body {
   right: 50px;
 }
 
-.login-btn2{
+.login-btn2 {
   padding: 0.5rem 1rem;
   font-size: 1.1rem;
   color: #333;
@@ -92,7 +93,7 @@ body {
   right: 150px;
 }
 
-.login-btn:hover{
+.login-btn:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
 }
 
@@ -112,7 +113,7 @@ body {
 .main-title {
   font-size: 3rem;
   color: #333;
-  font-family: "Teko", sans-serif; /* Apply Teko font */
+  font-family: 'Teko', sans-serif; /* Apply Teko font */
   font-weight: 300; /* Set font weight to 300 */
   top: 100px;
   left: 200px;

@@ -56,3 +56,11 @@
 .loginAction:hover {
   font-weight: 700;
 }
+
+.halfWidth {
+  width: 50%;
+}
+
+.marginBottom {
+  margin-bottom: 2vh;
+}
