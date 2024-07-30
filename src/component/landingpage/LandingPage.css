@@ -56,7 +56,7 @@ body {
 .get-started-btn:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
 }
-/* 
+
 .login-btn {
   padding: 0.5rem 1rem;
   font-size: 1.1rem;
@@ -72,25 +72,24 @@ body {
   position: absolute;
   top: 20px;
   right: 50px;
-} */
+} 
 
-.login-btn2 {
+/* .login-btn2 {
   padding: 0.5rem 1rem;
   font-size: 1.1rem;
   color: #333;
   background-color: transparent;
   border: 2px solid #ccc;
-  border-radius: 3rem; /* Make corners rounded */
+  border-radius: 5px; 
   cursor: pointer;
-  font-family: sans-serif; /* Apply Teko font */
-  font-weight: 400; /* Set font weight to 300 */
-  transition: box-shadow 0.3s ease; /* Smooth transition for shadow */
+  font-family: sans-serif; 
+  font-weight: 400; 
+  transition: box-shadow 0.3s ease;
   font-weight: 700;
-  /* position corer top right */
   position: absolute;
   top: 20px;
   right: 150px;
-}
+} */
 
 .login-btn:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
@@ -113,174 +112,6 @@ body {
   font-size: 3rem;
   color: #333;
   font-family: 'Teko', sans-serif; /* Apply Teko font */
-  font-weight: 300; /* Set font weight to 300 */
-  top: 100px;
-  left: 200px;
-  position: absolute;
-}
-
-.highlight {
-  color: #446ff2; /* Apply color to "algorithms basics" */
-}
-
-.main-subtitle {
-  font-size: 1.2rem;
-  color: #666;
-  left: 200px;
-  position: absolute;
-  top: 190px;
-  line-height: 1.5;
-}
-
-.main-get-started-btn {
-  margin-top: 1rem;
-  padding: 0.75rem 1.5rem;
-  font-size: 1.1rem;
-  color: #fff;
-  background-color: #446ff2;
-  border: none;
-  border-radius: 3rem; /* Make corners slightly rounded */
-  cursor: pointer;
-  transition: box-shadow 0.3s ease; /* Smooth transition for shadow */
-  left: 200px;
-  position: absolute;
-  top: 260px;
-}
-
-.main-get-started-btn2 {
-  margin-top: 1rem;
-  padding: 0.75rem 1.5rem;
-  font-size: 1.1rem;
-  color: #fff;
-  background-color: #446ff2;
-  border: none;
-  border-radius: 3rem; /* Make corners slightly rounded */
-  cursor: pointer;
-  transition: box-shadow 0.3s ease; /* Smooth transition for shadow */
-  position: absolute;
-  top: 260px;
-  left: 400px;
-}
-
-.main-get-started-btn:hover,
-.main-get-started-btn2:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
-}
-
-.gif-container {
-  max-width: 30%;
-  position: relative;
-  right: 100px;
-}
-
-.gif-container video {
-  width: 100%;
-  border-radius: 0.5rem;
-}
-
-.landing-page {
-  /* Add overflow-x: hidden to prevent horizontal scroll */
-  overflow-x: hidden;
-}
-
-
-@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Teko:wght@300..700&display=swap");
-
-body {
-  font-family: sans-serif;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-.landing-page {
-  text-align: center; /* Center align all content inside landing-page */
-  display: flex; /* Use flexbox for layout */
-  flex-direction: column; /* Align items vertically */
-  align-items: center; /* Center align horizontally */
-}
-
-.header {
-  width: 100%; /* Ensure header spans full width */
-  padding: 2.5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #f8f9fa;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow to header */
-}
-
-.title {
-  font-size: 3rem;
-  color: #333;
-  font-family: "Teko", sans-serif; /* Apply Teko font */
-  font-weight: 300; /* Set font weight to 300 */
-  margin: 0; /* Remove default margin */
-  position: absolute;
-  top: 10px;
-  left: 50px;
-}
-
-.subtitle {
-  font-size: 1rem;
-  color: #666;
-}
-
-.get-started-btn {
-  margin-top: 1rem;
-  padding: 0.75rem 1.5rem;
-  font-size: 1.1rem;
-  color: #fff;
-  background-color: #313132;
-  border: none;
-  border-radius: 0.5rem; /* Make corners slightly rounded */
-  cursor: pointer;
-  transition: box-shadow 0.3s ease; /* Smooth transition for shadow */
-}
-
-.get-started-btn:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
-}
-
-.login-btn {
-  padding: 0.5rem 1rem;
-  font-size: 1.1rem;
-  color: #333;
-  background-color: transparent;
-  border: 2px solid #ccc;
-  border-radius: 3rem; /* Make corners rounded */
-  cursor: pointer;
-  font-family: sans-serif; /* Apply Teko font */
-  font-weight: 400; /* Set font weight to 300 */
-  transition: box-shadow 0.3s ease; /* Smooth transition for shadow */
-  font-weight: 700;
-  /* position corner top right */
-  position: absolute;
-  top: 20px;
-  right: 50px;
-}
-
-.login-btn:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
-}
-
-.main {
-  width: 100%; /* Ensure main spans full width */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 2rem;
-}
-
-.text-container {
-  max-width: 50%;
-  text-align: left;
-}
-
-.main-title {
-  font-size: 3rem;
-  color: #333;
-  font-family: "Teko", sans-serif; /* Apply Teko font */
   font-weight: 300; /* Set font weight to 300 */
   top: 100px;
   left: 200px;
