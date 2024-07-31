@@ -90,14 +90,34 @@ const LearnMore = () => {
       <details className="summarySort">
         <summary>Selection Sort</summary>
         <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae
-          voluptas, exercitationem, quam similique perferendis dolorum neque
-          excepturi non distinctio voluptate, debitis sit inventore nisi
-          explicabo deserunt totam corrupti. Recusandae, eius?
+          Selection Sort is a straightforward sorting algorithm celebrated for
+          its simplicity and ease of implementation, though it’s not ideal for
+          large datasets. The algorithm works by iteratively selecting the
+          smallest element from the unsorted portion of the array and swapping
+          it with the first unsorted element.
         </p>
+        <p>
+          For example, given an array [64, 25, 12, 22, 11], Selection Sort
+          identifies the smallest element (11) and swaps it with the first
+          element (64), resulting in [11, 25, 12, 22, 64]. This process
+          continues, narrowing the unsorted portion until the array is fully
+          sorted. Despite its clarity, Selection Sort has a time complexity of 𝑂
+          ( 𝑛 2 ) O(n 2 ) in all cases, which can make it inefficient for large
+          arrays. It operates in-place with a space complexity of 𝑂 ( 1 ) O(1),
+          but it is not stable, meaning it does not maintain the relative order
+          of equal elements.
+        </p>
+        <ul>
+          Properties
+          <li>Not stable</li>
+          <li>O(1) extra space</li>
+          <li>Θ(n2) comparisons</li>
+          <li>Θ(n) swaps</li>
+          <li>Not adaptive</li>
+        </ul>
         <img
           className="learnMoreSortImages"
-          src="./images/BubbleSort.png"
+          src="./images/SelectionSort.png"
           alt="Bubble Sort"
         />
       </details>
