@@ -5,6 +5,7 @@ import MiddleTitle from '../middletitle/MiddleTitle';
 import SortContainer from '../sortContainer/SortContainer';
 import NavBar from '../navBar/NavBar';
 import Footer from '../footer/Footer';
+import PathfinderContainer from '../PathfinderContainer/PathfinderContainer';
 
 const LandingPage = () => {
   const videoComponent =
@@ -33,9 +34,12 @@ const LandingPage = () => {
         <div className='gif-container'>
           <video src={videoComponent} autoPlay loop muted />
         </div>
-      </main>
+      </main> 
+
+      
       <MiddleTitle />
       <SortContainer />
+      <PathfinderContainer />
       <Footer />
     </div>
   );
