@@ -30,9 +30,13 @@ const PathfinderContainer = () => {
         </div>
         <div className="bottom-container">
           <div className="bottom-container-video">
-            <video className="bottom-container-video-size" src="/mp4/DijykstrasGrab.mp4" controls>
-              Your browser does not support the video tag.
-            </video>
+            <video className="bottom-container-video-size" 
+            src="/mp4/DijykstrasGrab.mp4" 
+            loop
+            autoPlay
+            muted
+            />
+            
           </div>
           <div className="bottom-container-text">
             <div className="bottom-container-text-content">
