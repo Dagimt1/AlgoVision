@@ -1,10 +1,8 @@
-/* aboutus.css */
-
-.aboutUsContainer {
+/* .aboutUsContainer {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-  font-family: "Teko", sans-serif; /* Apply Teko font */
+  font-family: "Teko", sans-serif; 
 }
 
 .aboutUsheader {
@@ -45,9 +43,9 @@
 }
 
 .imgAboutUsGif {
-  width: 200%; /* Adjust the width percentage as per your design */
-  max-width: 100%; /* Ensures the image does not exceed its original size */
-  height: auto; /* Maintains aspect ratio */
+  width: 200%; 
+  max-width: 100%; 
+  height: auto; 
   border: none;
 }
 
@@ -127,4 +125,4 @@
     margin-right: 0;
   }
   
-}
+} */
