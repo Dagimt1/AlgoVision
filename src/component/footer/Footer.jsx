@@ -4,6 +4,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import YouTubeIcon from "@mui/icons-material/YouTube";
+import XIcon from '@mui/icons-material/X';
 
 const Footer = () => {
   return (
@@ -24,7 +25,7 @@ const Footer = () => {
           padding: "0 20px",
         }}
       >
-        <Typography variant="h3" gutterBottom sx={{ fontFamily: "Teko" }}>
+        <Typography variant="h3" gutterBottom sx={{ fontFamily: "Teko", }}>
           Algorithm Visualizer
         </Typography>
         <Divider style={{ margin: "20px 0", backgroundColor: "#ffffff" }} />
@@ -35,51 +36,32 @@ const Footer = () => {
             <Typography variant="h6" gutterBottom>
               Quick Links
             </Typography>
-            <Link
-              href="/aboutus"
-              color="inherit"
-              underline="hover"
-              sx={{ ":hover": { color: "#ffab00" } }}
-              display="block"
-            >
-              About Us
-            </Link>
-            <Link
-              href="/testimonials"
-              color="inherit"
-              underline="hover"
-              sx={{ ":hover": { color: "#ffab00" } }}
-              display="block"
-            >
-              Testimonials
-            </Link>
-            <Link
-              href="/pricing"
-              color="inherit"
-              underline="hover"
-              sx={{ ":hover": { color: "#ffab00" } }}
-              display="block"
-            >
-              Pricing
-            </Link>
-            <Link
-              href="/product"
-              color="inherit"
-              underline="hover"
-              sx={{ ":hover": { color: "#ffab00" } }}
-              display="block"
-            >
-              Product
-            </Link>
-            <Link
-              href="/principles"
-              color="inherit"
-              underline="hover"
-              sx={{ ":hover": { color: "#ffab00" } }}
-              display="block"
-            >
-              Principles
-            </Link>
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+              <Link
+                href="/aboutus"
+                color="inherit"
+                underline="hover"
+                sx={{ ":hover": { color: "#ffab00" }, marginBottom: "10px" }} 
+              >
+                About Us
+              </Link>
+              <Link
+                href="/testimonials"
+                color="inherit"
+                underline="hover"
+                sx={{ ":hover": { color: "#ffab00" }, marginBottom: "10px" }} 
+              >
+                Testimonials
+              </Link>
+              <Link
+                href="/contactus"
+                color="inherit"
+                underline="hover"
+                sx={{ ":hover": { color: "#ffab00" },  }}
+              >
+                Contact Us
+              </Link>
+            </div>
           </Grid>
 
           {/* Social Icons */}
@@ -91,12 +73,12 @@ const Footer = () => {
               style={{
                 display: "flex",
                 justifyContent: "center",
-                gap: "20px", // Increased gap between icons
               }}
             >
               <IconButton
                 component="a"
                 href="https://www.facebook.com"
+                target="_blank"
                 aria-label="Facebook"
                 sx={{
                   color: "#ffffff",
@@ -107,8 +89,21 @@ const Footer = () => {
               </IconButton>
               <IconButton
                 component="a"
+                href="https://www.x.com"
+                target="_blank"
+                aria-label="X"
+                sx={{
+                  color: "#ffffff",
+                  "&:hover": { color: "#1DA1F2" },
+                }}
+              >
+                <XIcon sx={{ fontSize: "2rem" }} />
+              </IconButton>
+              <IconButton
+                component="a"
                 href="https://www.linkedin.com"
                 aria-label="LinkedIn"
+                target="_blank"
                 sx={{
                   color: "#ffffff",
                   "&:hover": { color: "#0077b5" },
@@ -119,6 +114,7 @@ const Footer = () => {
               <IconButton
                 component="a"
                 href="https://www.instagram.com"
+                target="_blank"
                 aria-label="Instagram"
                 sx={{
                   color: "#ffffff",
@@ -129,6 +125,7 @@ const Footer = () => {
               </IconButton>
               <IconButton
                 component="a"
+                target="_blank"
                 href="https://www.youtube.com"
                 aria-label="YouTube"
                 sx={{

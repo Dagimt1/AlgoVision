@@ -171,7 +171,7 @@ const AboutUs = () => {
         </Toolbar>
       </Box>
       <Container style={{ padding: "20px" }}>
-        <Typography variant="h4" gutterBottom>
+        <Typography variant="h3" gutterBottom>
           About Us
         </Typography>
         <Typography variant="body1" paragraph>

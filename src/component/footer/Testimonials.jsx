@@ -15,10 +15,17 @@ import {
   Button,
   Stack,
   Divider,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  FormHelperText,
+  Snackbar,
+  Alert,
 } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
-import { testimonials } from "./testimonials";
+import { testimonials as initialTestimonials } from "./testimonials";
 
 // Functional component to render a star rating
 const StarRating = ({ rating }) => (
@@ -43,11 +50,73 @@ const Testimonials = () => {
   const [sortCriteria, setSortCriteria] = useState("date");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedRating, setSelectedRating] = useState("");
+  const [testimonials, setTestimonials] = useState(initialTestimonials);
+
+  // State for dialog
+  const [openDialog, setOpenDialog] = useState(false);
+  const [newUser, setNewUser] = useState("");
+  const [newRating, setNewRating] = useState("");
+  const [newComment, setNewComment] = useState("");
+  const [errors, setErrors] = useState({
+    user: false,
+    rating: false,
+    comment: false,
+  });
   
+  // Snackbar state
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
+
   // Callback function for navigating to the home page
   const navigateHome = useCallback(() => {
     navigate("/");
   }, [navigate]);
+
+  // Function to handle opening the dialog
+  const handleOpenDialog = () => setOpenDialog(true);
+
+  // Function to handle closing the dialog
+  const handleCloseDialog = () => setOpenDialog(false);
+
+  // Function to handle adding a new testimonial
+  const handleAddTestimonial = () => {
+    let hasError = false;
+    const newErrors = { user: false, rating: false, comment: false };
+
+    if (!newUser.trim()) {
+      newErrors.user = true;
+      hasError = true;
+    }
+    if (!newRating) {
+      newErrors.rating = true;
+      hasError = true;
+    }
+    if (!newComment.trim()) {
+      newErrors.comment = true;
+      hasError = true;
+    }
+
+    if (hasError) {
+      setErrors(newErrors);
+      return;
+    }
+
+    const newTestimonial = {
+      id: Date.now(), // Simple ID generation
+      user: newUser,
+      rating: Number(newRating),
+      comment: newComment,
+      date: new Date().toISOString(),
+    };
+    setTestimonials((prevTestimonials) => [...prevTestimonials, newTestimonial]);
+    setNewUser("");
+    setNewRating("");
+    setNewComment("");
+    setErrors({ user: false, rating: false, comment: false });
+    setSnackbarMessage("Testimonial added successfully!");
+    setSnackbarOpen(true);
+    handleCloseDialog();
+  };
 
   // Function to filter testimonials based on search and rating
   const filteredTestimonials = testimonials
@@ -69,6 +138,9 @@ const Testimonials = () => {
     }
     return 0;
   });
+
+  // Function to handle closing the snackbar
+  const handleSnackbarClose = () => setSnackbarOpen(false);
 
   return (
     <Container sx={{ py: 4, background: 'linear-gradient(to right, #f5f7f9, #e3e4e8)', minHeight: '100vh', p: 4 }}>
@@ -92,47 +164,62 @@ const Testimonials = () => {
         Testimonials
       </Typography>
 
-      {/* Search bar */}
-      <TextField
-        fullWidth
-        label="Search User or Comment"
-        variant="outlined"
-        sx={{ mb: 4, bgcolor: "#fff", borderRadius: 1, boxShadow: 1 }}
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-      />
-
-      {/* Filter by rating */}
-      <FormControl sx={{ mb: 4, minWidth: 120 }}>
-        <InputLabel>Rating</InputLabel>
-        <Select
-          value={selectedRating}
-          onChange={(e) => setSelectedRating(e.target.value)}
-          label="Rating"
+      {/* Control Panel */}
+      <Box sx={{ mb: 4, display: 'flex', flexDirection: 'column', gap: 2 }}>
+        {/* Search bar */}
+        <TextField
+          fullWidth
+          label="Search User or Comment"
+          variant="outlined"
           sx={{ bgcolor: "#fff", borderRadius: 1, boxShadow: 1 }}
-        >
-          <MenuItem value="">All Ratings</MenuItem>
-          {[1, 2, 3, 4, 5].map((rating) => (
-            <MenuItem key={rating} value={rating}>
-              {rating} Star{rating > 1 ? 's' : ''}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
 
-      {/* Sort dropdown menu */}
-      <FormControl sx={{ mb: 4, minWidth: 120 }}>
-        <InputLabel>Sort By</InputLabel>
-        <Select
-          value={sortCriteria}
-          onChange={(e) => setSortCriteria(e.target.value)}
-          label="Sort By"
-          sx={{ bgcolor: "#fff", borderRadius: 1, boxShadow: 1 }}
-        >
-          <MenuItem value="date">Date</MenuItem>
-          <MenuItem value="rating">Rating</MenuItem>
-        </Select>
-      </FormControl>
+        {/* Control Filters */}
+        <Stack direction="row" spacing={2} alignItems="center">
+          {/* Filter by rating */}
+          <FormControl sx={{ minWidth: 120 }}>
+            <InputLabel>Rating</InputLabel>
+            <Select
+              value={selectedRating}
+              onChange={(e) => setSelectedRating(e.target.value)}
+              label="Rating"
+              sx={{ bgcolor: "#fff", borderRadius: 1, boxShadow: 1 }}
+            >
+              <MenuItem value="">All Ratings</MenuItem>
+              {[1, 2, 3, 4, 5].map((rating) => (
+                <MenuItem key={rating} value={rating}>
+                  {rating} Star{rating > 1 ? 's' : ''}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+
+          {/* Sort dropdown menu */}
+          <FormControl sx={{ minWidth: 120 }}>
+            <InputLabel>Sort By</InputLabel>
+            <Select
+              value={sortCriteria}
+              onChange={(e) => setSortCriteria(e.target.value)}
+              label="Sort By"
+              sx={{ bgcolor: "#fff", borderRadius: 1, boxShadow: 1 }}
+            >
+              <MenuItem value="date">Date</MenuItem>
+              <MenuItem value="rating">Rating</MenuItem>
+            </Select>
+          </FormControl>
+
+          {/* Button to add a new testimonial */}
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleOpenDialog}
+          >
+            Add Testimonial
+          </Button>
+        </Stack>
+      </Box>
 
       {/* Grid layout to display sorted testimonials */}
       <Grid container spacing={2}>
@@ -195,6 +282,75 @@ const Testimonials = () => {
           </Grid>
         ))}
       </Grid>
+
+      {/* Dialog for adding a new testimonial */}
+      <Dialog open={openDialog} onClose={handleCloseDialog}>
+        <DialogTitle>Add a New Testimonial</DialogTitle>
+        <DialogContent>
+          <TextField
+            autoFocus
+            margin="dense"
+            label="User Name"
+            type="text"
+            fullWidth
+            variant="outlined"
+            value={newUser}
+            onChange={(e) => setNewUser(e.target.value)}
+            error={errors.user}
+            helperText={errors.user ? "User Name is required" : ""}
+            sx={{ mb: 2 }}
+          />
+          <FormControl fullWidth error={errors.rating} sx={{ mb: 2 }}>
+            <InputLabel>Rating</InputLabel>
+            <Select
+              value={newRating}
+              onChange={(e) => setNewRating(e.target.value)}
+              label="Rating"
+            >
+              <MenuItem value="">None</MenuItem>
+              {[1, 2, 3, 4, 5].map((rating) => (
+                <MenuItem key={rating} value={rating}>
+                  {rating} Star{rating > 1 ? 's' : ''}
+                </MenuItem>
+              ))}
+            </Select>
+            {errors.rating && <FormHelperText>Rating is required</FormHelperText>}
+          </FormControl>
+          <TextField
+            margin="dense"
+            label="Comment"
+            type="text"
+            fullWidth
+            multiline
+            rows={4}
+            variant="outlined"
+            value={newComment}
+            onChange={(e) => setNewComment(e.target.value)}
+            error={errors.comment}
+            helperText={errors.comment ? "Comment is required" : ""}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseDialog}>Cancel</Button>
+          <Button onClick={handleAddTestimonial}>Add</Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* Snackbar for success message */}
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={6000}
+        onClose={handleSnackbarClose}
+        action={
+          <Button color="inherit" onClick={handleSnackbarClose}>
+            Close
+          </Button>
+        }
+      >
+        <Alert onClose={handleSnackbarClose} severity="success" sx={{ width: '100%' }}>
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
     </Container>
   );
 };

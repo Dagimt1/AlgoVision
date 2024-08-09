@@ -12,6 +12,7 @@ import AboutUs from './component/footer/AboutUs.jsx';
 import Testimonials from './component/footer/Testimonials.jsx';
 import Pathfinding from './component/Pathfinding/Pathfinding.js';
 import LearnMore from './component/learmore/LearnMore.jsx'
+import ContactUs from './component/footer/ContactUs.jsx';
 
 function App() {
   return (
@@ -29,6 +30,8 @@ function App() {
         <Route path='/pathfinding' element={<Pathfinding />} />
         <Route path='/testimonials' element={<Testimonials />} />
         <Route path='/learnmore' element={<LearnMore />} />
+        <Route path='/contactus' element={<ContactUs />} />
+
       </Routes>
     </Router>
   );
