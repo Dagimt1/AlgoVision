@@ -3,11 +3,12 @@ import './PathfinderContainer.css'; // Ensure you have this file with the above 
 
 const PathfinderContainer = () => {
   return (
-    <div className="page-container">
+
+    <div className="path-container">
       <div className="title-container">
         <h2 className="title-font">Why do people love Pathfinder Sort?</h2>
       </div>
-      <div className="content-container">
+      <div className="path2-container">
         <div className="features">
           <div className="feature">
             <img src="/images/DoingPic.jpg" alt="Learn by doing" />
@@ -30,13 +31,9 @@ const PathfinderContainer = () => {
         </div>
         <div className="bottom-container">
           <div className="bottom-container-video">
-            <video className="bottom-container-video-size" 
-            src="/mp4/DijykstrasGrab.mp4" 
-            loop
-            autoPlay
-            muted
-            />
-            
+            <video className="bottom-container-video-size" src="/mp4/DijykstrasGrab.mp4"  autoPlay loop muted>
+              Your browser does not support the video tag.
+            </video>
           </div>
           <div className="bottom-container-text">
             <div className="bottom-container-text-content">
