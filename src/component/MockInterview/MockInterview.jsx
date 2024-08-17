@@ -10,6 +10,9 @@ import ConfirmationPage from './ConfirmationPage';
 const MockInterview = () => {
   const { userData } = useContext(UserContext);
   const [activeStep, setActiveStep] = useState(0);
+  const [targetRole, setTargetRole] = useState('');
+  const [algoLevel, setAlgoLevel] = useState('');
+  const [notes, setNotes] = useState('');
 
   const steps = [
     'Fill out your skills level',
@@ -62,7 +65,16 @@ const MockInterview = () => {
           </>
         ) : (
           <>
-            {activeStep === 0 && <SkillsLevelForm />}
+            {activeStep === 0 && (
+              <SkillsLevelForm
+                targetRole={targetRole}
+                setTargetRole={setTargetRole}
+                algoLevel={algoLevel}
+                setAlgoLevel={setAlgoLevel}
+                notes={notes}
+                setNotes={setNotes}
+              />
+            )}
             {activeStep === 1 && <Calendar />}
             {activeStep === 2 && <ConfirmationPage />}
 

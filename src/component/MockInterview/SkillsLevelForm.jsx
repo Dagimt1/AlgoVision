@@ -1,13 +1,14 @@
-import { useState, useEffect, useContext } from 'react';
-import { UserContext } from '../../context/UserContext';
-import NavBar from '../NavBar/NavBarMain';
-import { TextField, Grid, Box, MenuItem } from '@mui/material';
+import { useState, useEffect } from 'react';
+import { TextField, MenuItem } from '@mui/material';
 
-const SkillsLevelForm = () => {
-  const { userData } = useContext(UserContext);
-  const [targetRole, setTargetRole] = useState('');
-  const [algoLevel, setAlgoLevel] = useState('');
-
+const SkillsLevelForm = ({
+  targetRole,
+  setTargetRole,
+  algoLevel,
+  setAlgoLevel,
+  notes,
+  setNotes,
+}) => {
   const algoLevelOptions = ['Beginner', 'Intermediate', 'Advanced'];
   const targetRoleOptions = [
     'Software Engineer',
@@ -32,6 +33,7 @@ const SkillsLevelForm = () => {
           label='Target Role'
           value={targetRole}
           onChange={(e) => setTargetRole(e.target.value)}
+          sx={{ marginBottom: '35px' }}
         >
           {targetRoleOptions.map((option) => (
             <MenuItem key={option} value={option}>
@@ -45,8 +47,9 @@ const SkillsLevelForm = () => {
           select
           variant='outlined'
           label='Algorithm Level'
-          value={targetRole}
-          onChange={(e) => setTargetRole(e.target.value)}
+          value={algoLevel}
+          onChange={(e) => setAlgoLevel(e.target.value)}
+          sx={{ marginBottom: '35px' }}
         >
           {algoLevelOptions.map((option) => (
             <MenuItem key={option} value={option}>
@@ -54,6 +57,16 @@ const SkillsLevelForm = () => {
             </MenuItem>
           ))}
         </TextField>
+
+        <TextField
+          fullWidth
+          multiline
+          variant='outlined'
+          label='Notes for Your Pair'
+          rows={4}
+          value={notes}
+          onChange={(e) => setNotes(e.target.value)}
+        />
       </div>
     </div>
   );
