@@ -1,0 +1,25 @@
+/* =========== main ============ */
+.stepContainer {
+  width: 80vw;
+  height: 60vh;
+  margin: auto;
+  padding: 5%;
+}
+
+/* ====== Skills Form ========= */
+.MockInterviewContainer {
+  width: 50vw;
+  height: 35vh;
+  margin: auto;
+  padding: 5%;
+  background-color: #f8f9fa;
+}
+
+.InterviewIntroduction {
+  height: 5vh;
+  margin: 40px auto;
+  text-align: center;
+  padding: 0 5%;
+  font-size: 22px;
+  font-weight: 500;
+}
