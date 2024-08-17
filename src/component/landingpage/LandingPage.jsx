@@ -3,7 +3,7 @@ import './LandingPage.css';
 import { useNavigate } from 'react-router-dom';
 import MiddleTitle from '../middletitle/MiddleTitle';
 import SortContainer from '../sortContainer/SortContainer';
-import NavBar from '../NavBar/NavBar';
+import NavBar from '../NavBar/NavBarMain';
 import Footer from '../footer/Footer';
 import PathfinderContainer from '../PathfinderContainer/PathfinderContainer';
 
