@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Box, Tabs, Tab } from '@mui/material';
-import NavBar from '../navBar/NavBar';
+import NavBar from '../NavBar/NavBar';
 import UpdatePersonalInfo from './UpdatePersonalInfo';
 import UpdatePassword from './UpdatePassword';
 

@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { TextField } from '@mui/material';
 import PasswordField from './PasswordField';
-import NavBar from '../navBar/NavBar';
+import NavBar from '../NavBar/NavBar';
 import './css/resetpassword.css';
 
 const ResetPassword = () => {

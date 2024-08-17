@@ -11,8 +11,9 @@ import Sorting from './component/Sorting/Sorting.jsx';
 import AboutUs from './component/footer/AboutUs.jsx';
 import Testimonials from './component/footer/Testimonials.jsx';
 import Pathfinding from './component/Pathfinding/Pathfinding.js';
-import LearnMore from './component/learmore/LearnMore.jsx'
+import LearnMore from './component/learmore/LearnMore.jsx';
 import ContactUs from './component/footer/ContactUs.jsx';
+import MockInterview from './component/MockInterview/MockInterview.jsx';
 
 function App() {
   return (
@@ -31,7 +32,7 @@ function App() {
         <Route path='/testimonials' element={<Testimonials />} />
         <Route path='/learnmore' element={<LearnMore />} />
         <Route path='/contactus' element={<ContactUs />} />
-
+        <Route path='/mockinterview' element={<MockInterview />} />
       </Routes>
     </Router>
   );
