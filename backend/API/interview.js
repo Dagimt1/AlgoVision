@@ -19,7 +19,7 @@ interviewRouter.post('/submitInterview', async (req, res) => {
   }
 });
 
-interviewRouter.get('/getMatchedLevelTimeSlots', async (req, res) => {
+interviewRouter.post('/getMatchedLevelTimeSlots', async (req, res) => {
   try {
     const timeSlots = await fetchMatchedLevelTimeSlots(req.body.algoLevel, req.body.authToken);
     res.status(200).send(timeSlots);

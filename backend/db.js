@@ -14,6 +14,7 @@ const createTables = async () => {
   try {
     await client.connect();
     //TODO: remove seeded data after development
+
     const SQL = `
           CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
           DROP TABLE IF EXISTS interview_timeslot;
@@ -127,9 +128,6 @@ const logIn = async (email, password) => {
         err: 'User not found sign up now!',
       };
     }
-
-    // console.log('email: ', email)
-    // console.log('password: ', password)
 
     const isAuthenticated = await bcrypt.compare(password, user.password);
 
@@ -331,7 +329,6 @@ const submitInterviewRequest = async (userid, interviewObj, timeSlots, authToken
       const interviewID = result1.rows[0].interview_id;
 
       timeSlots.forEach(async (time) => {
-        console.log('timestamp: ', time);
         const SQL2 = `
           INSERT INTO interview_timeslot (interview_id, time)
           VALUES ($1, $2)

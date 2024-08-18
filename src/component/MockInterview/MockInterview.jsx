@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
+import axios from 'axios';
 import NavBar from '../NavBar/NavBarMain';
 import { Box, Stepper, Step, StepLabel, Button, Typography } from '@mui/material';
 import './MockInterview.css';
@@ -8,12 +9,15 @@ import Calendar from './Calendar';
 import ConfirmationPage from './ConfirmationPage';
 
 const MockInterview = () => {
-  const { userData } = useContext(UserContext);
+  const { userData, authToken } = useContext(UserContext);
+  const [nextAllowed, setNextAllowed] = useState(false);
   const [activeStep, setActiveStep] = useState(0);
   const [targetRole, setTargetRole] = useState('');
   const [algoLevel, setAlgoLevel] = useState('');
   const [notes, setNotes] = useState('');
+  const [availableTimeslots, setAvailableTimeslots] = useState([]);
 
+  const ApiBaseURL = 'http://localhost:6688/api/interview';
   const steps = [
     'Fill out your skills level',
     'Select time slots',
@@ -21,11 +25,32 @@ const MockInterview = () => {
   ];
 
   useEffect(() => {
-    console.log('activeStep: ', activeStep);
-  }, [activeStep]);
+    let allowed = false;
+    if (activeStep === 0) {
+      allowed = targetRole && algoLevel;
+    }
+
+    setNextAllowed(allowed);
+  }, [activeStep, targetRole, algoLevel]);
 
   const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    if (activeStep === 0) {
+      // when entering step 2, getMatchedLevelTimeSlots
+      axios
+        .post(`${ApiBaseURL}/getMatchedLevelTimeSlots`, {
+          algoLevel: algoLevel,
+          authToken: authToken,
+        })
+        .then((res) => {
+          setAvailableTimeslots(res.data.timeSlots);
+          setActiveStep((prevActiveStep) => prevActiveStep + 1);
+        })
+        .catch((err) => console.error(err));
+    } else if (activeStep === 1) {
+      setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    } else if (activeStep === 2) {
+      // on finish, submit new interview request OR submit match interview
+    }
   };
 
   const handleBack = () => {
@@ -75,7 +100,7 @@ const MockInterview = () => {
                 setNotes={setNotes}
               />
             )}
-            {activeStep === 1 && <Calendar />}
+            {activeStep === 1 && <Calendar availableTimeslots={availableTimeslots} />}
             {activeStep === 2 && <ConfirmationPage />}
 
             <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
@@ -89,7 +114,7 @@ const MockInterview = () => {
               </Button>
               <Box sx={{ flex: '1 1 auto' }} />
 
-              <Button onClick={handleNext}>
+              <Button disabled={!nextAllowed} onClick={handleNext}>
                 {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
               </Button>
             </Box>
