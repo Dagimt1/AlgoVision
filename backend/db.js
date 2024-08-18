@@ -302,14 +302,7 @@ const updatePersonalInfo = async (userid, newInfoObj, authToken) => {
 };
 
 const submitInterviewRequest = async (userid, interviewObj, timeSlots, authToken) => {
-  console.log('userid: ', userid);
-  console.log('interviewObj: ', interviewObj);
-  console.log('timeSlots: ', timeSlots);
-  console.log('authToken: ', authToken);
-
   const isValidToken = jwt.verify(authToken, jwtSignature);
-
-  console.log('isValidToken: ', isValidToken);
 
   // interviewObj = {
   //   user_id: 1,
@@ -335,7 +328,6 @@ const submitInterviewRequest = async (userid, interviewObj, timeSlots, authToken
         interviewObj.notes,
       ]);
 
-      console.log('result1: ', result1);
       const interviewID = result1.rows[0].interview_id;
 
       timeSlots.forEach(async (time) => {
@@ -365,6 +357,36 @@ const submitInterviewRequest = async (userid, interviewObj, timeSlots, authToken
   }
 };
 
+const fetchMatchedLevelTimeSlots = async (algoLevel, authToken) => {
+  const isValidToken = jwt.verify(authToken, jwtSignature);
+  if (isValidToken) {
+    try {
+      const SQL = `
+      SELECT firstname, lastname, algo_level, target_role, notes, time
+      FROM interview_master m
+      JOIN interview_timeslot t ON m.interview_id = t.interview_id
+      JOIN Users u ON u.id = m.user_id
+      WHERE algo_level = $1;
+    `;
+
+      const result = await client.query(SQL, [algoLevel]);
+      return {
+        success: true,
+        timeSlots: result.rows,
+        msg: 'Successfully submitted interview request!',
+      };
+    } catch (err) {
+      console.error('SQL update error: ', err);
+      throw err;
+    }
+  } else {
+    return {
+      success: false,
+      msg: 'Auth Token expired',
+    };
+  }
+};
+
 export {
   client,
   createTables,
@@ -376,4 +398,5 @@ export {
   changePassword,
   updatePersonalInfo,
   submitInterviewRequest,
+  fetchMatchedLevelTimeSlots,
 };
