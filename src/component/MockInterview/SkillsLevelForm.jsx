@@ -9,7 +9,7 @@ const SkillsLevelForm = ({
   notes,
   setNotes,
 }) => {
-  const algoLevelOptions = ['Beginner', 'Intermediate', 'Advanced'];
+  const algoLevelOptions = ['Beginner', 'Intermediate', 'Advance'];
   const targetRoleOptions = [
     'Software Engineer',
     'Project Manager',

@@ -138,7 +138,7 @@ const logIn = async (email, password) => {
           username: user.name,
         },
         jwtSignature,
-        { expiresIn: '30m' }
+        { expiresIn: '1d' }
       );
 
       return {
