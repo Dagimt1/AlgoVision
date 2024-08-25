@@ -75,7 +75,7 @@ const NavBar = () => {
         </div>
       ) : (
         <><button className="quiz-btn" onClick={() => navigate("/quiz")}>
-            quiz
+            Quiz
           </button><button className="login-btn" onClick={() => navigate("/login")}>
               Log in
             </button></>
