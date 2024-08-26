@@ -13,6 +13,7 @@ const Calendar = ({
   setSelectedOption,
   selectedTimeslotId,
   setSelectedTimeslotId,
+  setSelectedTimeslot,
   timeOne,
   setTimeOne,
 }) => {
@@ -46,14 +47,16 @@ const Calendar = ({
 
           {showExistingTimeslots && (
             <div className='timeslotContainer'>
-              {availableTimeslots.map((timeslot) => (
+              {availableTimeslots.map((timeslot, idx) => (
                 <div
+                  key={idx}
                   className={`timeslot ${
                     timeslot.timeslot_id === selectedTimeslotId ? 'selected' : ''
                   }`}
                   onClick={() => {
                     setSelectedOption('existing');
                     setSelectedTimeslotId(timeslot.timeslot_id);
+                    setSelectedTimeslot(dayjs(timeslot.time).format('MM/DD/YYYY HH:mm'));
                     setTimeOne('');
                     setShowDatetimePicker(false);
                   }}
