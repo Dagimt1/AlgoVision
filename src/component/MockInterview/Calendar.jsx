@@ -17,7 +17,7 @@ const Calendar = ({
   setTimeOne,
 }) => {
   const [showExistingTimeslots, setShowExisitingTimeslots] = useState(true);
-  const [showDatetimePicker, setShowDatetimePicker] = useState(false);
+  const [showDatetimePicker, setShowDatetimePicker] = useState(timeOne ? true : false);
 
   useEffect(() => {
     if (

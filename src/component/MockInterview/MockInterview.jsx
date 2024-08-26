@@ -30,15 +30,24 @@ const MockInterview = () => {
   ];
 
   useEffect(() => {
+    console.log('userData: ', userData);
+  }, [userData]);
+
+  useEffect(() => {
     let allowed = false;
     if (activeStep === 0) {
       allowed = targetRole && algoLevel;
+    }
+
+    if (activeStep === 2) {
+      allowed = true;
     }
 
     setNextAllowed(allowed);
   }, [activeStep, targetRole, algoLevel]);
 
   const handleNext = () => {
+    console.log('activeSteo: ', activeStep);
     if (activeStep === 0) {
       // when entering step 2, getMatchedLevelTimeSlots
       axios
@@ -54,7 +63,22 @@ const MockInterview = () => {
     } else if (activeStep === 1) {
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
     } else if (activeStep === 2) {
-      // on finish, submit new interview request OR submit match interview
+      // on finish, submit new interview request
+      console.log('userData.id: ', userData.id);
+      axios
+        .post(`${ApiBaseURL}/submitInterview`, {
+          userid: userData.id,
+          interviewObj: {
+            user_id: userData.id,
+            algo_level: algoLevel,
+            target_role: targetRole,
+            notes: notes,
+          },
+          timeSlots: [timeOne.format('YYYY-MM-DD HH:mm:ss')],
+          authToken: authToken,
+        })
+        .then((res) => console.log('successfully submitted new interview request'))
+        .catch((err) => console.log('err: ', err));
     }
   };
 
