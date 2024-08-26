@@ -50,6 +50,7 @@ const createTables = async () => {
             timeslot_id SERIAL PRIMARY KEY,
             interview_id INT,
             time TIMESTAMP,
+            status VARCHAR(20),
             FOREIGN KEY(interview_id) REFERENCES interview_master(interview_id)
           );
 
@@ -300,6 +301,52 @@ const updatePersonalInfo = async (userid, newInfoObj, authToken) => {
 };
 
 const submitInterviewRequest = async (userid, interviewObj, timeSlots, authToken) => {
+  // interview and timestamp status are paried or open
+  const isValidToken = jwt.verify(authToken, jwtSignature);
+
+  if (isValidToken) {
+    try {
+      const SQL1 = `
+      INSERT INTO interview_master (user_id, status, algo_level, target_role, notes)
+      VALUES ($1, $2, $3, $4, $5)
+      RETURNING *;
+      `;
+      const result1 = await client.query(SQL1, [
+        userid,
+        'O',
+        interviewObj.algo_level,
+        interviewObj.target_role,
+        interviewObj.notes,
+      ]);
+
+      const interviewID = result1.rows[0].interview_id;
+
+      timeSlots.forEach(async (time) => {
+        const SQL2 = `
+          INSERT INTO interview_timeslot (interview_id, time, status)
+          VALUES ($1, $2, $3)
+        `;
+
+        const result2 = await client.query(SQL2, [interviewID, time, 'O']);
+      });
+
+      return {
+        success: true,
+        submittedInterview: result1.rows[0],
+        msg: 'Successfully submitted interview request!',
+      };
+    } catch (err) {
+      console.error('SQL update error: ', err);
+      throw err;
+    }
+  } else {
+    return {
+      success: false,
+      msg: 'Auth Token expired',
+    };
+  }
+};
+const matchExistingInterview = async (userid, interviewObj, selectedTimestampID, authToken) => {
   const isValidToken = jwt.verify(authToken, jwtSignature);
 
   // interviewObj = {
@@ -326,20 +373,24 @@ const submitInterviewRequest = async (userid, interviewObj, timeSlots, authToken
         interviewObj.notes,
       ]);
 
-      const interviewID = result1.rows[0].interview_id;
+      // set matched interview status and timestamp status both to P-Paired
+      const SQL2 = `UPDATE interview_timeslot 
+                    SET status = 'P'
+                    WHERE timeslot_id = $1 returning *`;
+      const result2 = await client.query(SQL2, [selectedTimestampID]);
+      const matchedInterviewID = result2.rows[0].interview_id;
 
-      timeSlots.forEach(async (time) => {
-        const SQL2 = `
-          INSERT INTO interview_timeslot (interview_id, time)
-          VALUES ($1, $2)
-        `;
-
-        const result2 = await client.query(SQL2, [interviewID, time]);
-      });
+      const SQL3 = `UPDATE interview_master
+                    SET status = 'P'
+                    WHERE interview_id = $1`;
+      const result3 = await client.query(SQL3, [matchedInterviewID]);
 
       return {
         success: true,
-        submittedInterview: result1.rows[0],
+        macthedInterview: {
+          incomingRequest: result1.rows[0],
+          existingInterview: result3.rows[0],
+        },
         msg: 'Successfully submitted interview request!',
       };
     } catch (err) {
@@ -363,7 +414,7 @@ const fetchMatchedLevelTimeSlots = async (algoLevel, authToken) => {
       FROM interview_master m
       JOIN interview_timeslot t ON m.interview_id = t.interview_id
       JOIN Users u ON u.id = m.user_id
-      WHERE algo_level = $1;
+      WHERE algo_level = $1 AND t.status = 'O';
     `;
 
       const result = await client.query(SQL, [algoLevel]);
@@ -396,4 +447,5 @@ export {
   updatePersonalInfo,
   submitInterviewRequest,
   fetchMatchedLevelTimeSlots,
+  matchExistingInterview,
 };

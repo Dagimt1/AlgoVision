@@ -1,6 +1,10 @@
 import express from 'express';
 import nodemailer from 'nodemailer';
-import { submitInterviewRequest, fetchMatchedLevelTimeSlots } from '../db.js';
+import {
+  submitInterviewRequest,
+  fetchMatchedLevelTimeSlots,
+  matchExistingInterview,
+} from '../db.js';
 
 const interviewRouter = express.Router();
 
@@ -13,6 +17,21 @@ interviewRouter.post('/submitInterview', async (req, res) => {
       req.body.authToken
     );
     res.status(201).send(newInterview);
+  } catch (err) {
+    console.log('in error');
+    res.status(500).send(err);
+  }
+});
+
+interviewRouter.post('/matchWithExisitng', async (req, res) => {
+  try {
+    const confirmedInterview = await matchExistingInterview(
+      req.body.userid,
+      req.body.interviewObj,
+      req.body.selectedTimestampID,
+      req.body.authToken
+    );
+    res.status(201).send(confirmedInterview);
   } catch (err) {
     console.log('in error');
     res.status(500).send(err);

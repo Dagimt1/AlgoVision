@@ -94,7 +94,7 @@ const MockInterview = () => {
             setOpenDialog(true);
             setDialogTitle('Success!');
             setDialogMsg(
-              'Successfully submitted new interview request, you will receive another email when your interview is successfully matched!'
+              'Successfully submitted new interview request, we will get you paired ASAP and please expect an email for confirmation.'
             );
           })
           .catch((err) => {
@@ -105,6 +105,30 @@ const MockInterview = () => {
       }
 
       if (selectedOption === 'existing') {
+        axios
+          .post(`${ApiBaseURL}/matchWithExisitng`, {
+            userid: userData.id,
+            interviewObj: {
+              user_id: userData.id,
+              algo_level: algoLevel,
+              target_role: targetRole,
+              notes: notes,
+            },
+            selectedTimestampID: selectedTimeslotId,
+            authToken: authToken,
+          })
+          .then((res) => {
+            setOpenDialog(true);
+            setDialogTitle('Success!');
+            setDialogMsg(
+              'Successfully matched with exisitng interview request. Have fun Mocking!!'
+            );
+          })
+          .catch((err) => {
+            setOpenDialog(true);
+            setDialogTitle('Error');
+            setDialogMsg(err);
+          });
       }
     }
   };

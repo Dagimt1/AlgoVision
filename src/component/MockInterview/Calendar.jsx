@@ -91,7 +91,7 @@ const Calendar = ({
         {showDatetimePicker && (
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DateTimePicker
-              label='Timeslot'
+              label='Preferred time'
               value={timeOne}
               onChange={(newValue) => {
                 setTimeOne(newValue);
