@@ -359,7 +359,7 @@ const fetchMatchedLevelTimeSlots = async (algoLevel, authToken) => {
   if (isValidToken) {
     try {
       const SQL = `
-      SELECT firstname, lastname, algo_level, target_role, notes, time
+      SELECT t.timeslot_id, firstname, lastname, algo_level, target_role, notes, time
       FROM interview_master m
       JOIN interview_timeslot t ON m.interview_id = t.interview_id
       JOIN Users u ON u.id = m.user_id

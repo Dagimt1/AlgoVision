@@ -17,6 +17,11 @@ const MockInterview = () => {
   const [notes, setNotes] = useState('');
   const [availableTimeslots, setAvailableTimeslots] = useState([]);
 
+  // variables for calendar
+  const [selectedOption, setSelectedOption] = useState(''); //existing, new
+  const [selectedTimeslotId, setSelectedTimeslotId] = useState(0);
+  const [timeOne, setTimeOne] = useState('');
+
   const ApiBaseURL = 'http://localhost:6688/api/interview';
   const steps = [
     'Fill out your skills level',
@@ -100,7 +105,18 @@ const MockInterview = () => {
                 setNotes={setNotes}
               />
             )}
-            {activeStep === 1 && <Calendar availableTimeslots={availableTimeslots} />}
+            {activeStep === 1 && (
+              <Calendar
+                availableTimeslots={availableTimeslots}
+                setNextAllowed={setNextAllowed}
+                selectedOption={selectedOption}
+                setSelectedOption={setSelectedOption}
+                selectedTimeslotId={selectedTimeslotId}
+                setSelectedTimeslotId={setSelectedTimeslotId}
+                timeOne={timeOne}
+                setTimeOne={setTimeOne}
+              />
+            )}
             {activeStep === 2 && <ConfirmationPage />}
 
             <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
