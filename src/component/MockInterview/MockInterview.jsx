@@ -41,11 +41,7 @@ const MockInterview = () => {
 
   const navigate = useNavigate();
   const ApiBaseURL = 'http://localhost:6688/api/interview';
-  const steps = [
-    'Fill out your skills level',
-    'Select time slots',
-    'Submit your interview request',
-  ];
+  const steps = ['Fill out your skills level', 'Select timeslots', 'Submit your interview request'];
 
   useEffect(() => {
     let allowed = false;
