@@ -14,6 +14,13 @@ import Pathfinding from './component/Pathfinding/Pathfinding.js';
 import LearnMore from './component/learmore/LearnMore.jsx'
 import ContactUs from './component/footer/ContactUs.jsx';
 import Quiz from './component/Quiz/Quiz.jsx'
+import BinaryTreeVisualizer from './component/binaryTree/BinaryTreeVisualizer.jsx';
+import LinkedListVisualizer from './component/LinkedList/LinkedListVisualizer.jsx';
+import StackQueueVisualizer from './component/StackAndQueue/StackQueueVisualizer.jsx';
+import GraphVisualizer from './component/graph-visual/GraphVisualizer.jsx';
+import BinarySearchVisualizer from './component/binarySearch/BinarySearchVisualizer.jsx';
+import VisualizerHome from './component/visualizerProfile/VisualizerHome.jsx';
+import ConvexHull from './component/ConvexHull/ConvexHull.js';
 
 function App() {
   return (
@@ -33,6 +40,18 @@ function App() {
         <Route path='/learnmore' element={<LearnMore />} />
         <Route path='/contactus' element={<ContactUs />} />
         <Route path='/Quiz' element={<Quiz/>} />
+        <Route path="/binarytree" element={<BinaryTreeVisualizer />} />
+        <Route path="/linkedlist" element={<LinkedListVisualizer />} />
+        <Route path="/stackqueue" element={<StackQueueVisualizer />} />
+        <Route path="/graph" element={<GraphVisualizer />} />
+        <Route path="/binarysearch" element={<BinarySearchVisualizer />} />
+
+        <Route path="/visualizerhome" element={<VisualizerHome />} />
+
+        <Route path="/convexhull" element = {<ConvexHull />} />
+
+        
+
 
 
       </Routes>
