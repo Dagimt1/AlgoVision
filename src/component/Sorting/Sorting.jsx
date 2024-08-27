@@ -167,7 +167,6 @@ const Sorting = () => {
   // Function to handle sorting based on selected algorithm
   const sortFunc = (e) => {
     e.preventDefault();
-    let newArr = arr;
     document.getElementById("error").style.display = "none";
     
     if (method === "Algorithms") {
@@ -183,11 +182,11 @@ const Sorting = () => {
 
     let results = [];
     if (method === "Selection Sort")
-      results = selectionSort(newArr, newArr.length);
+      results = selectionSort(arr, arr.length);
     else if (method === "Merge Sort")
-      results = mergeSort(newArr, newArr.length);
+      results = mergeSort(arr, arr.length);
     else if (method === "Quick Sort")
-      results = quickSort(newArr, newArr.length);
+      results = quickSort(arr, arr.length);
 
     setSteps(results);
     setArr(results[0]);
@@ -231,9 +230,6 @@ const Sorting = () => {
     // Set the new algorithm
     setMethod(algorithm);
     
-    // Create a new random array
-    createArray(); // Reset the array when the algorithm is changed
-
     // Close the dropdown
     setIsAlgorithmDropdownOpen(false);
   };
