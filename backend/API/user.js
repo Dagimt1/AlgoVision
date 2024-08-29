@@ -3,7 +3,6 @@ import nodemailer from 'nodemailer';
 import {
   register,
   logIn,
-  getAllUsers,
   resetPassword,
   sendResetPasswordLink,
   changePassword,
@@ -16,16 +15,6 @@ userRouter.post('/register', async (req, res) => {
   try {
     const newUser = await register(req.body.email, req.body.password);
     res.status(201).send(newUser);
-  } catch (err) {
-    res.status(500).send(err);
-  }
-});
-
-//Todo: need to be removed!!
-userRouter.get('/', async (req, res) => {
-  try {
-    const allUsers = await getAllUsers();
-    res.status(201).send(allUsers);
   } catch (err) {
     res.status(500).send(err);
   }

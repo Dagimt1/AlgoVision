@@ -104,17 +104,7 @@ const register = async (email, password) => {
     }
   }
 };
-const getAllUsers = async () => {
-  const SQL = `
-  SELECT * FROM Users;
-  `;
-  try {
-    const response = await client.query(SQL);
-    return response.rows;
-  } catch (err) {
-    throw err;
-  }
-};
+
 const logIn = async (email, password) => {
   const SQL = `
     SELECT * FROM Users WHERE Email = $1
@@ -421,7 +411,62 @@ const fetchMatchedLevelTimeSlots = async (algoLevel, authToken) => {
       return {
         success: true,
         timeSlots: result.rows,
-        msg: 'Successfully submitted interview request!',
+        msg: 'Successfully fetched interview request!',
+      };
+    } catch (err) {
+      console.error('SQL update error: ', err);
+      throw err;
+    }
+  } else {
+    return {
+      success: false,
+      msg: 'Auth Token expired',
+    };
+  }
+};
+
+const fetchInterviewsForUser = async (userid, authToken) => {
+  const isValidToken = jwt.verify(authToken, jwtSignature);
+  if (isValidToken) {
+    try {
+      const SQL = `
+      SELECT m.interview_id, m.status, algo_level, target_role, time
+      FROM interview_master m
+      JOIN interview_timeslot t ON m.interview_id = t.interview_id
+      WHERE user_id = $1;
+    `;
+
+      const result = await client.query(SQL, [userid]);
+      return {
+        success: true,
+        interviews: result.rows,
+        msg: 'Successfully fetched interviews for user!',
+      };
+    } catch (err) {
+      console.error('SQL update error: ', err);
+      throw err;
+    }
+  } else {
+    return {
+      success: false,
+      msg: 'Auth Token expired',
+    };
+  }
+};
+
+const deleteInterviewByID = async (interviewID, authToken) => {
+  const isValidToken = jwt.verify(authToken, jwtSignature);
+  if (isValidToken) {
+    try {
+      const SQL1 = 'DELETE FROM interview_timeslot WHERE interview_id = $1;';
+      const SQL2 = 'DELETE FROM interview_master WHERE interview_id = $1;';
+
+      await client.query(SQL1, [interviewID]);
+      await client.query(SQL2, [interviewID]);
+
+      return {
+        success: true,
+        msg: 'Successfully deleted selected interview.',
       };
     } catch (err) {
       console.error('SQL update error: ', err);
@@ -440,7 +485,6 @@ export {
   createTables,
   register,
   logIn,
-  getAllUsers,
   resetPassword,
   sendResetPasswordLink,
   changePassword,
@@ -448,4 +492,6 @@ export {
   submitInterviewRequest,
   fetchMatchedLevelTimeSlots,
   matchExistingInterview,
+  fetchInterviewsForUser,
+  deleteInterviewByID,
 };

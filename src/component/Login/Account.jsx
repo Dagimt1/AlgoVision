@@ -4,10 +4,10 @@ import { Box, Tabs, Tab } from '@mui/material';
 import NavBar from '../NavBar/NavBarMain';
 import UpdatePersonalInfo from './UpdatePersonalInfo';
 import UpdatePassword from './UpdatePassword';
+import MockInterviews from './MockInterviews';
 
 const Account = () => {
   const [tabValue, setTabValue] = useState(0);
-  const ApiBaseURL = 'http://localhost:6688/api/user';
 
   const handleChange = (event, newValue) => {
     setTabValue(newValue);
@@ -21,6 +21,7 @@ const Account = () => {
           <Tabs value={tabValue} onChange={handleChange} aria-label='basic tabs example'>
             <Tab label='Personal Info' {...a11yProps(0)} />
             <Tab label='Password' {...a11yProps(1)} />
+            <Tab label='Manage Interviews' {...a11yProps(2)} />
           </Tabs>
         </Box>
         <CustomTabPanel value={tabValue} index={0}>
@@ -28,6 +29,9 @@ const Account = () => {
         </CustomTabPanel>
         <CustomTabPanel value={tabValue} index={1}>
           <UpdatePassword />
+        </CustomTabPanel>
+        <CustomTabPanel value={tabValue} index={2}>
+          <MockInterviews />
         </CustomTabPanel>
       </Box>
     </>
