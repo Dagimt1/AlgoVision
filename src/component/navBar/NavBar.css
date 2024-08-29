@@ -1,0 +1,28 @@
+.userAvatar {
+  padding-right: 4%;
+}
+
+.quiz-btn {
+  padding: 0.5rem 1rem;
+  font-size: 1.1rem;
+  color: #333;
+  background-color: transparent;
+  border: 2px solid #ccc;
+  border-radius: 3rem;
+  cursor: pointer;
+  font-family: sans-serif;
+  font-weight: 400;
+  transition: box-shadow 0.3s ease;
+  font-weight: 700;
+  position: absolute;
+  right: 1%;
+  top: 20px;
+}
+
+.quiz-btn:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+}
+
+.login-btn {
+  margin: 0 4em;
+}
