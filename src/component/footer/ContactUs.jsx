@@ -11,32 +11,47 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-export const ContactUs = () => {
-  // Hook for navigation
-  const navigate = useNavigate();
+// Keyframe animation for the moving gradient
+const gradientAnimationStyle = {
+  "@keyframes gradientAnimation": {
+    "0%": {
+      backgroundPosition: "0% 50%",
+    },
+    "50%": {
+      backgroundPosition: "100% 50%",
+    },
+    "100%": {
+      backgroundPosition: "0% 50%",
+    },
+  },
+  movingGradient: {
+    background: "linear-gradient(to right, #4286f4, #373B44)", // Updated gradient colors
 
-  // State to manage form field values
+    backgroundSize: "300% 300%",
+    animation: "gradientAnimation 10s ease infinite",
+  },
+};
+
+export const ContactUs = () => {
+  const navigate = useNavigate();
   const [formValues, setFormValues] = useState({
     name: "",
     email: "",
     message: "",
   });
 
-  // State to manage form field errors
   const [formErrors, setFormErrors] = useState({
     name: false,
     email: false,
     message: false,
   });
 
-  // State to manage form submission status
   const [formStatus, setFormStatus] = useState({
     submitting: false,
     success: false,
     error: false,
   });
 
-  // Handle change in form field values
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormValues({
@@ -45,7 +60,6 @@ export const ContactUs = () => {
     });
   };
 
-  // Validate form fields
   const validateForm = () => {
     const errors = {
       name: !formValues.name.trim(),
@@ -56,31 +70,46 @@ export const ContactUs = () => {
     return !Object.values(errors).includes(true);
   };
 
-  // Handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (validateForm()) {
-      // Set submitting status and clear previous status
       setFormStatus({ submitting: true, success: false, error: false });
 
       try {
-        // Simulate form submission
-        await new Promise((resolve) => setTimeout(resolve, 2000));
-        // Update status on successful submission
+        await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate an API call
         setFormStatus({ submitting: false, success: true, error: false });
-        // Clear form values
         setFormValues({ name: "", email: "", message: "" });
+
+        // Clear success message after 2 seconds
+        setTimeout(() => {
+          setFormStatus((prevStatus) => ({ ...prevStatus, success: false }));
+        }, 2000);
       } catch (error) {
-        // Update status on error
         setFormStatus({ submitting: false, success: false, error: true });
       }
     }
   };
 
   return (
-    <Container component="main" maxWidth="xs">
-      <Grid container spacing={3} justifyContent="center" alignItems="center">
-        {/* Center Section with Form */}
+    <Container
+      component="main"
+      maxWidth={false}
+      sx={{
+        ...gradientAnimationStyle.movingGradient, // Apply the moving gradient style
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        minHeight: "100vh",
+        padding: 0,
+      }}
+    >
+      <Grid
+        container
+        spacing={3}
+        justifyContent="center"
+        alignItems="center"
+        sx={{ width: "100%" }}
+      >
         <Grid item xs={12}>
           <Box
             sx={{
@@ -91,12 +120,19 @@ export const ContactUs = () => {
               p: 3,
               border: "1px solid #ddd",
               borderRadius: "8px",
-              boxShadow: 3,
+              backgroundColor: "white",
+              transition: "transform 0.2s",
+              "&:hover": {
+                transform: "scale(1.02)",
+              },
+              width: "100%",
+              maxWidth: "600px",
+              margin: "0 auto",
             }}
           >
             <Typography
               component="h1"
-              variant="h3"
+              variant="h4"
               onClick={() => navigate("/")}
               sx={{
                 cursor: "pointer",
@@ -104,12 +140,17 @@ export const ContactUs = () => {
                 width: "100%",
                 textAlign: "center",
                 mb: 3,
+                fontWeight: "bold",
               }}
             >
               Contact Us
             </Typography>
-            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ width: "100%" }}>
-              {/* Success and Error Alerts */}
+            <Box
+              component="form"
+              noValidate
+              onSubmit={handleSubmit}
+              sx={{ width: "100%" }}
+            >
               {formStatus.success && (
                 <Alert severity="success" sx={{ mb: 2 }}>
                   Your message has been sent successfully!
@@ -120,8 +161,6 @@ export const ContactUs = () => {
                   Something went wrong. Please try again.
                 </Alert>
               )}
-
-              {/* Form Fields */}
               <TextField
                 margin="normal"
                 fullWidth
@@ -134,6 +173,22 @@ export const ContactUs = () => {
                 onChange={handleChange}
                 error={formErrors.name}
                 helperText={formErrors.name ? "Name is required" : ""}
+                InputLabelProps={{
+                  sx: {
+                    fontWeight: "bold",
+                    color: formErrors.name ? "error.main" : "text.primary",
+                  },
+                }}
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    "&:hover fieldset": {
+                      borderColor: "primary.main",
+                    },
+                    "&.Mui-focused fieldset": {
+                      borderColor: "primary.main",
+                    },
+                  },
+                }}
               />
               <TextField
                 margin="normal"
@@ -145,7 +200,25 @@ export const ContactUs = () => {
                 value={formValues.email}
                 onChange={handleChange}
                 error={formErrors.email}
-                helperText={formErrors.email ? "Enter a valid email address" : ""}
+                helperText={
+                  formErrors.email ? "Enter a valid email address" : ""
+                }
+                InputLabelProps={{
+                  sx: {
+                    fontWeight: "bold",
+                    color: formErrors.email ? "error.main" : "text.primary",
+                  },
+                }}
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    "&:hover fieldset": {
+                      borderColor: "primary.main",
+                    },
+                    "&.Mui-focused fieldset": {
+                      borderColor: "primary.main",
+                    },
+                  },
+                }}
               />
               <TextField
                 margin="normal"
@@ -159,16 +232,40 @@ export const ContactUs = () => {
                 onChange={handleChange}
                 error={formErrors.message}
                 helperText={formErrors.message ? "Message is required" : ""}
+                InputLabelProps={{
+                  sx: {
+                    fontWeight: "bold",
+                    color: formErrors.message ? "error.main" : "text.primary",
+                  },
+                }}
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    "&:hover fieldset": {
+                      borderColor: "primary.main",
+                    },
+                    "&.Mui-focused fieldset": {
+                      borderColor: "primary.main",
+                    },
+                  },
+                }}
               />
-              {/* Submit Button */}
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
-                sx={{ mt: 3, mb: 2 }}
+                sx={{
+                  mt: 3,
+                  mb: 2,
+                  backgroundColor: "primary.main",
+                  "&:hover": { backgroundColor: "primary.dark" },
+                }}
                 disabled={formStatus.submitting}
               >
-                {formStatus.submitting ? <CircularProgress size={24} /> : "Send"}
+                {formStatus.submitting ? (
+                  <CircularProgress size={24} color="inherit" />
+                ) : (
+                  "Send"
+                )}
               </Button>
             </Box>
           </Box>
