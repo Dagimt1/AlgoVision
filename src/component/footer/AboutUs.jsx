@@ -18,6 +18,7 @@ import {
   FaNodeJs,
   FaDatabase,
 } from "react-icons/fa";
+import { TbBrandJavascript } from "react-icons/tb";
 
 // Styled components
 const Header = styled(Typography)(({ theme }) => ({
@@ -30,7 +31,6 @@ const Header = styled(Typography)(({ theme }) => ({
   },
 }));
 
-// TeamMemberContainer component
 const TeamMemberContainer = styled("div")(({ theme }) => ({
   textAlign: "center",
   padding: "10px",
@@ -40,7 +40,7 @@ const TeamMemberContainer = styled("div")(({ theme }) => ({
     boxShadow: "0px 6px 12px rgba(0, 0, 0, 0.2)",
   },
 }));
-//  Avatar component with hover effect
+
 const StyledAvatar = styled(Avatar)(({ theme }) => ({
   width: 100,
   height: 100,
@@ -51,7 +51,6 @@ const StyledAvatar = styled(Avatar)(({ theme }) => ({
   },
 }));
 
-// AnimatedIcon component with hover effect
 const AnimatedIcon = styled("div")(({ theme, color }) => ({
   display: "flex",
   alignItems: "center",
@@ -75,45 +74,44 @@ const AnimatedIcon = styled("div")(({ theme, color }) => ({
 // SkillIcon Component
 const SkillIcon = ({ skill }) => {
   let iconColor;
+  let icon;
+  
   switch (skill) {
     case "HTML5":
       iconColor = "#E44D26"; // HTML5 color
-      return (
-        <AnimatedIcon color={iconColor}>
-          <FaHtml5 />
-        </AnimatedIcon>
-      );
+      icon = <FaHtml5 />;
+      break;
     case "CSS3":
       iconColor = "#1572B6"; // CSS3 color
-      return (
-        <AnimatedIcon color={iconColor}>
-          <FaCss3Alt />
-        </AnimatedIcon>
-      );
+      icon = <FaCss3Alt />;
+      break;
+    case "JavaScript":
+      iconColor = "#F7DF1E"; // JavaScript color
+      icon = <TbBrandJavascript />;
+      break;
     case "React":
       iconColor = "#61DAFB"; // React color
-      return (
-        <AnimatedIcon color={iconColor}>
-          <FaReact />
-        </AnimatedIcon>
-      );
+      icon = <FaReact />;
+      break;
     case "Node.js":
       iconColor = "#8CC84B"; // Node.js color
-      return (
-        <AnimatedIcon color={iconColor}>
-          <FaNodeJs />
-        </AnimatedIcon>
-      );
+      icon = <FaNodeJs />;
+      break;
     case "PostgreSQL":
       iconColor = "#336791"; // PostgreSQL color
-      return (
-        <AnimatedIcon color={iconColor}>
-          <FaDatabase />
-        </AnimatedIcon>
-      );
+      icon = <FaDatabase />;
+      break;
     default:
       return null;
   }
+
+  return (
+    <Tooltip title={skill} arrow>
+      <AnimatedIcon color={iconColor}>
+        {icon}
+      </AnimatedIcon>
+    </Tooltip>
+  );
 };
 
 const AboutUs = () => {
@@ -198,31 +196,31 @@ const AboutUs = () => {
               name: "Dagim J",
               role: "Fullstack Developer",
               img: "./gif/goku.gif",
-              skills: ["HTML5", "CSS3", "React", "Node.js", "PostgreSQL"],
+              skills: ["HTML5", "CSS3", "JavaScript" ,"React", "Node.js", "PostgreSQL"],
             },
             {
               name: "Yukun Z",
               role: "Fullstack Developer",
               img: "./gif/vegeta.gif",
-              skills: ["HTML5", "CSS3", "React", "Node.js", "PostgreSQL"],
+              skills: ["HTML5", "CSS3", "JavaScript" ,"React", "Node.js", "PostgreSQL"],
             },
             {
               name: "Christopher D",
               role: "Fullstack Developer",
               img: "./gif/broly.gif",
-              skills: ["HTML5", "CSS3", "React", "Node.js", "PostgreSQL"],
+              skills: ["HTML5", "CSS3", "JavaScript" ,"React", "Node.js", "PostgreSQL"],
             },
             {
               name: "David C",
               role: "Fullstack Developer",
               img: "./gif/trunks.gif",
-              skills: ["HTML5", "CSS3", "React", "Node.js", "PostgreSQL"],
+              skills: ["HTML5", "CSS3", "JavaScript" ,"React", "Node.js", "PostgreSQL"],            
             },
             {
               name: "Ashleigh M",
               role: "Fullstack Developer",
               img: "./gif/bulma.gif",
-              skills: ["HTML5", "CSS3", "React", "Node.js", "PostgreSQL"],
+              skills: ["HTML5", "CSS3", "JavaScript" ,"React", "Node.js", "PostgreSQL"],
             },
           ].map((member, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>

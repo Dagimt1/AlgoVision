@@ -1,3 +1,4 @@
+// Testimonials.js
 import React, { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -25,7 +26,8 @@ import {
 } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
-import { testimonials as initialTestimonials } from "./testimonials";
+import useTestimonials from "./useTestimonials.jsx";
+// import testimonialUtils from "./testimonialUtils.jsx";
 
 // Functional component to render a star rating
 const StarRating = ({ rating }) => (
@@ -47,22 +49,25 @@ const StarRating = ({ rating }) => (
 
 const Testimonials = () => {
   const navigate = useNavigate();
+  const {
+    testimonials,
+    newUser,
+    setNewUser,
+    newRating,
+    setNewRating,
+    newComment,
+    setNewComment,
+    errors,
+    addTestimonial,
+  } = useTestimonials();
+
   const [sortCriteria, setSortCriteria] = useState("date");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedRating, setSelectedRating] = useState("");
-  const [testimonials, setTestimonials] = useState(initialTestimonials);
 
   // State for dialog
   const [openDialog, setOpenDialog] = useState(false);
-  const [newUser, setNewUser] = useState("");
-  const [newRating, setNewRating] = useState("");
-  const [newComment, setNewComment] = useState("");
-  const [errors, setErrors] = useState({
-    user: false,
-    rating: false,
-    comment: false,
-  });
-  
+
   // Snackbar state
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
@@ -73,77 +78,45 @@ const Testimonials = () => {
   }, [navigate]);
 
   // Function to handle opening the dialog
-  const handleOpenDialog = () => setOpenDialog(true);
+  // const handleOpenDialog = () => setOpenDialog(true);
 
   // Function to handle closing the dialog
   const handleCloseDialog = () => setOpenDialog(false);
 
   // Function to handle adding a new testimonial
   const handleAddTestimonial = () => {
-    let hasError = false;
-    const newErrors = { user: false, rating: false, comment: false };
-
-    if (!newUser.trim()) {
-      newErrors.user = true;
-      hasError = true;
-    }
-    if (!newRating) {
-      newErrors.rating = true;
-      hasError = true;
-    }
-    if (!newComment.trim()) {
-      newErrors.comment = true;
-      hasError = true;
-    }
-
-    if (hasError) {
-      setErrors(newErrors);
-      return;
-    }
-
-    const newTestimonial = {
-      id: Date.now(), // Simple ID generation
-      user: newUser,
-      rating: Number(newRating),
-      comment: newComment,
-      date: new Date().toISOString(),
-    };
-    setTestimonials((prevTestimonials) => [...prevTestimonials, newTestimonial]);
-    setNewUser("");
-    setNewRating("");
-    setNewComment("");
-    setErrors({ user: false, rating: false, comment: false });
-    setSnackbarMessage("Testimonial added successfully!");
-    setSnackbarOpen(true);
-    handleCloseDialog();
+    addTestimonial(() => {
+      setSnackbarMessage("Testimonial added successfully!");
+      setSnackbarOpen(true);
+      handleCloseDialog();
+    });
   };
 
   // Function to filter testimonials based on search and rating
-  const filteredTestimonials = testimonials
-    .filter((testimonial) =>
-      testimonial.user.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      testimonial.comment.toLowerCase().includes(searchQuery.toLowerCase())
-    )
-    .filter((testimonial) =>
-      selectedRating ? testimonial.rating === Number(selectedRating) : true
-    );
+  const filteredTestimonials = useTestimonials().filterTestimonials(
+    testimonials,
+    searchQuery,
+    selectedRating
+  );
 
   // Function to sort testimonials based on the selected criteria
-  const sortedTestimonials = [...filteredTestimonials].sort((a, b) => {
-    if (sortCriteria === "rating") {
-      return b.rating - a.rating; // Sort by rating in descending order
-    }
-    if (sortCriteria === "date") {
-      return new Date(b.date) - new Date(a.date); // Sort by date in descending order
-    }
-    return 0;
-  });
+  const sortedTestimonials = useTestimonials().sortTestimonials(
+    filteredTestimonials,
+    sortCriteria
+  );
 
   // Function to handle closing the snackbar
   const handleSnackbarClose = () => setSnackbarOpen(false);
 
   return (
-    <Container sx={{ py: 4, background: 'linear-gradient(to right, #f5f7f9, #e3e4e8)', minHeight: '100vh', p: 4 }}>
+    <Container
+      sx={{
+        py: 4,
+        background: "linear-gradient(to right, #f5f7f9, #e3e4e8)",
+        minHeight: "100vh",
+        p: 4,
+      }}
+    >
       <Typography
         variant="h3"
         component="h1"
@@ -161,11 +134,11 @@ const Testimonials = () => {
         }}
         onClick={navigateHome}
       >
-        Testimonials
+        What Our Customers Are Saying
       </Typography>
 
       {/* Control Panel */}
-      <Box sx={{ mb: 4, display: 'flex', flexDirection: 'column', gap: 2 }}>
+      <Box sx={{ mb: 4, display: "flex", flexDirection: "column", gap: 2 }}>
         {/* Search bar */}
         <TextField
           fullWidth
@@ -190,7 +163,7 @@ const Testimonials = () => {
               <MenuItem value="">All Ratings</MenuItem>
               {[1, 2, 3, 4, 5].map((rating) => (
                 <MenuItem key={rating} value={rating}>
-                  {rating} Star{rating > 1 ? 's' : ''}
+                  {rating} Star{rating > 1 ? "s" : ""}
                 </MenuItem>
               ))}
             </Select>
@@ -210,14 +183,10 @@ const Testimonials = () => {
             </Select>
           </FormControl>
 
-          {/* Button to add a new testimonial */}
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={handleOpenDialog}
-          >
+          {/* Button to add a new testimonial
+          <Button variant="contained" color="primary" onClick={handleOpenDialog}>
             Add Testimonial
-          </Button>
+          </Button> */}
         </Stack>
       </Box>
 
@@ -256,7 +225,8 @@ const Testimonials = () => {
                       fontSize: "2rem",
                     }}
                   >
-                    {testimonial.user.charAt(0)} {/* Display the initial of the user */}
+                    {testimonial.user.charAt(0)}{" "}
+                    {/* Display the initial of the user */}
                   </Avatar>
                 </Grid>
                 <Grid item xs>
@@ -267,7 +237,8 @@ const Testimonials = () => {
                   >
                     {testimonial.user}
                   </Typography>
-                  <StarRating rating={testimonial.rating} /> {/* Render star rating */}
+                  <StarRating rating={testimonial.rating} />{" "}
+                  {/* Render star rating */}
                 </Grid>
               </Grid>
               <Divider sx={{ my: 1 }} />
@@ -310,11 +281,13 @@ const Testimonials = () => {
               <MenuItem value="">None</MenuItem>
               {[1, 2, 3, 4, 5].map((rating) => (
                 <MenuItem key={rating} value={rating}>
-                  {rating} Star{rating > 1 ? 's' : ''}
+                  {rating} Star{rating > 1 ? "s" : ""}
                 </MenuItem>
               ))}
             </Select>
-            {errors.rating && <FormHelperText>Rating is required</FormHelperText>}
+            {errors.rating && (
+              <FormHelperText>Rating is required</FormHelperText>
+            )}
           </FormControl>
           <TextField
             margin="dense"
@@ -347,7 +320,11 @@ const Testimonials = () => {
           </Button>
         }
       >
-        <Alert onClose={handleSnackbarClose} severity="success" sx={{ width: '100%' }}>
+        <Alert
+          onClose={handleSnackbarClose}
+          severity="success"
+          sx={{ width: "100%" }}
+        >
           {snackbarMessage}
         </Alert>
       </Snackbar>
