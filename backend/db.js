@@ -13,8 +13,12 @@ dotenv.config();
 const createTables = async () => {
   try {
     await client.connect();
+    //TODO: remove seeded data after development
+
     const SQL = `
           CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+          DROP TABLE IF EXISTS interview_timeslot;
+          DROP TABLE IF EXISTS interview_master;
           DROP TABLE IF EXISTS Users;
       
           CREATE TABLE Users(
@@ -30,8 +34,31 @@ const createTables = async () => {
               State VARCHAR(2) DEFAULT '',
               Zipcode VARCHAR(5) DEFAULT '',
               CurrentSchool VARCHAR(100) DEFAULT ''
-          )
+          );
+
+          CREATE TABLE interview_master(
+            interview_id SERIAL PRIMARY KEY,
+            user_id UUID,
+            status VARCHAR(20) NOT NULL,
+            algo_level VARCHAR(20) NOT NULL,
+            target_role VARCHAR(50) NOT NULL,
+            notes VARCHAR(255) DEFAULT '',
+            FOREIGN KEY (user_id) REFERENCES Users(id)
+          );
+
+          CREATE TABLE interview_timeslot(
+            timeslot_id SERIAL PRIMARY KEY,
+            interview_id INT,
+            time TIMESTAMP,
+            status VARCHAR(20),
+            FOREIGN KEY(interview_id) REFERENCES interview_master(interview_id)
+          );
+
+          INSERT INTO Users (email, password)
+          VALUES ('yukun@gmail.com', '$2b$10$angtjWdzK5xQ2Cl1CV5mGOikLmtSaZGwjlygSlRyapuwYMKZSPcNu');
+
           `;
+
     await client.query(SQL);
     console.log(chalk.green('DB created successfully!!'));
   } catch (err) {
@@ -112,7 +139,7 @@ const logIn = async (email, password) => {
           username: user.name,
         },
         jwtSignature,
-        { expiresIn: '30m' }
+        { expiresIn: '1d' }
       );
 
       return {
@@ -273,6 +300,141 @@ const updatePersonalInfo = async (userid, newInfoObj, authToken) => {
   }
 };
 
+const submitInterviewRequest = async (userid, interviewObj, timeSlots, authToken) => {
+  // interview and timestamp status are paried or open
+  const isValidToken = jwt.verify(authToken, jwtSignature);
+
+  if (isValidToken) {
+    try {
+      const SQL1 = `
+      INSERT INTO interview_master (user_id, status, algo_level, target_role, notes)
+      VALUES ($1, $2, $3, $4, $5)
+      RETURNING *;
+      `;
+      const result1 = await client.query(SQL1, [
+        userid,
+        'O',
+        interviewObj.algo_level,
+        interviewObj.target_role,
+        interviewObj.notes,
+      ]);
+
+      const interviewID = result1.rows[0].interview_id;
+
+      timeSlots.forEach(async (time) => {
+        const SQL2 = `
+          INSERT INTO interview_timeslot (interview_id, time, status)
+          VALUES ($1, $2, $3)
+        `;
+
+        const result2 = await client.query(SQL2, [interviewID, time, 'O']);
+      });
+
+      return {
+        success: true,
+        submittedInterview: result1.rows[0],
+        msg: 'Successfully submitted interview request!',
+      };
+    } catch (err) {
+      console.error('SQL update error: ', err);
+      throw err;
+    }
+  } else {
+    return {
+      success: false,
+      msg: 'Auth Token expired',
+    };
+  }
+};
+const matchExistingInterview = async (userid, interviewObj, selectedTimestampID, authToken) => {
+  const isValidToken = jwt.verify(authToken, jwtSignature);
+
+  // interviewObj = {
+  //   user_id: 1,
+  //   algo_level: 'Beginner',
+  //   target_role: 'Software Engineer',
+  //   notes: 'please be nice to me'
+  // }
+
+  // timeSlots = ['2024-08-17 17:07:27', '2024-08-17 17:07:27']
+
+  if (isValidToken) {
+    try {
+      const SQL1 = `
+      INSERT INTO interview_master (user_id, status, algo_level, target_role, notes)
+      VALUES ($1, $2, $3, $4, $5)
+      RETURNING *;
+      `;
+      const result1 = await client.query(SQL1, [
+        userid,
+        'P',
+        interviewObj.algo_level,
+        interviewObj.target_role,
+        interviewObj.notes,
+      ]);
+
+      // set matched interview status and timestamp status both to P-Paired
+      const SQL2 = `UPDATE interview_timeslot 
+                    SET status = 'P'
+                    WHERE timeslot_id = $1 returning *`;
+      const result2 = await client.query(SQL2, [selectedTimestampID]);
+      const matchedInterviewID = result2.rows[0].interview_id;
+
+      const SQL3 = `UPDATE interview_master
+                    SET status = 'P'
+                    WHERE interview_id = $1`;
+      const result3 = await client.query(SQL3, [matchedInterviewID]);
+
+      return {
+        success: true,
+        macthedInterview: {
+          incomingRequest: result1.rows[0],
+          existingInterview: result3.rows[0],
+        },
+        msg: 'Successfully submitted interview request!',
+      };
+    } catch (err) {
+      console.error('SQL update error: ', err);
+      throw err;
+    }
+  } else {
+    return {
+      success: false,
+      msg: 'Auth Token expired',
+    };
+  }
+};
+
+const fetchMatchedLevelTimeSlots = async (algoLevel, authToken) => {
+  const isValidToken = jwt.verify(authToken, jwtSignature);
+  if (isValidToken) {
+    try {
+      const SQL = `
+      SELECT t.timeslot_id, firstname, lastname, algo_level, target_role, notes, time
+      FROM interview_master m
+      JOIN interview_timeslot t ON m.interview_id = t.interview_id
+      JOIN Users u ON u.id = m.user_id
+      WHERE algo_level = $1 AND t.status = 'O';
+    `;
+
+      const result = await client.query(SQL, [algoLevel]);
+      return {
+        success: true,
+        timeSlots: result.rows,
+        msg: 'Successfully submitted interview request!',
+      };
+    } catch (err) {
+      console.error('SQL update error: ', err);
+      throw err;
+    }
+  } else {
+    return {
+      success: false,
+      msg: 'Auth Token expired',
+    };
+  }
+};
+
 export {
   client,
   createTables,
@@ -283,4 +445,7 @@ export {
   sendResetPasswordLink,
   changePassword,
   updatePersonalInfo,
+  submitInterviewRequest,
+  fetchMatchedLevelTimeSlots,
+  matchExistingInterview,
 };

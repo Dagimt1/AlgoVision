@@ -11,9 +11,10 @@ import Sorting from './component/Sorting/Sorting.jsx';
 import AboutUs from './component/footer/AboutUs.jsx';
 import Testimonials from './component/footer/Testimonials.jsx';
 import Pathfinding from './component/Pathfinding/Pathfinding.js';
-import LearnMore from './component/learmore/LearnMore.jsx'
+import LearnMore from './component/learmore/LearnMore.jsx';
 import ContactUs from './component/footer/ContactUs.jsx';
-import Quiz from './component/Quiz/Quiz.jsx'
+import MockInterview from './component/MockInterview/MockInterview.jsx';
+import Quiz from './component/Quiz/Quiz.jsx';
 import BinaryTreeVisualizer from './component/binaryTree/BinaryTreeVisualizer.jsx';
 import LinkedListVisualizer from './component/LinkedList/LinkedListVisualizer.jsx';
 import StackQueueVisualizer from './component/StackAndQueue/StackQueueVisualizer.jsx';
@@ -39,21 +40,17 @@ function App() {
         <Route path='/testimonials' element={<Testimonials />} />
         <Route path='/learnmore' element={<LearnMore />} />
         <Route path='/contactus' element={<ContactUs />} />
-        <Route path='/Quiz' element={<Quiz/>} />
-        <Route path="/binarytree" element={<BinaryTreeVisualizer />} />
-        <Route path="/linkedlist" element={<LinkedListVisualizer />} />
-        <Route path="/stackqueue" element={<StackQueueVisualizer />} />
-        <Route path="/graph" element={<GraphVisualizer />} />
-        <Route path="/binarysearch" element={<BinarySearchVisualizer />} />
+        <Route path='/mockinterview' element={<MockInterview />} />
+        <Route path='/Quiz' element={<Quiz />} />
+        <Route path='/binarytree' element={<BinaryTreeVisualizer />} />
+        <Route path='/linkedlist' element={<LinkedListVisualizer />} />
+        <Route path='/stackqueue' element={<StackQueueVisualizer />} />
+        <Route path='/graph' element={<GraphVisualizer />} />
+        <Route path='/binarysearch' element={<BinarySearchVisualizer />} />
 
-        <Route path="/visualizerhome" element={<VisualizerHome />} />
+        <Route path='/visualizerhome' element={<VisualizerHome />} />
 
-        <Route path="/convexhull" element = {<ConvexHull />} />
-
-        
-
-
-
+        <Route path='/convexhull' element={<ConvexHull />} />
       </Routes>
     </Router>
   );
