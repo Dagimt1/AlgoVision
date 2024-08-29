@@ -6,6 +6,8 @@ import {
   submitInterviewRequest,
   fetchMatchedLevelTimeSlots,
   matchExistingInterview,
+  fetchInterviewsForUser,
+  deleteInterviewByID,
 } from '../db.js';
 
 const interviewRouter = express.Router();
@@ -44,6 +46,24 @@ interviewRouter.post('/getMatchedLevelTimeSlots', async (req, res) => {
   try {
     const timeSlots = await fetchMatchedLevelTimeSlots(req.body.algoLevel, req.body.authToken);
     res.status(200).send(timeSlots);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+interviewRouter.post('/getInterviewsByUserId', async (req, res) => {
+  try {
+    const interviews = await fetchInterviewsForUser(req.body.userid, req.body.authToken);
+    res.status(200).send(interviews);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+interviewRouter.post('/deleteInterviewByID', async (req, res) => {
+  try {
+    const result = await deleteInterviewByID(req.body.interviewID, req.body.authToken);
+    res.status(204).send(result);
   } catch (err) {
     res.status(500).send(err);
   }

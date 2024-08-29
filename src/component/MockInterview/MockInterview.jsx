@@ -205,13 +205,26 @@ const MockInterview = () => {
                 color='inherit'
                 disabled={activeStep === 0}
                 onClick={handleBack}
-                sx={{ mr: 1 }}
+                sx={{
+                  mr: 1,
+                  '&.Mui-disabled': {
+                    backgroundColor: 'transparent',
+                  },
+                }}
               >
                 Back
               </Button>
               <Box sx={{ flex: '1 1 auto' }} />
 
-              <Button disabled={!nextAllowed} onClick={handleNext}>
+              <Button
+                disabled={!nextAllowed}
+                onClick={handleNext}
+                sx={{
+                  '&.Mui-disabled': {
+                    backgroundColor: 'transparent',
+                  },
+                }}
+              >
                 {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
               </Button>
             </Box>
