@@ -104,17 +104,7 @@ const register = async (email, password) => {
     }
   }
 };
-const getAllUsers = async () => {
-  const SQL = `
-  SELECT * FROM Users;
-  `;
-  try {
-    const response = await client.query(SQL);
-    return response.rows;
-  } catch (err) {
-    throw err;
-  }
-};
+
 const logIn = async (email, password) => {
   const SQL = `
     SELECT * FROM Users WHERE Email = $1
@@ -495,7 +485,6 @@ export {
   createTables,
   register,
   logIn,
-  getAllUsers,
   resetPassword,
   sendResetPasswordLink,
   changePassword,
