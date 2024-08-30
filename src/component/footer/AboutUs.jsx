@@ -19,6 +19,7 @@ import {
   FaDatabase,
 } from "react-icons/fa";
 import { TbBrandJavascript } from "react-icons/tb";
+import HomeIcon from '@mui/icons-material/Home'; // Import the Home icon
 
 // Styled components
 const Header = styled(Typography)(({ theme }) => ({
@@ -26,6 +27,9 @@ const Header = styled(Typography)(({ theme }) => ({
   textAlign: "center",
   flexGrow: 1,
   transition: "color 0.3s ease",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
   "&:hover": {
     color: theme.palette.grey[500],
   },
@@ -164,6 +168,7 @@ const AboutUs = () => {
             variant="h2"
             onClick={navigateHome}
           >
+            <HomeIcon style={{ marginRight: "8px", fontSize: "2rem" }} /> {/* Add Home icon */}
             Algorithm Visualizer
           </Header>
         </Toolbar>

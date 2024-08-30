@@ -27,6 +27,8 @@ import {
 import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import useTestimonials from "./useTestimonials.jsx";
+import HomeIcon from '@mui/icons-material/Home'; // Import the Home icon
+
 // import testimonialUtils from "./testimonialUtils.jsx";
 
 // Functional component to render a star rating
@@ -134,6 +136,8 @@ const Testimonials = () => {
         }}
         onClick={navigateHome}
       >
+            <HomeIcon style={{ marginRight: "8px", fontSize: "2rem" }} /> {/* Add Home icon */}
+
         What Our Customers Are Saying
       </Typography>
 

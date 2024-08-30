@@ -35,7 +35,7 @@ const NavBar = () => {
 
   return (
     <header className='header'>
-      <div className='container'>
+      <div >
         <h1 onClick={navigateHome} className='title'>
           Algorithm Visualizer
         </h1>
@@ -78,9 +78,9 @@ const NavBar = () => {
         </div>
       ) : (
         <>
-          <button className='quiz-btn' onClick={() => navigate('/quiz')}>
+          {/* <button className='quiz-btn' onClick={() => navigate('/quiz')}>
             Quiz
-          </button>
+          </button> */}
           <button className='login-btn' onClick={() => navigate('/login')}>
             Log in
           </button>

@@ -1,6 +1,23 @@
 .home-container {
   text-align: center;
   padding: 20px;
+  cursor: pointer;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.home-icon {
+  margin-right: 10px;
+}
+
+h1 {
+  font-size: 2rem;
+  margin: 0;
 }
 
 .card-container {

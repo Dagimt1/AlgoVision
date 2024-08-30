@@ -48,9 +48,7 @@ function App() {
         <Route path='/stackqueue' element={<StackQueueVisualizer />} />
         <Route path='/graph' element={<GraphVisualizer />} />
         <Route path='/binarysearch' element={<BinarySearchVisualizer />} />
-
         <Route path='/visualizerhome' element={<VisualizerHome />} />
-
         <Route path='/convexhull' element={<ConvexHull />} />
       </Routes>
       {/* <Footer /> */}
