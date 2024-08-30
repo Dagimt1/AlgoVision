@@ -735,6 +735,8 @@ const LearnMore = () => {
                 backgroundColor: "primary.dark",
               },
               transition: "background-color 0.3s",
+              textTransform: "none"
+
             }}
           >
             Try Sorting Visualizer
@@ -752,6 +754,7 @@ const LearnMore = () => {
                 backgroundColor: "secondary.dark",
               },
               transition: "background-color 0.3s",
+              textTransform: "none"
             }}
           >
             Try Pathfinding Visualizer

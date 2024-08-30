@@ -1,6 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./VisualizerHome.css";
+import { FaHome } from 'react-icons/fa'; // Import the home icon from react-icons/fa
 
 // Image URLs for visualizers
 const binaryTreeImage = "https://static.javatpoint.com/ds/images/binary-tree.png";
@@ -11,10 +12,21 @@ const binarySearchImage = "https://www.tutorialspoint.com/data_structures_algori
 const convexHullImage = "https://media.geeksforgeeks.org/wp-content/uploads/20231218123325/Convex-Hull.jpg"; // Example Convex Hull image
 const quizBackgroundVideo = "https://cdn.dribbble.com/userupload/3135592/file/original-bfd629edbc5919d3768b1f1c95e988e5.mp4";
 
+
+
 const VisualizerHome = () => {
+  const navigate = useNavigate();
+
+  const navigateHome = () => {
+    navigate("/");
+  };
+
   return (
     <div className="home-container">
-      <h1>Data Structure Visualizers</h1>
+      <div className="header-container">
+        <FaHome size={30} className="home-icon" onClick={navigateHome} /> {/* Clickable home icon */}
+        <h1>Data Structure Visualizers</h1>
+      </div>
       <div className="card-container">
         <Link to="/binarytree" className="card">
           <img src={binaryTreeImage} alt="Binary Tree Visualizer" />

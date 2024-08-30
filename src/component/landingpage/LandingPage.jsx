@@ -27,10 +27,13 @@ const LandingPage = () => {
             lessons you'll love.
           </p>
           <button className='main-get-started-btn' onClick={() => navigate('/sorting')}>
-            Sorting visualizer
+            Sorting Visualizer
           </button>
           <button className='main-get-started-btn2' onClick={() => navigate('/pathfinding')}>
-            Pathfinder visualizer
+            Pathfinder Visualizer
+          </button>
+          <button className='main-get-started-btn3' onClick={() => navigate('/visualizerhome')}>
+            Get Started
           </button>
         </div>
         <div className='gif-container'>
