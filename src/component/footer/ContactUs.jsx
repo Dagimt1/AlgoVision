@@ -26,7 +26,6 @@ const gradientAnimationStyle = {
   },
   movingGradient: {
     background: "linear-gradient(to right, #4286f4, #373B44)", // Updated gradient colors
-
     backgroundSize: "300% 300%",
     animation: "gradientAnimation 10s ease infinite",
   },
@@ -108,9 +107,9 @@ export const ContactUs = () => {
         spacing={3}
         justifyContent="center"
         alignItems="center"
-        sx={{ width: "100%" }}
+        sx={{ width: "100%", px: 2 }} // Add padding to handle smaller screens
       >
-        <Grid item xs={12}>
+        <Grid item xs={12} sm={8} md={6}>
           <Box
             sx={{
               display: "flex",

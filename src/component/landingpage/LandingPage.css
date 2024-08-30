@@ -12,6 +12,7 @@ body {
   display: flex; /* Use flexbox for layout */
   flex-direction: column; /* Align items vertically */
   align-items: center; /* Center align horizontally */
+  
 }
 
 .header {
@@ -39,6 +40,7 @@ body {
 .subtitle {
   font-size: 1rem;
   color: #666;
+  
 }
 
 .get-started-btn {

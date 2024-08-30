@@ -8,7 +8,7 @@ const MdContainer = styled(Box)(({ theme }) => ({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  margin: '5vh 5vh 10vh',
+  margin: '30vh 10vh 30vh',
   [theme.breakpoints.down('sm')]: {
     margin: '1rem 0',
     width: '90%',

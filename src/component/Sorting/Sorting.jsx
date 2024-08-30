@@ -27,42 +27,46 @@ const Sorting = () => {
   const intervalRef = useRef(null);
   const [inputError, setInputError] = useState(""); // Error state for input
 
-  // Function to create a random array
-  const createArray = (e = Math.floor(window.innerWidth / 50) / 2) => {
-    let newArr = [];
-    for (let i = 0; i < e; i++) {
-      newArr.push({
-        value: Math.floor(Math.random() * 150),
-        id: "id-" + i,
-      });
-    }
-    setArr(newArr);
-    setLength(e);
-    setSorted([]);
-  };
+// Function to create a random array
+const createArray = (e = Math.floor(window.innerWidth / 50) / 2) => {
+  let newArr = [];
+  for (let i = 0; i < e; i++) {
+    newArr.push({
+      value: Math.floor(Math.random() * 150),
+      id: "id-" + i,
+    });
+  }
+  setArr(newArr);
+  setLength(e);
+  setSorted([]);
+  setSteps([]); // Reset steps
+  setCurrentStep(0); // Reset current step
+};
+
 
   // Function to handle array size change
-  const changeArray = (e) => {
-    const newLength = e.target.value;
+const changeArray = (e) => {
+  const newLength = e.target.value;
 
-    // Check if sorting is currently running
-    if (isPlaying) {
-      // Prompt the user for confirmation
-      const userConfirmed = window.confirm(`Are you sure you want to change the array length to ${newLength}? This will stop the current sorting process.`);
-      
-      if (userConfirmed) {
-        // Stop the ongoing sorting process
-        clearInterval(intervalRef.current);
-        setIsPlaying(false);
+  // Check if sorting is currently running
+  if (isPlaying) {
+    // Prompt the user for confirmation
+    const userConfirmed = window.confirm(`Are you sure you want to change the array length to ${newLength}? This will stop the current sorting process.`);
+    
+    if (userConfirmed) {
+      // Stop the ongoing sorting process
+      clearInterval(intervalRef.current);
+      setIsPlaying(false);
 
-        // Generate a new array with the confirmed length
-        createArray(newLength);
-      }
-    } else {
-      // If sorting is not running, just change the array length
+      // Generate a new array with the confirmed length
       createArray(newLength);
     }
-  };
+  } else {
+    // If sorting is not running, just change the array length
+    createArray(newLength);
+  }
+};
+
 
   // Initial array creation and window resize handling
   useEffect(() => {
@@ -214,25 +218,33 @@ const Sorting = () => {
   const selectAlgorithm = (algorithm) => {
     // Check if sorting is currently in progress
     if (isPlaying) {
+      // Prompt user to confirm stopping current sort
       const userConfirmed = window.confirm("Sorting is currently in progress. Are you sure you want to change the sorting algorithm? This will stop and reset the current process.");
-
+  
       if (!userConfirmed) {
         return; // If user cancels, do nothing
       }
-
-      // If user confirms, stop the current sorting process
+  
+      // Stop the current sorting process
+      clearInterval(intervalRef.current);
+      setIsPlaying(false);
+      setSteps([]);
+      setCurrentStep(0);
+    } else if (currentStep !== 0) {
+      // If sorting is paused but not at the start, reset the state
       clearInterval(intervalRef.current);
       setIsPlaying(false);
       setSteps([]);
       setCurrentStep(0);
     }
-
+  
     // Set the new algorithm
     setMethod(algorithm);
-    
+  
     // Close the dropdown
     setIsAlgorithmDropdownOpen(false);
   };
+  
 
   // Function to go to the next step in the sorting process
   const nextStep = () => {
