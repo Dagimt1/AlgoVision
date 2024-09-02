@@ -1,16 +1,22 @@
 import dotenv from 'dotenv';
+dotenv.config();
+
 import express from 'express';
 import axios from 'axios';
-import cors from 'cors';  // Update this line to use import instead of require
+import cors from 'cors';
 
-// Load environment variables
-dotenv.config();
+
 
 const app = express();
 const port = process.env.CHATCAT_PORT || 4000;
 
-app.use(cors());  // CORS middleware to handle cross-origin requests
+// Extract the API key from the environment variables
+const apiKey = process.env.OPENAI_API_KEY;
 
+// Log the API key to ensure it is loaded correctly (for debugging purposes)
+console.log('API Key:', apiKey);
+
+app.use(cors());  // CORS middleware to handle cross-origin requests
 app.use(express.json());
 
 app.post('/chat', async (req, res) => {
@@ -18,21 +24,28 @@ app.post('/chat', async (req, res) => {
 
     try {
         const response = await axios.post(
-            process.env.CHATCAT_API_URL, 
-            { inputs: userMessage },
+            process.env.CHATCAT_API_URL || 'https://api.openai.com/v1/chat/completions', // Updated endpoint for chat models
             {
-                headers: { Authorization: `Bearer ${process.env.HUGGING_FACE_API_KEY}` },
+                model: "gpt-3.5-turbo", // Using the chat model
+                messages: [{ role: "user", content: userMessage }], // Adjusted to chat format
+                max_tokens: 150 
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${apiKey}`, // Use the extracted API key
+                    'Content-Type': 'application/json'
+                }
             }
         );
 
-        const botReply = response.data[0].generated_text;
+        const botReply = response.data.choices[0].message.content.trim(); // Extract response from OpenAI
         res.json({ reply: botReply });
     } catch (error) {
         if (error.response) {
-            console.error('Error communicating with GPT-2:', error.response.status, error.response.data);
+            console.error('Error communicating with OpenAI:', error.response.status, error.response.data);
             res.status(error.response.status).send(error.response.data);
         } else {
-            console.error('Error communicating with GPT-2:', error.message);
+            console.error('Error communicating with OpenAI:', error.message);
             res.status(500).send('Internal Server Error');
         }
     }
