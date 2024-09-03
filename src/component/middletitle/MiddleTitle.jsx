@@ -31,7 +31,7 @@ const MiddleTitleComponent = () => {
   return (
     <MdContainer>
       <MiddleTitle variant="h1" align="center">
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+      Sorting algorithms are fundamental to computer science and data manipulation
       </MiddleTitle>
     </MdContainer>
   );

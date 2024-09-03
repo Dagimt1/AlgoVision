@@ -1,4 +1,4 @@
-import React from "react";
+import {React, useState, useEffect} from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LandingPage from "./component/landingpage/LandingPage.jsx";
 import Login from "./component/Login/Login.jsx";
@@ -23,8 +23,19 @@ import GraphVisualizer from './component/graph-visual/GraphVisualizer.jsx';
 import BinarySearchVisualizer from './component/binarySearch/BinarySearchVisualizer.jsx';
 import VisualizerHome from './component/visualizerProfile/VisualizerHome.jsx';
 import ConvexHull from './component/ConvexHull/ConvexHull.js';
-
+import Loader from "./component/LoaderPage/Loader.jsx";
 function App() {
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    // Simulate a loading delay
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 3000); // Adjust time to match your actual loading duration
+    return () => clearTimeout(timer);
+  }, []);
+  if (loading) {
+    return <Loader />;
+  }
   return (
     <Router>
       <Routes>
@@ -55,5 +66,4 @@ function App() {
     </Router>
   );
 }
-
 export default App;
