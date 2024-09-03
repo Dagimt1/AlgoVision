@@ -10,6 +10,9 @@ import MiddleTitle from "./component/middletitle/MiddleTitle.jsx";
 import Sorting from "./component/Sorting/Sorting.jsx";
 import AboutUs from './component/footer/AboutUs.jsx';
 import Testimonials from './component/footer/Testimonials.jsx';
+
+import ChatCat from './component/chatCat/chatCat.js';  
+
 import Pathfinding from "./component/Pathfinding/Pathfinding.js";
 import LearnMore from "./component/learmore/LearnMore.jsx";
 import ContactUs from './component/footer/ContactUs.jsx';
@@ -62,6 +65,7 @@ function App() {
         <Route path='/visualizerhome' element={<VisualizerHome />} />
         <Route path='/convexhull' element={<ConvexHull />} />
       </Routes>
+      <ChatCat />  
       {/* <Footer /> */}
     </Router>
   );
