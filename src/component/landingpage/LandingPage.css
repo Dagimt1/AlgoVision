@@ -12,6 +12,7 @@ body {
   display: flex; /* Use flexbox for layout */
   flex-direction: column; /* Align items vertically */
   align-items: center; /* Center align horizontally */
+  
 }
 
 .header {
@@ -39,6 +40,7 @@ body {
 .subtitle {
   font-size: 1rem;
   color: #666;
+  
 }
 
 .get-started-btn {
@@ -71,7 +73,7 @@ body {
   font-weight: 700;
   position: absolute;
   top: 20px;
-  right: 50px;
+  right: 35px;
 } 
 
 /* .login-btn2 {
@@ -161,8 +163,27 @@ body {
   left: 400px;
 }
 
+.main-get-started-btn3 {
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+  color: #fff;
+  background-color: #446ff2;
+  width: 100%; /* Makes the button take up the full width of its container */
+  max-width: 300px; /* Optional: limits the maximum width of the button */
+  border: none;
+  border-radius: 3rem; /* Make corners slightly rounded */
+  cursor: pointer;
+  transition: box-shadow 0.3s ease; /* Smooth transition for shadow */
+  position: absolute;
+  left: 411px; /* Centers the button horizontally */
+  transform: translateX(-50%); /* Adjusts the centering */
+  top: 500px;
+}
+
 .main-get-started-btn:hover,
-.main-get-started-btn2:hover {
+.main-get-started-btn2:hover,
+.main-get-started-btn3:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
 }
 
@@ -181,6 +202,8 @@ body {
   /* Add overflow-x: hidden to prevent horizontal scroll */
   overflow-x: hidden;
 }
+
+
 
 @media (max-width: 600px) {
   .landing-page {
