@@ -1,5 +1,5 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Container, Typography, Button, Box } from "@mui/material";
 import NavBar from "../NavBar/NavBarMain";
 import MiddleTitle from "../middletitle/MiddleTitle";
@@ -16,11 +16,9 @@ const CustomTypewriter = () => (
       typewriter
         .typeString("<Typography style='font-family: \"Teko\", sans-serif;'>Master</Typography>")
         .pauseFor(2000)
-        .deleteAll()
-        .typeString("<Typography style='color: blue; font-family: \"Teko\", sans-serif;'>Algorithms</Typography>")
+        .typeString("<Typography style='color: blue; font-family: \"Teko\", sans-serif;'> Algorithms</Typography>")
         .pauseFor(2000)
-        .deleteAll()
-        .typeString("<Typography font-family: \"Teko\", sans-serif;'>with Interactive Visualizations</Typography>")
+        .typeString("<Typography font-family: \"Teko\", sans-serif;'> with Interactive Visualizations</Typography>")
         .pauseFor(2000)
         .deleteAll()
         .start();
@@ -38,6 +36,7 @@ const LandingPage = () => {
   const videoSrc = `${process.env.PUBLIC_URL}/mp4/0yEX6dfG1L8t8Nv9a2UX9k1DfI9lTOMX_9c5a0990aaa1b93e60a271db06dfbac9f2ad25e10bef32cd5cd54e19d46eabf5.mp4`;
   const navigate = useNavigate();
 
+  
   return (
     <div className="landing-page">
       <NavBar />

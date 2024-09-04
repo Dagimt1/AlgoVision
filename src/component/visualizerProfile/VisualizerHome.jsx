@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import "./VisualizerHome.css";
 import { FaHome } from 'react-icons/fa'; // Import the home icon from react-icons/fa
+import Loader from '../LoaderPage/Loader';
+
 
 // Image URLs for visualizers
 const binaryTreeImage = "https://static.javatpoint.com/ds/images/binary-tree.png";
@@ -13,13 +15,24 @@ const convexHullImage = "https://media.geeksforgeeks.org/wp-content/uploads/2023
 const quizBackgroundVideo = "https://cdn.dribbble.com/userupload/3135592/file/original-bfd629edbc5919d3768b1f1c95e988e5.mp4";
 
 
-
 const VisualizerHome = () => {
   const navigate = useNavigate();
 
   const navigateHome = () => {
     navigate("/");
   };
+
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    // Simulate a loading delay
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 3000); // Adjust time to match your actual loading duration
+    return () => clearTimeout(timer);
+  }, []);
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <div className="home-container">
