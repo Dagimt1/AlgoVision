@@ -11,6 +11,9 @@ app.use(cors());
 dotenv.config();
 app.use('/api', apiRouter);
 
+// create a new file called API with variable API value it should be const app
+// import to each pages
+
 const port = process.env.PORT || 6688;
 
 const startServer = async () => {
