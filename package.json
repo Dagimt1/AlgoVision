@@ -43,7 +43,7 @@
     "start-client": "PORT=3001 react-scripts start",
     "backend": "nodemon backend/server.js",
     "chatbot": "nodemon backend/chatCatServer.js",
-    "build": "react-scripts build && (cd ../server && npm)",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "start-all": "concurrently \"npm run backend\" \"npm run chatbot\" \"npm run start-client\""
