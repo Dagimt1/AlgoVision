@@ -71,7 +71,7 @@ const NavBar = () => {
               },
             }}
           >
-            <MenuItem onClick={handleClose}>Help</MenuItem>
+            {/* <MenuItem onClick={handleClose}>Help</MenuItem> */}
             <MenuItem onClick={handleClickingAccount}>Account</MenuItem>
             <MenuItem onClick={handleClickingLogOut}>Logout</MenuItem>
           </Menu>

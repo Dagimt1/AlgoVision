@@ -2,8 +2,8 @@ import express from 'express';
 import axios from 'axios';
 import cors from 'cors';
 import dotenv from 'dotenv';
-dotenv.config();
 
+dotenv.config({ path: './chatCat.env' });
 
 const app = express();
 const port = process.env.CHATCAT_PORT || 4000;

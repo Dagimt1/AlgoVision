@@ -19,7 +19,7 @@ import {
   FaDatabase,
 } from "react-icons/fa";
 import { TbBrandJavascript } from "react-icons/tb";
-import HomeIcon from '@mui/icons-material/Home'; // Import the Home icon
+import HomeIcon from "@mui/icons-material/Home"; // Import the Home icon
 
 // Styled components
 const Header = styled(Typography)(({ theme }) => ({
@@ -79,7 +79,7 @@ const AnimatedIcon = styled("div")(({ theme, color }) => ({
 const SkillIcon = ({ skill }) => {
   let iconColor;
   let icon;
-  
+
   switch (skill) {
     case "HTML5":
       iconColor = "#E44D26"; // HTML5 color
@@ -111,9 +111,7 @@ const SkillIcon = ({ skill }) => {
 
   return (
     <Tooltip title={skill} arrow>
-      <AnimatedIcon color={iconColor}>
-        {icon}
-      </AnimatedIcon>
+      <AnimatedIcon color={iconColor}>{icon}</AnimatedIcon>
     </Tooltip>
   );
 };
@@ -168,7 +166,8 @@ const AboutUs = () => {
             variant="h2"
             onClick={navigateHome}
           >
-            <HomeIcon style={{ marginRight: "8px", fontSize: "2rem" }} /> {/* Add Home icon */}
+            <HomeIcon style={{ marginRight: "8px", fontSize: "2rem" }} />{" "}
+            {/* Add Home icon */}
             Algorithm Visualizer
           </Header>
         </Toolbar>
@@ -178,15 +177,13 @@ const AboutUs = () => {
           About Us
         </Typography>
         <Typography variant="body1" paragraph>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores,
-          beatae non provident inventore maxime totam excepturi reprehenderit!
-          Illum quaerat laboriosam a nulla vitae, debitis tempora odio
-          consectetur, aspernatur repellendus quibusdam. Lorem ipsum dolor, sit
-          amet consectetur adipisicing elit. Error voluptates quo architecto
-          mollitia facilis in aperiam, dignissimos illum et nobis delectus!
-          Delectus odit quos quis ipsam velit vitae sequi quo?
+          Hi there from the Algorithm Visualizer team! We’re a group of
+          passionate developers on a mission to make algorithms easier to
+          understand and more accessible through engaging visualizations. Our
+          goal is to support students, educators, and anyone interested in
+          algorithms with tools that make learning and teaching a breeze.
         </Typography>
-        <img
+         <img
           src="./gif/DBzChar.gif"
           alt="DBZ"
           style={{ maxWidth: "100%", height: "auto", marginTop: "20px" }}
@@ -201,31 +198,66 @@ const AboutUs = () => {
               name: "Dagim J",
               role: "Fullstack Developer",
               img: "./gif/goku.gif",
-              skills: ["HTML5", "CSS3", "JavaScript" ,"React", "Node.js", "PostgreSQL"],
+              skills: [
+                "HTML5",
+                "CSS3",
+                "JavaScript",
+                "React",
+                "Node.js",
+                "PostgreSQL",
+              ],
             },
             {
               name: "Yukun Z",
               role: "Fullstack Developer",
               img: "./gif/vegeta.gif",
-              skills: ["HTML5", "CSS3", "JavaScript" ,"React", "Node.js", "PostgreSQL"],
+              skills: [
+                "HTML5",
+                "CSS3",
+                "JavaScript",
+                "React",
+                "Node.js",
+                "PostgreSQL",
+              ],
             },
             {
               name: "Christopher D",
               role: "Fullstack Developer",
               img: "./gif/broly.gif",
-              skills: ["HTML5", "CSS3", "JavaScript" ,"React", "Node.js", "PostgreSQL"],
+              skills: [
+                "HTML5",
+                "CSS3",
+                "JavaScript",
+                "React",
+                "Node.js",
+                "PostgreSQL",
+              ],
             },
             {
               name: "David C",
               role: "Fullstack Developer",
               img: "./gif/trunks.gif",
-              skills: ["HTML5", "CSS3", "JavaScript" ,"React", "Node.js", "PostgreSQL"],            
+              skills: [
+                "HTML5",
+                "CSS3",
+                "JavaScript",
+                "React",
+                "Node.js",
+                "PostgreSQL",
+              ],
             },
             {
               name: "Ashleigh M",
               role: "Fullstack Developer",
               img: "./gif/bulma.gif",
-              skills: ["HTML5", "CSS3", "JavaScript" ,"React", "Node.js", "PostgreSQL"],
+              skills: [
+                "HTML5",
+                "CSS3",
+                "JavaScript",
+                "React",
+                "Node.js",
+                "PostgreSQL",
+              ],
             },
           ].map((member, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>

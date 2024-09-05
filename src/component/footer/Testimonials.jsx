@@ -80,7 +80,7 @@ const Testimonials = () => {
   }, [navigate]);
 
   // Function to handle opening the dialog
-  // const handleOpenDialog = () => setOpenDialog(true);
+  const handleOpenDialog = () => setOpenDialog(true);
 
   // Function to handle closing the dialog
   const handleCloseDialog = () => setOpenDialog(false);
@@ -187,10 +187,10 @@ const Testimonials = () => {
             </Select>
           </FormControl>
 
-          {/* Button to add a new testimonial
+          {/* Button to add a new testimonial */}
           <Button variant="contained" color="primary" onClick={handleOpenDialog}>
             Add Testimonial
-          </Button> */}
+          </Button>
         </Stack>
       </Box>
 

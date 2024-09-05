@@ -14,15 +14,14 @@ const CustomTypewriter = () => (
   <Typewriter
     onInit={(typewriter) => {
       typewriter
-        .typeString("<Typography style='font-family: \"Teko\", sans-serif;'>Master</Typography>")
+        .typeString("<Typography style='font-family: \"Teko\", sans-serif;'>Master </Typography>")
         .pauseFor(2000)
-        .deleteAll()
-        .typeString("<Typography style='color: blue; font-family: \"Teko\", sans-serif;'>Algorithms</Typography>")
+        .typeString("<Typography style='color: blue; font-family: \"Teko\", sans-serif;'>Algorithms </Typography>")
         .pauseFor(2000)
-        .deleteAll()
         .typeString("<Typography font-family: \"Teko\", sans-serif;'>with Interactive Visualizations</Typography>")
         .pauseFor(2000)
         .deleteAll()
+        .pauseFor(2000)
         .start();
     }}
     options={{
@@ -116,7 +115,7 @@ const LandingPage = () => {
             <Button
               variant="contained"
               color="warning"
-              onClick={() => navigate("/visualizerhome")}
+              onClick={() => navigate("/goal")}
               sx={{ flexShrink: 0, left: "130px" }}
             >
               Get Started
