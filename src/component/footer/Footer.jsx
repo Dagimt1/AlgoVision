@@ -34,7 +34,7 @@ const Footer = () => {
           {/* Links Section */}
           <Grid item xs={12} sm={4}>
             <Typography variant="h6" gutterBottom>
-              Quick Links
+              Quick Link
             </Typography>
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
               <Link

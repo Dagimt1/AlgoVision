@@ -29,7 +29,7 @@ const LandingPage = () => {
           <button className='main-get-started-btn2' onClick={() => navigate('/pathfinding')}>
             Discover Pathfinding Techniques
           </button>
-          <button className='get-started-btn-new' onClick={() => navigate('/visualizerhome')}>
+          <button className='get-started-btn-new' onClick={() => navigate('/goal')}>
             Get Started
           </button>
         </div>

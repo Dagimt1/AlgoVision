@@ -1,4 +1,4 @@
-import {React, useState, useEffect} from "react";
+import { React, useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LandingPage from "./component/landingpage/LandingPage.jsx";
 import Login from "./component/Login/Login.jsx";
@@ -10,9 +10,7 @@ import MiddleTitle from "./component/middletitle/MiddleTitle.jsx";
 import Sorting from "./component/Sorting/Sorting.jsx";
 import AboutUs from './component/footer/AboutUs.jsx';
 import Testimonials from './component/footer/Testimonials.jsx';
-
-import ChatCat from './component/chatCat/chatCat.js';  
-
+import ChatCat from './component/chatCat/chatCat.js';
 import Pathfinding from "./component/Pathfinding/Pathfinding.js";
 import LearnMore from "./component/learmore/LearnMore.jsx";
 import ContactUs from './component/footer/ContactUs.jsx';
@@ -27,6 +25,9 @@ import BinarySearchVisualizer from './component/binarySearch/BinarySearchVisuali
 import VisualizerHome from './component/visualizerProfile/VisualizerHome.jsx';
 import ConvexHull from './component/ConvexHull/ConvexHull.js';
 import Loader from "./component/LoaderPage/Loader.jsx";
+
+// Import Goal components
+import { SelectionScreen, NextScreen, TopicSelectionScreen, ComfortLevelScreen, LearningFitScreen } from './component/Goal/Goal.jsx';
 function App() {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -64,8 +65,14 @@ function App() {
         <Route path='/binarysearch' element={<BinarySearchVisualizer />} />
         <Route path='/visualizerhome' element={<VisualizerHome />} />
         <Route path='/convexhull' element={<ConvexHull />} />
+        {/* Add Goal-related routes */}
+        <Route path="/goal" element={<SelectionScreen />} />
+        <Route path="/goal/next" element={<NextScreen />} />
+        <Route path="/topic-selection" element={<TopicSelectionScreen />} />
+        <Route path="/comfort-level" element={<ComfortLevelScreen />} />
+        <Route path="/learning-fit" element={<LearningFitScreen />} />
       </Routes>
-      <ChatCat />  
+      <ChatCat />
       {/* <Footer /> */}
     </Router>
   );
