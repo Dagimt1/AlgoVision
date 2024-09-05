@@ -6,6 +6,7 @@ import PasswordField from './PasswordField';
 import './css/login.css';
 import './css/general.css';
 import { TextField } from '@mui/material';
+import API_Based from '../../../backend/API/API';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -15,7 +16,7 @@ const Login = () => {
 
   const { isLoggedIn, setIsLoggedIn, setAuthToken, setUserData } = useContext(UserContext);
   const navigate = useNavigate();
-  const ApiBaseURL = 'http://localhost:6688/api/user';
+  const ApiBaseURL = `${API_Based}/user`;
 
   useEffect(() => {
     //clear up error message and login success when input changes

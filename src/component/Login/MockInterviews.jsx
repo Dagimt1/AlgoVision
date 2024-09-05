@@ -7,6 +7,7 @@ import { styled } from '@mui/material/styles';
 import dayjs from 'dayjs';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import ConfirmModal from '../modals/ConfirmModal';
+import API_Based from '../../../backend/API/API';
 
 const MockInterviews = () => {
   const { userData, authToken } = useContext(UserContext);
@@ -15,7 +16,7 @@ const MockInterviews = () => {
   const [openConfirmModal, setOpenConfirmModal] = useState(false);
 
   const navigate = useNavigate();
-  const ApiBaseURL = 'http://localhost:6688/api/interview';
+  const ApiBaseURL = `${API_Based}/interview`;
 
   useEffect(() => {
     // fetch interviews for user

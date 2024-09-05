@@ -20,6 +20,7 @@ import './MockInterview.css';
 import SkillsLevelForm from './SkillsLevelForm';
 import Calendar from './Calendar';
 import ConfirmationPage from './ConfirmationPage';
+import API_Based from '../../../backend/API/API';
 
 const MockInterview = () => {
   const { userData, authToken } = useContext(UserContext);
@@ -40,7 +41,7 @@ const MockInterview = () => {
   const [timeOne, setTimeOne] = useState('');
 
   const navigate = useNavigate();
-  const ApiBaseURL = 'http://localhost:6688/api/interview';
+  const ApiBaseURL = `${API_Based}/interview`;
   const steps = ['Fill out your skills level', 'Select timeslots', 'Submit your interview request'];
 
   useEffect(() => {
