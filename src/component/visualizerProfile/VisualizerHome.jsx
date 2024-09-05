@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import "./VisualizerHome.css";
 import { FaHome } from 'react-icons/fa'; // Import the home icon from react-icons/fa
-import Loader from '../LoaderPage/Loader';
+// import Loader from '../LoaderPage/Loader';
 
 
 // Image URLs for visualizers
@@ -22,17 +22,17 @@ const VisualizerHome = () => {
     navigate("/");
   };
 
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    // Simulate a loading delay
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 3000); // Adjust time to match your actual loading duration
-    return () => clearTimeout(timer);
-  }, []);
-  if (loading) {
-    return <Loader />;
-  }
+  // const [loading, setLoading] = useState(true);
+  // useEffect(() => {
+  //   // Simulate a loading delay
+  //   const timer = setTimeout(() => {
+  //     setLoading(false);
+  //   }, 3000); // Adjust time to match your actual loading duration
+  //   return () => clearTimeout(timer);
+  // }, []);
+  // if (loading) {
+  //   return <Loader />;
+  // }
 
   return (
     <div className="home-container">
