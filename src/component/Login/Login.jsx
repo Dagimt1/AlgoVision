@@ -1,33 +1,34 @@
-import { useState, useEffect, useContext } from 'react';
-import { UserContext } from '../../context/UserContext';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import PasswordField from './PasswordField';
-import './css/login.css';
-import './css/general.css';
-import { TextField } from '@mui/material';
-import API_Based from '../../../backend/API/API';
+import { useState, useEffect, useContext } from "react";
+import { UserContext } from "../../context/UserContext";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import PasswordField from "./PasswordField";
+import "./css/login.css";
+import "./css/general.css";
+import { TextField } from "@mui/material";
+import API_Based from "../../API";
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [emailErr, setEmailErr] = useState('');
-  const [passwordErr, setPasswordErr] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [emailErr, setEmailErr] = useState("");
+  const [passwordErr, setPasswordErr] = useState("");
 
-  const { isLoggedIn, setIsLoggedIn, setAuthToken, setUserData } = useContext(UserContext);
+  const { isLoggedIn, setIsLoggedIn, setAuthToken, setUserData } =
+    useContext(UserContext);
   const navigate = useNavigate();
   const ApiBaseURL = `${API_Based}/user`;
 
   useEffect(() => {
     //clear up error message and login success when input changes
-    setEmailErr('');
-    setPasswordErr('');
+    setEmailErr("");
+    setPasswordErr("");
     setIsLoggedIn(false);
   }, [email, password]);
   useEffect(() => {
     //redirect to main page for logged in users
     if (isLoggedIn) {
-      navigate('/');
+      navigate("/");
     }
   }, [isLoggedIn]);
 
@@ -35,26 +36,26 @@ const Login = () => {
     e.preventDefault();
 
     // Clear previous error messages
-    setEmailErr('');
-    setPasswordErr('');
+    setEmailErr("");
+    setPasswordErr("");
 
     // Validate inputs
     if (!email) {
-      setEmailErr('Email is required');
+      setEmailErr("Email is required");
       return;
     }
     if (!password) {
-      setPasswordErr('Password is required');
+      setPasswordErr("Password is required");
       return;
     }
 
     // Proceed with login API call if inputs are valid
     if (!email) {
-      setEmailErr('Email is required');
+      setEmailErr("Email is required");
       return;
     }
     if (!password) {
-      setPasswordErr('Password is required');
+      setPasswordErr("Password is required");
       return;
     }
 
@@ -71,62 +72,62 @@ const Login = () => {
           setUserData(res.data.userData);
         } else {
           setIsLoggedIn(false);
-          setPasswordErr('Invalid email or password');
+          setPasswordErr("Invalid email or password");
         }
       })
       .catch((err) => {
         setIsLoggedIn(false);
-        console.log('err:', err);
+        console.log("err:", err);
       });
   };
 
   return (
-    <div className='loginContainer'>
-      <div className='loginHeader'>
-        <img className='algoLogo' src='/images/algoLogo.png' alt='algoLogo' />
+    <div className="loginContainer">
+      <div className="loginHeader">
+        <img className="algoLogo" src="/images/algoLogo.png" alt="algoLogo" />
         <h1>Login</h1>
       </div>
 
-      <div className='loginBody'>
-        <form className='loginForm' onSubmit={(e) => handleLogin(e)}>
-          <div className='inputGroup'>
+      <div className="loginBody">
+        <form className="loginForm" onSubmit={(e) => handleLogin(e)}>
+          <div className="inputGroup">
             <TextField
-              className='loginPasswordField'
-              label='Email'
-              value={email || ''}
+              className="loginPasswordField"
+              label="Email"
+              value={email || ""}
               onChange={(e) => setEmail(e.target.value)}
               error={emailErr}
             />
           </div>
 
-          <div className='inputGroup marginBottom'>
+          <div className="inputGroup marginBottom">
             <PasswordField
-              className='loginPasswordField'
-              label='Password'
-              value={password || ''}
+              className="loginPasswordField"
+              label="Password"
+              value={password || ""}
               onChange={(e) => setPassword(e.target.value)}
               error={passwordErr}
             />
           </div>
 
-          <button className='loginButton' type='submit'>
+          <button className="loginButton" type="submit">
             Log in
           </button>
         </form>
 
-        <div className='actionGroupContainer'>
+        <div className="actionGroupContainer">
           <div
-            className='loginAction'
+            className="loginAction"
             onClick={() => {
-              navigate('/resetpassword');
+              navigate("/resetpassword");
             }}
           >
             Reset Password
           </div>
           <div
-            className='loginAction'
+            className="loginAction"
             onClick={() => {
-              navigate('/signup');
+              navigate("/signup");
             }}
           >
             Sign Up
@@ -134,8 +135,10 @@ const Login = () => {
         </div>
       </div>
 
-      <div className='loginFooter'>
-        <small className='helpText'>Please follow website policies and user agreement</small>
+      <div className="loginFooter">
+        <small className="helpText">
+          Please follow website policies and user agreement
+        </small>
       </div>
     </div>
   );

@@ -1,8 +1,8 @@
-import { useState, useEffect, useContext } from 'react';
-import { UserContext } from '../../context/UserContext';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import NavBar from '../NavBar/NavBarMain';
+import { useState, useEffect, useContext } from "react";
+import { UserContext } from "../../context/UserContext";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import NavBar from "../NavBar/NavBarMain";
 import {
   Box,
   Stepper,
@@ -15,34 +15,38 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-} from '@mui/material';
-import './MockInterview.css';
-import SkillsLevelForm from './SkillsLevelForm';
-import Calendar from './Calendar';
-import ConfirmationPage from './ConfirmationPage';
-import API_Based from '../../../backend/API/API';
+} from "@mui/material";
+import "./MockInterview.css";
+import SkillsLevelForm from "./SkillsLevelForm";
+import Calendar from "./Calendar";
+import ConfirmationPage from "./ConfirmationPage";
+import API_Based from "../../API";
 
 const MockInterview = () => {
   const { userData, authToken } = useContext(UserContext);
   const [nextAllowed, setNextAllowed] = useState(false);
   const [activeStep, setActiveStep] = useState(0);
-  const [targetRole, setTargetRole] = useState('');
-  const [algoLevel, setAlgoLevel] = useState('');
-  const [notes, setNotes] = useState('');
+  const [targetRole, setTargetRole] = useState("");
+  const [algoLevel, setAlgoLevel] = useState("");
+  const [notes, setNotes] = useState("");
   const [availableTimeslots, setAvailableTimeslots] = useState([]);
   const [openDialog, setOpenDialog] = useState(false);
-  const [dialogTitle, setDialogTitle] = useState('');
-  const [dialogMsg, setDialogMsg] = useState('');
+  const [dialogTitle, setDialogTitle] = useState("");
+  const [dialogMsg, setDialogMsg] = useState("");
 
   // variables for calendar
-  const [selectedOption, setSelectedOption] = useState(''); //existing, new
+  const [selectedOption, setSelectedOption] = useState(""); //existing, new
   const [selectedTimeslotId, setSelectedTimeslotId] = useState(0);
-  const [selectedTimeslot, setSelectedTimeslot] = useState('');
-  const [timeOne, setTimeOne] = useState('');
+  const [selectedTimeslot, setSelectedTimeslot] = useState("");
+  const [timeOne, setTimeOne] = useState("");
 
   const navigate = useNavigate();
   const ApiBaseURL = `${API_Based}/interview`;
-  const steps = ['Fill out your skills level', 'Select timeslots', 'Submit your interview request'];
+  const steps = [
+    "Fill out your skills level",
+    "Select timeslots",
+    "Submit your interview request",
+  ];
 
   useEffect(() => {
     let allowed = false;
@@ -74,7 +78,7 @@ const MockInterview = () => {
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
     } else if (activeStep === 2) {
       // on finish, submit new interview request
-      if (selectedOption === 'new') {
+      if (selectedOption === "new") {
         axios
           .post(`${ApiBaseURL}/submitInterview`, {
             userid: userData.id,
@@ -84,24 +88,24 @@ const MockInterview = () => {
               target_role: targetRole,
               notes: notes,
             },
-            timeSlots: [timeOne.format('YYYY-MM-DD HH:mm:ss')],
+            timeSlots: [timeOne.format("YYYY-MM-DD HH:mm:ss")],
             authToken: authToken,
           })
           .then((res) => {
             setOpenDialog(true);
-            setDialogTitle('Success!');
+            setDialogTitle("Success!");
             setDialogMsg(
-              'Successfully submitted new interview request, we will get you paired ASAP and please expect an email for confirmation.'
+              "Successfully submitted new interview request, we will get you paired ASAP and please expect an email for confirmation."
             );
           })
           .catch((err) => {
             setOpenDialog(true);
-            setDialogTitle('Error');
+            setDialogTitle("Error");
             setDialogMsg(err);
           });
       }
 
-      if (selectedOption === 'existing') {
+      if (selectedOption === "existing") {
         axios
           .post(`${ApiBaseURL}/matchWithExisitng`, {
             userid: userData.id,
@@ -116,14 +120,14 @@ const MockInterview = () => {
           })
           .then((res) => {
             setOpenDialog(true);
-            setDialogTitle('Success!');
+            setDialogTitle("Success!");
             setDialogMsg(
-              'Successfully matched with exisitng interview request. Have fun Mocking!!'
+              "Successfully matched with exisitng interview request. Have fun Mocking!!"
             );
           })
           .catch((err) => {
             setOpenDialog(true);
-            setDialogTitle('Error');
+            setDialogTitle("Error");
             setDialogMsg(err);
           });
       }
@@ -142,7 +146,7 @@ const MockInterview = () => {
     <>
       <NavBar />
 
-      <Box className='stepContainer'>
+      <Box className="stepContainer">
         <Stepper activeStep={activeStep}>
           {steps.map((label, index) => {
             const stepProps = {};
@@ -160,8 +164,8 @@ const MockInterview = () => {
             <Typography sx={{ mt: 2, mb: 1 }}>
               All steps completed - you&apos;re finished
             </Typography>
-            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-              <Box sx={{ flex: '1 1 auto' }} />
+            <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
+              <Box sx={{ flex: "1 1 auto" }} />
               <Button onClick={handleReset}>Reset</Button>
             </Box>
           </>
@@ -201,32 +205,32 @@ const MockInterview = () => {
               />
             )}
 
-            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+            <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
               <Button
-                color='inherit'
+                color="inherit"
                 disabled={activeStep === 0}
                 onClick={handleBack}
                 sx={{
                   mr: 1,
-                  '&.Mui-disabled': {
-                    backgroundColor: 'transparent',
+                  "&.Mui-disabled": {
+                    backgroundColor: "transparent",
                   },
                 }}
               >
                 Back
               </Button>
-              <Box sx={{ flex: '1 1 auto' }} />
+              <Box sx={{ flex: "1 1 auto" }} />
 
               <Button
                 disabled={!nextAllowed}
                 onClick={handleNext}
                 sx={{
-                  '&.Mui-disabled': {
-                    backgroundColor: 'transparent',
+                  "&.Mui-disabled": {
+                    backgroundColor: "transparent",
                   },
                 }}
               >
-                {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                {activeStep === steps.length - 1 ? "Finish" : "Next"}
               </Button>
             </Box>
           </>
@@ -238,12 +242,12 @@ const MockInterview = () => {
         <Dialog
           open={openDialog}
           onClose={() => setOpenDialog(false)}
-          aria-labelledby='alert-dialog-title'
-          aria-describedby='alert-dialog-description'
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
         >
-          <DialogTitle id='alert-dialog-title'>{dialogTitle}</DialogTitle>
+          <DialogTitle id="alert-dialog-title">{dialogTitle}</DialogTitle>
           <DialogContent>
-            <DialogContentText id='alert-dialog-description'>
+            <DialogContentText id="alert-dialog-description">
               {dialogMsg}
               <br />
               <br />
@@ -254,7 +258,7 @@ const MockInterview = () => {
             <Button
               onClick={() => {
                 setOpenDialog(false);
-                navigate('/');
+                navigate("/");
               }}
               autoFocus
             >
