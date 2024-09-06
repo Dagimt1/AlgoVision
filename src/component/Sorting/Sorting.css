@@ -301,7 +301,7 @@
 
 #error {
   position: fixed;
-  bottom: 10px;
+  bottom: 100px;
   right: 10px;
   background-color: #f8d7da; /* Alert background */
   color: #721c24; /* Alert text color */
