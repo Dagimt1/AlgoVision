@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import chatCatIcon from './chatCat.png';
 import './chatCat.css';
+import catChat from "../../ChatCat.js"
 
 const ChatCat = () => {
     const [input, setInput] = useState('');
@@ -20,7 +21,7 @@ const ChatCat = () => {
 
         try {
             // Sending the user's message to your backend server
-            const res = await axios.post('http://localhost:4000/chat', {
+            const res = await axios.post(`${catChat}/chat`, {
                 message: input,
             });
 
