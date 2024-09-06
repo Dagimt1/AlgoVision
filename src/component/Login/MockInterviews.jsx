@@ -1,13 +1,13 @@
-import { useState, useEffect, useContext } from 'react';
-import { UserContext } from '../../context/UserContext';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { Box, Stack, Grid } from '@mui/material';
-import { styled } from '@mui/material/styles';
-import dayjs from 'dayjs';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import ConfirmModal from '../modals/ConfirmModal';
-import API_Based from '../../../backend/API/API';
+import { useState, useEffect, useContext } from "react";
+import { UserContext } from "../../context/UserContext";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { Box, Stack, Grid } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import dayjs from "dayjs";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import ConfirmModal from "../modals/ConfirmModal";
+import API_Based from "../../API";
 
 const MockInterviews = () => {
   const { userData, authToken } = useContext(UserContext);
@@ -46,31 +46,36 @@ const MockInterviews = () => {
   return (
     <>
       <Box
-        component='form'
+        component="form"
         sx={{
-          '& .MuiTextField-root': { margin: '5% 5% 5% 0', backgroundColor: '#ffffff' },
+          "& .MuiTextField-root": {
+            margin: "5% 5% 5% 0",
+            backgroundColor: "#ffffff",
+          },
         }}
         noValidate
       >
         <h2>Upcoming Interviews</h2>
 
-        <Box sx={{ width: '100%' }}>
+        <Box sx={{ width: "100%" }}>
           <Stack spacing={2}>
             {interviews.map((item) => (
               <Item key={item.interview_id}>
                 <Grid container>
-                  <Grid container flexDirection='column' item xs={11}>
+                  <Grid container flexDirection="column" item xs={11}>
                     <div>
-                      <b>{dayjs(item.time).format('MM/DD/YYYY HH:mm')}</b>
+                      <b>{dayjs(item.time).format("MM/DD/YYYY HH:mm")}</b>
                     </div>
                     <div>{item.algo_level}</div>
                     <div>{item.target_role}</div>
-                    <div>Status: {item.status === 'O' ? 'Pending' : 'Confirmed'}</div>
+                    <div>
+                      Status: {item.status === "O" ? "Pending" : "Confirmed"}
+                    </div>
                   </Grid>
 
-                  <Grid alignContent='center' xs={1}>
+                  <Grid alignContent="center" xs={1}>
                     <DeleteOutlineIcon
-                      sx={{ fontSize: '20px', cursor: 'pointer' }}
+                      sx={{ fontSize: "20px", cursor: "pointer" }}
                       onClick={() => {
                         setSelectedID(item.interview_id);
                         setOpenConfirmModal(true);
@@ -87,8 +92,8 @@ const MockInterviews = () => {
       {/* =========== alert modal ============ */}
       {openConfirmModal && (
         <ConfirmModal
-          title='Confirm Delete'
-          message='Are you sure you want to cancel this interview?'
+          title="Confirm Delete"
+          message="Are you sure you want to cancel this interview?"
           onConfirm={() => cancelInterview()}
           open={openConfirmModal}
           setOpen={setOpenConfirmModal}
@@ -98,19 +103,19 @@ const MockInterviews = () => {
   );
 };
 
-const Item = styled('div')(({ theme }) => ({
-  alignItems: 'center',
-  fontFamily: 'Arial, sans-serif',
-  minHeight: '50px',
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+const Item = styled("div")(({ theme }) => ({
+  alignItems: "center",
+  fontFamily: "Arial, sans-serif",
+  minHeight: "50px",
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
   padding: theme.spacing(1),
-  textAlign: 'center',
+  textAlign: "center",
   color: theme.palette.text.secondary,
-  borderRadius: '10px',
-  transition: 'background-color 0.3s ease',
+  borderRadius: "10px",
+  transition: "background-color 0.3s ease",
 
-  '&:hover': {
+  "&:hover": {
     backgroundColor: theme.palette.action.hover,
   },
 }));

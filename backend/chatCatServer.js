@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 dotenv.config({ path: './chatCat.env' });
 
 const app = express();
-const port = process.env.CHATCAT_PORT || 4000;
+const port = process.env.PORT || 4000;
 
 // Extract the API key from the environment variables
 const apiKey = process.env.OPENAI_API_KEY;
